@@ -4,14 +4,19 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.0.9",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "antishov/doctrine-extensions-bundle": "^1.4",
         "composer/package-versions-deprecated": "1.11.99.4",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
+        "exercise/htmlpurifier-bundle": "^3.1",
+        "fakerphp/faker": "^1.16",
+        "friendsofsymfony/ckeditor-bundle": "^2.3",
+        "liip/imagine-bundle": "^2.6",
         "phpdocumentor/reflection-docblock": "^5.3",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/asset": "5.3.*",
@@ -44,6 +49,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.3.*",
         "symfony/css-selector": "5.3.*",
@@ -78,7 +84,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "ckeditor:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
