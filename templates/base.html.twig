@@ -1,19 +1,126 @@
+{# Variable twig contenant le nom de la route actuelle pour le menu #}
+{% set route = app.request.attributes.get('_route') %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {# Bootstrap #}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    {# FontAwesome #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    {# Styles #}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+    {# bloc pour ajouter du CSS/JS additionnel #}
+    {% block css %}{% endblock %}
+
+    {# Block pour le titre du document #}
+    <title>{% block title %}{% endblock %} - CS Coaching</title>
+</head>
+<body>
+
+{# navbar #}
+<nav class="navbar navbar-expand-xl bg-white navbar-dark base-navbar">
+    <div class="container-fluid">
+        {# Nom du site #}
+        <a class="navbar-brand fs-2" href="#">
+            <img id="img_logo" class="img-logo" src="{{ asset('/images/coaching-logo.jpg')|imagine_filter('logo_picture') }}" alt="Logo claire Saurel">
+            <p id="text_logo">Pour être l'auteur de sa vie</p>
+        </a>
+        {# Bouton burger #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {# Liens pour tous les utilisateurs#}
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="text-primary fs-4 nav-link{{ route == 'main_home' ? ' active' }}" href="#">Accueil</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="fs-4 text-primary nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Coaching</a>
+                    <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                        {# page : Coaching adulte #}
+                        <a class="dropdown-item" href="#">Coaching professionnel</a>
+                        {# page : liste des managers #}
+                        <a class="dropdown-item" href="#">Coaching scolaire et étudiant</a>
+                        {# page : liste des clients #}
+                        <a class="dropdown-item" href="#">Orientation/reconversion</a>
+                    </div>
+                </li>
+
+                {# page : nos missions #}
+                <li class="nav-item dropdown">
+                    <a class="fs-4 text-primary nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon profil pro</a>
+                    <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                        {# page : Coaching adulte #}
+                        <a class="dropdown-item" href="#">Mes partenaires</a>
+                        {# page : liste des managers #}
+                        <a class="dropdown-item" href="#">Revues de presse</a>
+                    </div>
+                </li>
+                {# Liens uniquement pour les personnes non-connectées #}
+                    {# page : connexion #}
+                    <li class="nav-item">
+                        <a class="text-primary fs-4 nav-link{{ route == 'app_login' ? ' active' }}" href="#">Connexion</a>
+                    </li>
+                    {# page : inscription #}
+                    <li class="nav-item">
+                        <a class="text-primary fs-4 nav-link{{ route == 'app_register' ? ' active' }}" href="#">Inscription</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1 class="text-center" id="title">CS Coaching</h1>
+
+{# Block pour le contenu de la page #}
+{% block body %}{% endblock %}
+
+{# footer #}
+<footer class="footer container-fluid base-footer">
+    <div class="row py-3">
+        {# partie réseaux sociaux #}
+        <div class="col-4">
+            <nav class="footer-nav-network py-4 px-3 text-center">
+                {# TODO : STAGE adresser les liens des réseaux sociaux #}
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f d-inline-block me-3 fa-2x"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter d-inline-block mx-3 fa-2x"></i></a>
+                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in d-inline-block ms-3 fa-2x"></i></a>
+            </nav>
+        </div>
+
+        {# partie navigation #}
+        <div class="col-8">
+            <nav class="footer-nav row py-4 px-3">
+                <div class="col-4"><a href="{{ path('main_who_are_we') }}" class="text-primary text-decoration-none fs-4">Qui sommes-nous?</a></div>
+                <div class="col-4"><a href="{{ path('main_about') }}" class="text-primary text-decoration-none fs-4">À propos</a></div>
+                <div class="col-4"><a href="{{ path('main_contact') }}" class="text-primary text-decoration-none fs-4">Contactez-moi</a></div>
+            </nav>
+        </div>
+    </div>
+
+    {# copyright #}
+    <div class="row">
+        <div class="col-8 mx-auto" id="copyright-div"><hr>
+            <a class="fw-bold " id="copyright-text">© 2021 CS COACHING</a>
+        </div>
+    </div>
+</footer>
+
+{# bloc pour ajouter du JS additionnel #}
+{% block js %}
+    {# Inclusion JS Bootstrap #}
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
+
+</body>
 </html>
