@@ -4,93 +4,124 @@
 
 {% block body %}
 
-    <main class="container-fluid bg-custom-celadon">
-        {# Titre principal de la page #}
-        <div class="row my-5">
-            <h1 class="text-center fs-custom-1 ">Claire SAUREL, coach et formatrice</h1>
-        </div>
+    <main class="container-fluid bg-custom-celadon col-lg-10 align-self-center">
 
-        {# Text d'introduction #}
-        <div class="row mt-3 my-5 ">
-            <p class="col-4 offset-2 px-4 align-self-center h2">
-                Bonjour à vous,
-                Je suis coach scolaire et professionnelle.
-                J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
-                Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.
-                Je suis également formatrice professionnelle pour diverses structures.
-            </p>
-            {# Image de support #}
-            <div class="col-4">
-                <img class="img-fluid" src="{{ asset('images/ModifClaireS.png') }}" alt="portait de Claire Saurel">
+            {# Titre principal de la page #}
+            <div class="row my-5">
+                <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Claire SAUREL, coach et formatrice</h1>
             </div>
-        </div>
 
-        <hr class="col-8 mx-auto">
-
-        {# Partie 1 : Ce que nous proposons #}
-        <section class="section">
-
-            {# Titre secondaire #}
+            {# Text d'introduction #}
             <div class="row mt-5 mb-3">
-                <h2 class="text-center text-uppercase">Ce que nous proposons</h2>
-            </div>
 
-            <div class="row mt-3 mb-5">
-                {# Texte d'explication #}
-                <p class="col-4 offset-2 px-4 align-self-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
 
                 {# Image de support #}
-                <div class="col-4">
-                    <img class="img-fluid img-thumbnail" src="{{ asset('images/ModifClaireS.png') }}" alt="Une équipe pour vous">
-                </div>
-            </div>
-        </section>
-
-        <hr class="col-8 mx-auto">
-
-        {# Partie 2 : Notre objectif #}
-        <section class="section">
-
-            {# Titre secondaire #}
-            <div class="row mt-5 mb-3">
-                <h2 class="text-center text-uppercase">Notre objectif</h2>
-            </div>
-
-            <div class="row mt-3 mb-5">
-                {# Image de support #}
-                <div class="col-4 offset-2">
-                    <img class="img-fluid img-thumbnail" src="{{ asset('images/eo-park.jpg') }}" alt="Une monde plus vert">
+                <div class="col-lg-5 mx-auto  offset-4 ">
+                    <img id="portrait" class="img-fluid" src="{{ asset('images/image10.jpg') }}" alt="portait de Claire Saurel" >
                 </div>
 
-                {# Texte d'explication #}
-                <p class="col-4 px-4 align-self-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                <div class="col-lg-5 mx-auto  align-self-center">
+                <p class="h4">
+                    Bonjour à vous,<br>
+                    Je suis coach scolaire et professionnelle.
+                    J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
+                    Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.<br>
+
+                    Je suis également formatrice professionnelle pour diverses structures.<br>
+
+                    Je suis également formatrice professionnelle pour diverses structures.<br>
+
+                    Ma démarche :  Accompagner les changements de votre vie par l’échange, l’écoute, l’action, la visualisation des possibles, la gestion des émotions, l’amélioration des relations, la revalorisation de votre estime de vous…
+                    Nos séances seront confidentielles et dans le respect de chacun(e). Elles peuvent faire l’objet d’un contrat écrit.
+                    Les valeurs fondatrices de ma posture de coach sont :
+                    L’authenticité, la simplicité, la créativité, la bienveillance, le non-jugement<br>
+
+                    N’hésitez pas à parcourir mon site pour en savoir plus, à bientôt en rdv !
                 </p>
-            </div>
-        </section>
-
-        <hr class="col-8 mx-auto">
-
-        {# Partie  : Nous contacter #}
-        <section class="section">
-
-            {# Titre secondaire #}
-            <div class="row mt-5 mb-3">
-                <h2 class="text-center text-uppercase">Vous voulez faire partie de l'aventure ?</h2>
-            </div>
-
-            <div class="row mt-3 mb-5">
-                <div class="text-center my-2">
-                    <i class="fas fa-envelope fa-4x text-color-dark-celadon"></i>
                 </div>
 
-                <p class="text-center mt-3">Si vous souhaitez en savoir plus, et faire partie de notre référentiel vous pouvez nous contacter <a href="{{ path('main_contact') }}">ici</a></p>
             </div>
-        </section>
+
+            <hr class="col-8 mx-auto">
+
+            {# Partie 1 : Ce que nous proposons #}
+            <section class="row justify-content-around section">
+
+                {# Titre secondaire #}
+                <div class="row mt-5 mb-3">
+                    <h2 class="text-center text-uppercase"></h2>
+                </div>
+
+                <div class="row mt-3 mb-5">
+                    {# Texte d'explication #}
+                    <p class="col-lg-4 offset-2 mx-auto align-self-center h4">
+                        <span class="Malettrine">Q</span>uel que soit votre âge, je vous accompagne <strong>de manière personnalisée</strong> pour que vous deveniez l’auteur de votre vie, pour enfin être épanoui et heureux dans votre travail ou votre scolarité.
+                    </p>
+
+                    {# Image de support #}
+                    <div class="col-lg-4 mx-auto">
+                        <img class="img-fluid" src="{{ asset('images/inspi.jpg') }}" alt="personnage qui saute de joie">
+                    </div>
+                </div>
+                <div class="col-4 mx-auto p-4 text-center ">
+                    <h2 class="mx-auto col-lg-12">Vous désirez me contacter !</h2>
+                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">A domicile</a>
+                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">En visio</a>
+                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">Au cabinet</a>
+                </div>
+            </section>
+
+            <hr class="col-8 mx-auto">
+
+            {# Partie 2 : Notre objectif #}
+
+            <section>
+                {# Titre secondaire #}
+                <div class="row mt-5 mb-3">
+                    <h1 class="text-center">Coaching</h1>
+                </div>
+
+                <div class="row mt-3 mb-5">
+                    {# Image de support #}
+                    <div class="col-lg-4 mx-auto offset-2">
+                        <img class="img-fluid" src="{{ asset('images/Coaching.jpg') }}" alt="Aide au coaching">
+                    </div>
+
+                    {# Texte d'explication #}
+                    <div class="d-grid gap-2 col-lg-5 mx-auto align-self-center h4" >
+                        <a href="#"><button class="btn btn-success" type="button">Coaching-Pro</button><br></a>
+                        <p>Pour une démarche orientée vers l’action qui permet de clarifier ses objectifs personnels et professionnels.</p><br>
+                        <a href="#"><button class="btn btn-success" type="button">Coaching-Scolaire et étudiant</button></a>
+                        <p>Pour un suivi personnalisé de l’élève ou de l’étudiant visant le développement de son potentiel et de son savoir-faire.</p><br>
+                        <a href="#"><button class="btn btn-success" type="button">Orientation et reconversion</button></a>
+                        <p>Partons à la découverte de ce que le  Coaching en orientation ou transition professionnel peut vous apporter …</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="col-8 mx-auto">
+
+            {# Partie  : Nous contacter #}
+            <section class="section">
+
+                {# Titre secondaire #}
+                <div class="row mt-5 mb-3">
+                    <h2 class="text-center text-uppercase">Vous voulez faire partie de l'aventure ?</h2>
+                </div>
+
+                <div class="row mt-3 mb-5">
+                    <div class="text-center my-2">
+                        <i class="fas fa-envelope fa-4x text-color-dark-celadon"></i>
+                    </div>
+
+                    <p class="text-center mt-3">Si vous souhaitez en savoir plus, et faire partie de notre référentiel vous pouvez nous contacter <a href="{{ path('main_contact') }}">ici</a></p>
+                </div>
+            </section>
 
     </main>
+
+
+
 
 
 
