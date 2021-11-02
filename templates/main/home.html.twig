@@ -11,33 +11,32 @@
                 <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Claire SAUREL, coach et formatrice</h1>
             </div>
 
-            {# Text d'introduction #}
+
             <div class="row mt-5 mb-3">
 
-
                 {# Image de support #}
-                <div class="col-lg-5 mx-auto  offset-4 ">
-                    <img id="portrait" class="img-fluid" src="{{ asset('images/image10.jpg') }}" alt="portait de Claire Saurel" >
+                <div class=" col-lg-6 p-5 m-5 text-center">
+                    <img id="portrait" class="img-fluid  w-50 " src="{{ asset('images/image10.jpg') }}" alt="portait de Claire Saurel" >
                 </div>
+                {# Text d'introduction #}
+                <div class="col-lg-5 p-5 text-center">
+                    <p class="lh-lg h3 text-light">
+                        Bonjour à vous,<br>
+                        Je suis coach scolaire et professionnelle.
+                        J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
+                        Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.<br>
 
-                <div class="col-lg-5 mx-auto  align-self-center">
-                <p class="h4">
-                    Bonjour à vous,<br>
-                    Je suis coach scolaire et professionnelle.
-                    J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
-                    Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.<br>
+                        Je suis également formatrice professionnelle pour diverses structures.<br>
 
-                    Je suis également formatrice professionnelle pour diverses structures.<br>
+                        Je suis également formatrice professionnelle pour diverses structures.<br>
 
-                    Je suis également formatrice professionnelle pour diverses structures.<br>
+                        Ma démarche :  Accompagner les changements de votre vie par l’échange, l’écoute, l’action, la visualisation des possibles, la gestion des émotions, l’amélioration des relations, la revalorisation de votre estime de vous…
+                        Nos séances seront confidentielles et dans le respect de chacun(e). Elles peuvent faire l’objet d’un contrat écrit.
+                        Les valeurs fondatrices de ma posture de coach sont :
+                        L’authenticité, la simplicité, la créativité, la bienveillance, le non-jugement<br>
 
-                    Ma démarche :  Accompagner les changements de votre vie par l’échange, l’écoute, l’action, la visualisation des possibles, la gestion des émotions, l’amélioration des relations, la revalorisation de votre estime de vous…
-                    Nos séances seront confidentielles et dans le respect de chacun(e). Elles peuvent faire l’objet d’un contrat écrit.
-                    Les valeurs fondatrices de ma posture de coach sont :
-                    L’authenticité, la simplicité, la créativité, la bienveillance, le non-jugement<br>
-
-                    N’hésitez pas à parcourir mon site pour en savoir plus, à bientôt en rdv !
-                </p>
+                        N’hésitez pas à parcourir mon site pour en savoir plus, à bientôt en rdv !
+                    </p>
                 </div>
 
             </div>
@@ -45,7 +44,7 @@
             <hr class="col-8 mx-auto">
 
             {# Partie 1 : Ce que nous proposons #}
-            <section class="row justify-content-around section">
+            <section id="text-color" class="row justify-content-around section">
 
                 {# Titre secondaire #}
                 <div class="row mt-5 mb-3">
@@ -54,20 +53,20 @@
 
                 <div class="row mt-3 mb-5">
                     {# Texte d'explication #}
-                    <p class="col-lg-4 offset-2 mx-auto align-self-center h4">
+                    <p  class="col-lg-4 offset-2 mx-auto align-self-center text-black font-weight lh-lg h3">
                         <span class="Malettrine">Q</span>uel que soit votre âge, je vous accompagne <strong>de manière personnalisée</strong> pour que vous deveniez l’auteur de votre vie, pour enfin être épanoui et heureux dans votre travail ou votre scolarité.
                     </p>
 
                     {# Image de support #}
-                    <div class="col-lg-4 mx-auto">
-                        <img class="img-fluid" src="{{ asset('images/inspi.jpg') }}" alt="personnage qui saute de joie">
+                    <div class="col-lg-4 mx-auto ">
+                        <img class="img-fluid shadow-lg w-200" src="{{ asset('images/inspi.jpg') }}" alt="personnage qui saute de joie">
                     </div>
                 </div>
-                <div class="col-4 mx-auto p-4 text-center ">
-                    <h2 class="mx-auto col-lg-12">Vous désirez me contacter !</h2>
-                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">A domicile</a>
-                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">En visio</a>
-                    <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">Au cabinet</a>
+                <div class="col-4 mx-auto p-4 text-center">
+                    <h2 class="mx-auto col-lg-12 ">Vous désirez me contacter !</h2>
+                    <a href="#" class="btn btn-success mx-sm-4 p-sm-2" role="button" data-bs-toggle="button">A domicile</a>
+                    <a href="#" class="btn btn-success mx-sm-4 p-sm-2" role="button" data-bs-toggle="button">En visio</a>
+                    <a href="#" class="btn btn-success mx-sm-4 p-sm-2" role="button" data-bs-toggle="button">Au cabinet</a>
                 </div>
             </section>
 
@@ -84,17 +83,17 @@
                 <div class="row mt-3 mb-5">
                     {# Image de support #}
                     <div class="col-lg-4 mx-auto offset-2">
-                        <img class="img-fluid" src="{{ asset('images/Coaching.jpg') }}" alt="Aide au coaching">
+                        <img class="img-fluid shadow-lg" src="{{ asset('images/Coaching.jpg') }}" alt="Aide au coaching">
                     </div>
 
                     {# Texte d'explication #}
-                    <div class="d-grid gap-2 col-lg-5 mx-auto align-self-center h4" >
-                        <a href="#"><button class="btn btn-success" type="button">Coaching-Pro</button><br></a>
-                        <p>Pour une démarche orientée vers l’action qui permet de clarifier ses objectifs personnels et professionnels.</p><br>
+                    <div  class="d-grid gap-2 col-lg-5 mx-auto align-self-center lh-lg h4" >
+                        <a href="{{ path('main_coachingPro') }}"><button class="btn btn-success" type="button">Coaching-Pro</button><br></a>
+                        <p id="text-color">Pour une démarche orientée vers l’action qui permet de clarifier ses objectifs personnels et professionnels.</p><br>
                         <a href="#"><button class="btn btn-success" type="button">Coaching-Scolaire et étudiant</button></a>
-                        <p>Pour un suivi personnalisé de l’élève ou de l’étudiant visant le développement de son potentiel et de son savoir-faire.</p><br>
+                        <p id="text-color">Pour un suivi personnalisé de l’élève ou de l’étudiant visant le développement de son potentiel et de son savoir-faire.</p><br>
                         <a href="#"><button class="btn btn-success" type="button">Orientation et reconversion</button></a>
-                        <p>Partons à la découverte de ce que le  Coaching en orientation ou transition professionnel peut vous apporter …</p>
+                        <p id="text-color">Partons à la découverte de ce que le  Coaching en orientation ou transition professionnel peut vous apporter …</p>
                     </div>
                 </div>
             </section>

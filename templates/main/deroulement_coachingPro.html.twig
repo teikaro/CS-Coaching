@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deroulement d'un CoachingPro{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid col-lg-10 align-self-center">
+
+            {# Titre principal de la page #}
+            <div class="row p-4">
+                <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Déroulement d'un coaching individuel</h1>
+            </div>
+
+            {# Text d'introduction #}
+            <div class="row mt-5 mb-3">
+
+                {# Image de support #}
+                <div class="col-lg-5 text-center p-5">
+                    <img class="img-fluid w-75" src="{{ asset('images/deroulCoachInd.png') }}" alt="Déroulement coahing pro" >
+                </div>
+
+                <div class="col-lg-5 mx-auto  align-self-center">
+                    <p class=" lh-lg text-justify h2">
+                        Pour vous aider à vivre vos transformations personnelles et professionnelles, à franchir des caps difficiles ou des moments-clés de la vie, le coaching individuel vous offre un espace de parole, d’écoute et de dialogue.
+                        Cet accompagnement personnalisé contribue à donner du sens à votre projet de changement et à mobiliser votre énergie dans la recherche de solutions en cohérence avec les situations de votre vie personnelle et/ou professionnelle.
+                    </p>
+                </div>
+            </div>
+
+            <hr class="col-8 mx-auto">
+
+            {# Partie 1 : Pour qui pour quoi #}
+            <section class="row text-black-50">
+
+                {# Titre secondaire #}
+                <div class="row mt-5 mb-3">
+                    <h2 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">les objectifs</h2>
+                    <div class="row mt-3 mb-5">
+                        <div class="lh-lg text-justify">
+                            <ul class="col-6 offset-4 lh-lg h4" >
+                                <li>Établir votre objectif (motivation, confiance, communication, orientation, travail…)</li>
+                                <li>Bonifier votre confiance et estime de soi.</li>
+                                <li>Définir les outils qui sont bons pour vous</li>
+                                <li>Améliorer vos outils de communication avec votre entourage (Conjoint, collègues…)</li>
+                                <li>Devenir plus congruent dans votre vie personnelle /professionnelle.</li>
+                                <li>Découvrir vos stratégies gagnantes</li>
+                                <li>Déterminer et prioriser vos valeurs…</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    <hr class="col-8 mx-auto">
+                <div class="row col-12">
+                    <h2 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Modalités pratiques</h2>
+                    <div class="col-12 row mt-3 mb-5">
+                        <div class="col-4 offset-2 text-justify h3">
+                            <h3>Durée du coaching : </h3>
+                            <p>A définir ensemble lors d’une première rencontre </p>
+                            <h3>Périodicité :</h3>
+                            <p>Elle peut être hebdomadaire, bimensuelle, mensuelle. </p>
+                        </div>
+                            <div class="col-lg-4 lh-lg offset-1 text-center-justify h3">
+                                <div class=" lh-lg text-justify h3">
+                                    <h3>A savoir</h3>
+                                    <ul class=" lh-sm h4">
+                                        <li>Le coaching se déroule en toute confidentialité.</li>
+                                        <li>Le coaching fait l’objet d’un contrat écrit ou oral bipartite (Coach/Coaché).</li>
+                                        <li>A chaque séance, le coach et son client mesurent les progressions.</li>
+                                        <li>Une séance de clôture permet de réaliser un bilan global, sur les apports du coaching, l’atteinte des objectifs et les éventuelles étapes à venir</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div class="row mt-3 mb-5">
+                            <div class="col-4 offset-2 text-justify h3">
+                                <h3>Tarif du coaching :</h3>
+                                <p>La séance : 60 euros</p>
+                            </div>
+                            <div class="col-4 offset-1 text-justify h3">
+                                <!--Google map-->
+                                <h3>
+                                <a target="_blank" class="text-center" href="https://www.google.fr/maps/place/Claire+Saurel+Coaching/@47.0186306,4.8328964,17z/data=!3m1!4b1!4m5!3m4!1s0x47f2f27e858f1edd:0xe7a0046516b443de!8m2!3d47.0186306!4d4.8350851"> <i class="fas fa-home-lg text-black "></i> </a>Localisation : de mon bureau</h3>
+                                <p>Je reçois à mon cabinet à Beaune ou en visio sur rendez-vous uniquement. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </main>
+
+
+
+
+
+
+{% endblock %}
+

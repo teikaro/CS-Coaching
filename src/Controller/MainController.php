@@ -6,11 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 /* On prépare le nom des routes de la classe MainController */
 #[Route('/', name: 'main_')]
@@ -23,6 +18,34 @@ class MainController extends AbstractController
 
         return $this->render('main/home.html.twig');
     }
+
+    /*  Page Coaching Pro */
+
+     #[Route("/coachingPro", name:"coachingPro")]
+
+    public function coachingPro(): Response
+    {
+        return $this->render('main/coachingPro.html.twig');
+    }
+
+    /*  Page deroulement d'un Coaching pro */
+
+    #[Route("/deroulement-et-modalites-d'un-coachingPro", name:"deroulement_coachingPro")]
+
+    public function deroulement_coachingPro(): Response
+    {
+        return $this->render('main/deroulement_coachingPro.html.twig');
+    }
+
+
+
+
+
+
+
+
+
+
 
     /* Contrôleur de la vue Nos missions */
     #[Route('/nos-mission/', name: 'missions')]

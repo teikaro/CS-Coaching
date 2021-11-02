@@ -1,6 +1,14 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+
+#        # activation du thème Bootstrap 5 pour les formulaires
+#        form_themes: [ 'bootstrap_5_layout.html.twig' ]
+#
+#        globals:
+#            site_name: '%app.site_name%'
+#            google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+
 when@test:
     twig:
         strict_variables: true

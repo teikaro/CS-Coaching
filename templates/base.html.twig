@@ -23,6 +23,7 @@
     <title>{% block title %}{% endblock %} - CS Coaching</title>
 </head>
 <body>
+
 <header>
 
 {# navbar #}
@@ -41,7 +42,7 @@
                 {# Liens pour tous les utilisateurs#}
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="text-success fs-4 nav-link{{ route == 'main_home' ? ' active' }}" href="{{ path('main_home') }}">Accueil</a>
                     </li>
 
@@ -49,9 +50,11 @@
                         <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Coaching</a>
                         <div class="dropdown-menu" aria-labelledby="profil-dropdown">
                             {# page : Coaching adulte #}
-                            <a class="dropdown-item" href="#">Coaching professionnel</a>
+                            <a class="dropdown-item" href="{{ path('main_coachingPro') }}">Coaching professionnel</a>
                             {# page : liste des managers #}
                             <a class="dropdown-item" href="#">Coaching scolaire et étudiant</a>
+                            {# page  déroulement d'un coaching pro #}
+                            <a class="dropdown-item" href="{{ path('main_deroulement_coachingPro') }}">Déroulement d'un coaching pro</a>
                             {# page : liste des clients #}
                             <a class="dropdown-item" href="#">Orientation/reconversion</a>
                         </div>
@@ -104,7 +107,9 @@
 
 </div>
 {#lien haut#}
-<a type="button" id="le_bouton" href="#site-header">retour en haut</a>
+<div id="scroll_to_top">
+    <a href="#site-header"><img src="{{ asset('/images/angle-double-up-solid.svg')  }}" alt="Retourner en haut" /></a>
+</div>
 
 
 {# footer #}
