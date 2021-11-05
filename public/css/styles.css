@@ -1,6 +1,8 @@
-/* Import de la font page d'erreur*/
+/*-------------------- IMPORTS --------------------*/
+/* Import des fonts pour les pages d'erreur*/
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Source+Code+Pro:wght@700&display=swap');
 @import url('https://rsms.me/inter/inter.css');
+/*-------------------- HTML ELEMENTS --------------------*/
 
 html, body{
     background-color: #DDDDDD;
@@ -12,16 +14,22 @@ html, body{
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-   }
+}
+
+
+/*--------Partie front---------*/
 main{
     background-image: url("../plages/modifPlage.png");
     background-size: cover;
     color: #fefefe;
-    opacity: 1;
-}
+    }
+
 .main-Mentions{
-    background-color: #1b9173;
+    /*background-color: #1b9173;*/
+    background-image: url("../plages/modifPlage.png");
+    background-size: cover;
 }
+
 
 .bg-custom-dark-celadon{
     background: #388991;
@@ -131,21 +139,6 @@ p {
     width: 25px;
 }
 
-
-.bg-custom-celadon{
-
-    background-color: #83A697;
- }
-
-/* background-color celadon */
-.bg-custom-dark-celadon{
-    background-color: #718b80;
-}
-
-/* color celadon */
-.text-color-dark-celadon{
-    color: #718b80;
-}
 /* lettre Q du paragraphe*/
 .Malettrine{
     font-size:3em;
@@ -168,50 +161,20 @@ hr:after {
     top: -10px;
 }
 
+/*-------------------- CUSTOM CLASSES --------------------*/
 
-/* font-size custom */
-.fs-custom-1{
-    font-size: 4rem;
+/* BGCs */
+.bg-custom-celadon{
+    background-color: #83A697;
 }
 
-.custom-margin-1{
-    margin-top: 37vh;
-    margin-bottom: 37vh;
+.bg-custom-dark-celadon{
+    background-color: #fefefe;
 }
 
-.custom-title{
-    font-weight: bold;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 4rem;
-}
-
-/* message de succès */
-.alert-success{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Pages d'erreur */
-.error-title{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 12rem;
-    font-weight: bold;
-    font-family: 'Source Code Pro', monospace;
-    opacity: .5;
-}
-
-.error-text{
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    font-size: 3rem;
-    font-weight: bold;
-    transform: translateX(-50%);
-    font-family: 'Dancing Script', cursive;
+/* COLORs */
+.text-color-dark-celadon{
+    color: #718b80;
 }
 
 .error-403{
@@ -226,20 +189,167 @@ hr:after {
     color: #b900ff;
 }
 
-/* Formulaires */
+/* FONT-SIZE */
+.fs-custom-1{
+    font-size: 4rem;
+}
+
+/* MARGINs */
+/* Utilisé sur la page WIP */
+.custom-margin-1{
+    margin-top: 37vh;
+    margin-bottom: 37vh;
+}
+
+/* Utilisé sur les interfaces client et consultant */
+.custom-margin-2{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+/* Utilisé sur les listes de projet et service */
+.custom-margin-3{
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+}
+
+/* TITLE */
+.custom-title{
+    font-weight: bold;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 4rem;
+}
+
+/* base.html.twig FOOTER */
+.base-footer{
+    min-height: 200px;
+    padding-bottom: 1px;
+}
+
+/* Menu d'interface */
+.side-menu{
+    width: 300px !important;
+    height: 200px;
+    position: static;
+    top: 200px;
+    margin-left: 12px;
+}
+
+.side-menu a{
+    text-decoration: none;
+}
+
+.side-menu a:hover{
+    text-decoration: underline;
+}
+
+/* base.html.twig NAVBAR */
+.base-navbar a{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Utilisé pour la photo de profil */
+.profil-picture{
+    height: 200px;
+    width: 200px;
+}
+
+/* Bouton retour en haut */
+.backTop-btn {
+    position: fixed;
+    right: 150px;
+    bottom: 200px;
+    font-size: 60px;
+}
+
+/*-------------------- BOOTSTRAP ADJUSTMENTS --------------------*/
+/* Utilisé pour le placement des messages de succès */
+.alert-success{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.footer a, .footer .copyright, .navbar a{
+    color: #388991;
+}
+
+.footer a{
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+}
+
+.footer a:hover, .navbar a:hover{
+    color: #63a563;
+    text-shadow: 0 1px 6px #EAEAEAFF;
+}
+
+/*-------------------- CUSTOM PLACEMENT --------------------*/
+/* Title of error pages */
+.error-title{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 12rem;
+    font-weight: bold;
+    font-family: 'Source Code Pro', monospace;
+    opacity: .5;
+}
+
+/* Texte of error pages */
+.error-text{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    font-size: 3rem;
+    font-weight: bold;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-family: 'Dancing Script', cursive;
+}
+
+.row-error{
+    min-height: 75vh;
+}
+
+
+/*-------------------- CUSTOM ELEMENT --------------------*/
+/* Utilisé sur les formulaires de connexion et d'inscription */
 .image-container{
+    background: url('../images/abeille.jpg') center no-repeat;
+    background-size: cover;
     height: 100vh;
 }
 
+/*-------------------- CUSTOM FORM --------------------*/
 .form-container{
     background-color:#83A697 ;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
 .form-box{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     min-height: 100vh;
 }
@@ -271,6 +381,22 @@ hr:after {
     color:#404241;
 }
 
+.form-box .form-input input::-webkit-input-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input::-moz-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input:-ms-input-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input::-ms-input-placeholder{
+    padding-left: 0;
+}
+
 .form-box .form-input input::placeholder{
     padding-left: 0;
 }
@@ -289,62 +415,19 @@ hr:after {
     background-color: #fff;
     color: #000;
     font-weight: bold;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
 }
 
 .form-box button[type="submit"]:hover{
     -webkit-box-shadow: 0 9px 10px -2px rgba(0,0,0,0.55);
-    -moz-box-shadow: 0 9px 10px -2px rgba(0,0,0,0.55);
     box-shadow: 0 9px 10px -2px rgba(0,0,0,0.55);
 }
 
-.base-footer{
-    min-height: 200px;
-    padding-bottom: 1px;
-}
-
-/* colorisation des éléments du footer */
-.footer a, .footer .copyright, .navbar{
-    color: #e9e9e9;
-}
-
-.footer a{
-    transition: color .3s ease;
-}
-
-.footer a:hover, .navbar a:hover{
-    color: #ffffff;
-    text-shadow: 0 1px 6px #EAEAEAFF;
-}
-
-/* Menu d'interface */
-.side-menu{
-    width: 300px !important;
-    height: 200px;
-    position: static;
-    top: 200px;
-    margin-left: 12px;
-}
-
-.side-menu a{
-    text-decoration: none;
-}
-
-.side-menu a:hover{
-    text-decoration: underline;
-}
-
-.base-navbar a{
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.profil-picture{
-    height: 200px;
-    width: 200px;
-}
-
+/*-------------------- MEDIA QUERIES --------------------*/
 @media screen and (min-width: 1920px){
+    /* Placement du menu */
     .side-menu{
         position: sticky;
         top: 200px;
@@ -354,37 +437,15 @@ hr:after {
     }
 }
 
-#text_logo {
-    margin: 0 0 0 6.4rem;
-    font-size: 1.2rem;
-    color: #6d6d6d;
-    cursor: auto;
-    text-decoration: none;
-    font-family: "Inter var", -apple-system, "Helvetica Neue", sans-serif;
-}
+/* Pour l'utilisation de checkbox */
+/*.form-box input[type="checkbox"]:not(:checked) + label:before{*/
+/*    background: transparent;*/
+/*    border: 2px solid #fff;*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*}*/
 
-#img_logo {
-    margin: 1rem 0 0 6.4rem;
-}
-
-#title {
-    font-size: 5rem;
-    font-family: 'Inter var', sans-serif;
-    font-weight: 800;
-    line-height: 1.138888889;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
-}
-
-#copyright-text {
-    color: black;
-    font-size: 1rem;
-    font-family: 'Inter var', sans-serif;
-    position: relative;
-    top: 25px;
-    text-decoration: none;
-}
-
-#copyright-div {
-    margin-bottom: 5rem;
-}
+/*.form-box .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{*/
+/*    background-color: #dc3545;*/
+/*    border: 0px;*/
+/*}*/

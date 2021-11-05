@@ -1,5 +1,6 @@
 # Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
 liip_imagine:
+
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
 
@@ -7,8 +8,50 @@ liip_imagine:
     filter_sets:
 
         # Le nom des filtres est libre, l'on peut mettre ce que l'on veut.
-        logo_picture:
+        service_picture:
             quality: 75         # Qualité de l'image en sortie (75% = bon compromis entre le poids final de l'image et sa qualité)
             filters:
                 scale:          # Agrandit ou réduit l'image jusqu'à ce qu'un des côtés de l'image atteigne sa valeur (conserve le ratio, sans déformation d'image)
-                    dim: [ 340, 90 ]
+                    dim: [ 250, 250 ]
+
+        project_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 250, 250 ]
+
+        about_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 710, 445 ]
+
+        work_team_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 610, 410 ]
+
+        eo_park_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 610, 375 ]
+
+        mission_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 870, 680 ]
+
+        team_picture:
+            quality: 75         
+            filters:
+                scale: 
+                    dim: [ 870, 580 ]
+
+        show_picture:
+            quality: 75
+            filters:
+                scale:
+                    dim: [ 200, 200 ]

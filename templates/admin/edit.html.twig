@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{# titre du document #}
+{% block title %}Administration{% endblock %}
+
+{# Corps du document #}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row mt-5">
+
+            {# Titre principale de la page #}
+            <div class="heading my-5">
+                <h1 class="fs-custom-1 text-center">Modification du rôle</h1>
+            </div>
+
+            {# Forumlaire de choix du rôle #}
+            <div class="col-4 mx-auto">
+                <div class=" fs-4">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                        <div class="text-center my-5">
+                            <button class="btn btn-outline-success">{{ button_label|default('Modifier le rôle') }}</button>
+                        </div>
+                    {{ form_end(form) }}
+
+                    {# Lien de retour à l'interface administrateur #}
+                    <div class="text-center my-5">
+                        <a href="{{ path('admin_index') }}" class="text-decoration-none fs-4 text-center">Retour à la liste des profils</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

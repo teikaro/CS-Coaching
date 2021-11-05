@@ -4,29 +4,43 @@ namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+
     public function getFilters(): array
     {
         return [
-            // If your filter generates SAFE HTML, you should add a third
-            // parameter: ['is_safe' => ['html']]
-            // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
-            new TwigFilter('filter_name', [$this, 'doSomething']),
+            new TwigFilter('size', [$this, 'size']),
+            new TwigFilter('excerpt', [$this, 'excerpt']), // Enregistrement du nouveau filtre auprès de Twig
         ];
     }
 
-    public function getFunctions(): array
+    /**
+     * Filtre pour compter le nombre de caractère d'une chaîne
+     */
+    public function size(string $value) : int
     {
-        return [
-            new TwigFunction('function_name', [$this, 'doSomething']),
-        ];
+        return mb_strlen($value);
     }
 
-    public function doSomething($value)
+
+    /**
+     * Filtre qui retournera la chaîne de texte donnée tronquée à "$nbWords" mots. Si trop petite le filtre retourne juste la chaîne sans y toucher
+     */
+    public function excerpt(string $text, int $nbWords): string
     {
-        // ...
+
+        $arrayText = explode(' ', $text, ($nbWords + 1));
+
+        if( count($arrayText) > $nbWords ){
+            array_pop($arrayText);
+            return implode(' ', $arrayText) . '...';
+        }
+
+        return $text;
+
     }
+
+
 }

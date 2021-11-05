@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 500{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row row-error">
+            <h1 class="error-title error-500 text-center">
+                <sup><i class="fas fa-quote-left"></i></sup>Erreur 500<sub><i class="fas fa-quote-right"></i></sub>
+            </h1>
+            <p class="error-text text-center fst-italic">Une erreur interne est survenue.</p>
+        </div>
+    </div>
+
+{% endblock %}

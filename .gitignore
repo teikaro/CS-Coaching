@@ -19,6 +19,9 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
+### exlusions persos ###
+.idea/
+/migrations/*.php
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###

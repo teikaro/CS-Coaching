@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{# Titre du document #}
+{% block title %}Edition compte{% endblock %}
+
+{# Corps de la page #}
+{% block body %}
+
+    <div class="form-container container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+
+                {# titre principal de la page #}
+                <h1 class="text-center fs-custom-1 my-5">Modification des informations du compte</h1>
+
+                {# Forumlaire #}
+                {{ form_start(form) }}
+                {{ form_row(form.lastName, {
+                    label: 'Nom',
+                    attr: {
+                        placeholder: 'Nom'
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+                {{ form_row(form.firstName, {
+                    label: 'Prénom',
+                    attr: {
+                        placeholder: 'Prénom'
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+                {{ form_row(form.email, {
+                    label: 'E-mail',
+                    attr: {
+                        placeholder: 'E-mail'
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+                {{ form_row(form.phone, {
+                    label: 'Téléphone',
+                    attr: {
+                        placeholder: 'Téléphone'
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+                {{ form_row(form.corporateName, {
+                    label: 'Entreprise',
+                    attr: {
+                        placeholder: 'Entreprise'
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+
+                <button type="submit" class="btn btn-outline-light w-100 mt-4"><i class="far fa-edit pe-2"></i>{{ button_label|default('Modifier') }}</button>
+                {{ form_end(form) }}
+
+                {# Lien de retour sur la page de gestion de compte #}
+                <div class="my-5">
+                    <a href="{{ path('account_show') }}" class="btn btn-outline-light w-100"><i class="fas fa-caret-square-left pe-2"></i>Retour à votre profil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
