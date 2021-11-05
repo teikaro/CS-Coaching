@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coaching Scolaire et étudiant{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid col-lg-10 align-self-center bg-custom-dark-celadon ">
+
+            {# Titre principal de la page #}
+            <div class="row p-4">
+                <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Coaching scolaire et étudiant</h1>
+            </div>
+
+            <div class="marquee-rtl text-center p-5 ">
+                <!-- le contenu défilant -->
+                <div class="msg">
+                    <p class="h2">
+                        Vous êtes lycéen ou étudiant et vous avez envie de réussir un oral, un examen, un concours ?.....Vous êtes en conflit avec lui à cause de sa scolarité ?.......Il manque de confiance en lui ?.....Il ne connait pas son profil d'apprentissage ?.....Il n'a pas de méthode de travail ?.....Il manque de motivation ? de concentration ?.....Votre enfant a ses résultats scolaire en baisse ?.....
+                    </p>
+                </div>
+            </div>
+
+        <section class="row justify-content-around section">
+            <div class="row mt-5 mb-3">
+                {# Image de support #}
+                <div class="col-lg-5 text-center p-5">
+                    <img class="img-fluid w-75" src="{{ asset('images/coachingscol.jpg') }}" alt="coahing scolaire" >
+                </div>
+                {# Text d'introduction #}
+                <div class="col-lg-5 mx-auto  align-self-center ">
+                    <p class=" lh-lg text-justify h2">
+                        Le coaching scolaire est un suivi personnalisé de l’élève ou de l’étudiant visant le développement de son potentiel et de son savoir-faire pour améliorer ses résultats scolaires ou pour trouver des solutions aux problèmes qui freinent sa scolarité ou ses études. Il se réalise dans le respect, l’écoute, la bienveillance et le plaisir de faire. L’objectif est la prise d’autonomie et la mise en lumière du potentiel et la révélations des ressources.
+                    </p>
+                </div>
+
+                {# Affichage de l'image fixe en bandeau #}
+                {#<div class="plage bg-transparent"></div>#}
+                {#</div>#}
+        <hr class="col-8 mx-auto">
+
+
+                <div class="col-lg-6  mx-auto lh-lg h3 ">
+                    <div class=" lh-lg ">
+                        <p class="text-center-justify">Il peut s’agir de résoudre les problèmes « techniques » de l’élève ou de l’étudiant dans une matière déterminée, mais aussi de trouver les bonnes pratiques ou stratégies pour travailler plus efficacement et plus sereinement.
+                        </p>
+                        <h3>Concrètement, cela peut être :</h3>
+                        <ul class=" lh-sm h4 text-justify ">
+                            <li>De la remise à niveau dans une ou des matières,</li>
+                            <li>De l’approfondissement dans toutes matières,</li>
+                            <li>Un travail sur l’identité scolaire : connaître sa façon d’apprendre et d’être élève ou étudiant,</li>
+                            <li>Un travail méthodologique : savoir apprendre avec ses propres outils,</li>
+                            <li>Un renouvellement de la confiance en soi et de la motivation : retrouver l’envie d’apprendre,</li>
+                            <li>La préparation d’un examen, d’un oral, d’un entretien devant jury…</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+
+
+
+
+
+{% endblock %}
+

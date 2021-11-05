@@ -52,11 +52,11 @@
                             {# page : Coaching adulte #}
                             <a class="dropdown-item" href="{{ path('main_coachingPro') }}">Coaching professionnel</a>
                             {# page : liste des managers #}
-                            <a class="dropdown-item" href="#">Coaching scolaire et étudiant</a>
+                            <a class="dropdown-item" href="{{ path('main_coachingScolaire') }}">Coaching scolaire et étudiant</a>
                             {# page  déroulement d'un coaching pro #}
                             <a class="dropdown-item" href="{{ path('main_deroulement_coachingPro') }}">Déroulement d'un coaching pro</a>
                             {# page : liste des clients #}
-                            <a class="dropdown-item" href="#">Orientation/reconversion</a>
+                            <a class="dropdown-item" href="{{ path('main_orientation_reconversion') }}">Orientation/reconversion</a>
                         </div>
                     </li>
 
@@ -65,9 +65,11 @@
                         <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon profil pro</a>
                         <div class="dropdown-menu" aria-labelledby="profil-dropdown">
                             {# page : Coaching adulte #}
-                            <a class="dropdown-item" href="#">Mes partenaires</a>
+                            <a class="dropdown-item" href="{{ path('main_partenaires') }}">Mes partenaires</a>
                             {# page : liste des managers #}
-                            <a class="dropdown-item" href="#">Revues de presse</a>
+                            <a class="dropdown-item" href="{{ path('main_revuesPresses') }}">Revues de presse</a>
+                            {# page : à propos de moi : qui suis-je? #}
+                            <a class="dropdown-item" href="{{ path('main_qui_suis_je') }}">A propos de moi</a>
                         </div>
                     </li>
                     {# Liens uniquement pour les personnes non-connectées #}
@@ -111,6 +113,12 @@
     <a href="#site-header"><img src="{{ asset('/images/angle-double-up-solid.svg')  }}" alt="Retourner en haut" /></a>
 </div>
 
+<section class="row justify-content-around section offset-2">
+    {# Titre ention légales #}
+    <div class="row mt-5 mb-3 text-black-50 h3">
+        <a class="text-black-50" href="{{ path('main_Mentions_coachingScolaire')}}">Mentions Légales</a>
+    </div>
+</section>
 
 {# footer #}
 <footer class="footer container-fluid base-footer ">
@@ -129,8 +137,8 @@
         {# partie navigation #}
         <div class="col-8">
             <nav class="footer-nav row py-4 px-3">
-                <div class="col-4"><a href="{{ path('main_who_are_we') }}" class="text-success text-decoration-none fs-4">Qui sommes-nous?</a></div>
-                <div class="col-4"><a href="{{ path('main_about') }}" class="text-success text-decoration-none fs-4">À propos</a></div>
+                <div class="col-4"><a href="#" class="text-success text-decoration-none fs-4">Qui sommes-nous?</a></div>
+                <div class="col-4"><a href="{{ path('main_qui_suis_je') }}" class="text-success text-decoration-none fs-4">À propos</a></div>
                 <div class="col-4"><a href="{{ path('main_contact') }}" class="text-success text-decoration-none fs-4">Contactez-moi</a></div>
             </nav>
         </div>

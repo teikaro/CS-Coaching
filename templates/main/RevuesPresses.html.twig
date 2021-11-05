@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes revues de presses{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid col-lg-10 align-self-center bg-custom-dark-celadon text-black-50">
+
+            {# Titre principal de la page #}
+            <div class="row p-4">
+                <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Mes revues de presses</h1>
+            </div>
+
+        <div class=" col-lg-12 text-center">
+            <div class="row p-1 " >
+
+                    <div class="card col-3 p-1 mx-auto h-40">
+                        <img src="{{ asset('ImageRevuesPresses/PresseEchosdcom.png') }}" class="card-img-top" alt="presse">
+                        <div class="card-body">
+                            <h5 class="card-title"><u>Edition : </u></h5>
+                            <p class="card-text">Présentation dans la revue de presse l'Echosdcom à la date du 26-ctobre-2021</p>
+                            {#<a href="#" class="btn btn-primary">Edition</a>#}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"></small>
+                        </div>
+                    </div>
+                    <div class="card col-3 p-1 mx-auto h-40">
+                        <img src="{{ asset('ImageRevuesPresses/PresseEchosdcom.png') }}" class="card-img-top" alt="presse">
+                        <div class="card-body">
+                            <h5 class="card-title"><u>Edition : </u></h5>
+                            <p class="card-text">Présentation dans la revue de presse l'Echosdcom à la date du 26-ctobre-2021</p>
+                            {#                        <a href="#" class="btn btn-primary">Edition</a>#}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"></small>
+                        </div>
+                    </div>
+                    <div class="card col-3 p-1 mx-auto h-40">
+                            <img src="{{ asset('ImageRevuesPresses/PresseEchosdcom.png') }}" class="card-img-top" alt="presse">
+                        <div class="card-body">
+                            <h5 class="card-title"><u>Edition : </u></h5>
+                            <p class="card-text">Présentation dans la revue de presse l'Echosdcom à la date du 26-ctobre-2021</p>
+                                {#                        <a href="#" class="btn btn-primary">Edition</a>#}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"></small>
+                        </div>
+                    </div>
+
+
+                <hr class="col-8 mx-auto">
+
+            {# Partie 1 : Pour qui pour quoi #}
+            <section class="row ">
+
+                {# Titre secondaire #}
+                <div class="row mt-5 mb-3">
+                    <h2 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">les objectifs</h2>
+                    <div class="row mt-3 mb-5">
+                        <div class="lh-lg text-justify">
+                        </div>
+                    </div>
+                </div>
+                    <hr class="col-8 mx-auto">
+
+                            <div class="col-12 offset-1 text-justify h3">
+                                <!--Google map-->
+                                <h3>
+                                <a target="_blank" class="text-center" href="https://www.google.fr/maps/place/Claire+Saurel+Coaching/@47.0186306,4.8328964,17z/data=!3m1!4b1!4m5!3m4!1s0x47f2f27e858f1edd:0xe7a0046516b443de!8m2!3d47.0186306!4d4.8350851"> <i class="fas fa-home-lg text-black "></i> </a>Localisation : de mon bureau</h3>
+                                <p>Je reçois à mon cabinet à Beaune ou en visio sur rendez-vous uniquement. </p>
+                            </div>
+
+            </section>
+
+    </main>
+
+
+
+
+
+
+{% endblock %}
+
