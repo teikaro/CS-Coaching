@@ -31,7 +31,6 @@ security:
                 # where to redirect after logout
                 target: main_home
     role_hierarchy:
-        ROLE_SUPER_ADMIN:   ROLE_ADMIN
         ROLE_ADMIN:         [ROLE_MANAGER, ROLE_CLIENT, ROLE_CONSULTANT]
         ROLE_MANAGER:       ROLE_USER
         ROLE_CLIENT:        ROLE_USER

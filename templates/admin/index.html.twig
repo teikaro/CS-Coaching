@@ -17,15 +17,16 @@
         <table class="table">
             <thead>
             <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>LastName</th>
-                <th>FirstName</th>
-                <th>Phone</th>
+                <th>Numéro de portable</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Adresse</th>
                 <th>Créé le</th>
                 <th>Modifié le</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -33,11 +34,14 @@
             {% for user in users %}
                 {% if user.roles[0] != "ROLE_ADMIN" %}
                     <tr>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.roles|json_encode }}</td>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.firstName }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles|json_encode }}</td>
                         <td>{{ user.phone }}</td>
+                        <td>{{ user.zipCode }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.address }}</td>
                         <td>{{ user.registeredAt|date('d-m-Y H:i') }}</td>
                         <td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y H:i') : '' }}</td>
                         <td><a class="btn btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">Modifier</a></td>

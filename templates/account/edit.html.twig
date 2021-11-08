@@ -14,6 +14,7 @@
 
                 {# Forumlaire #}
                 {{ form_start(form) }}
+
                 {{ form_row(form.lastName, {
                     label: 'Nom',
                     attr: {
@@ -23,6 +24,7 @@
                         class: 'form-floating my-3',
                     },
                 }) }}
+
                 {{ form_row(form.firstName, {
                     label: 'Prénom',
                     attr: {
@@ -32,6 +34,7 @@
                         class: 'form-floating my-3',
                     },
                 }) }}
+
                 {{ form_row(form.email, {
                     label: 'E-mail',
                     attr: {
@@ -41,6 +44,7 @@
                         class: 'form-floating my-3',
                     },
                 }) }}
+
                 {{ form_row(form.phone, {
                     label: 'Téléphone',
                     attr: {
@@ -50,10 +54,31 @@
                         class: 'form-floating my-3',
                     },
                 }) }}
-                {{ form_row(form.corporateName, {
-                    label: 'Entreprise',
+
+                {{ form_row(form.zipCode, {
+                    label: 'Code postal (facultatif)',
                     attr: {
-                        placeholder: 'Entreprise'
+                        placeholder: 'Code postal (facultatif)',
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+
+                {{ form_row(form.city, {
+                    label: 'Ville (facultatif)',
+                    attr: {
+                        placeholder: 'Ville (facultatif)',
+                    },
+                    row_attr: {
+                        class: 'form-floating my-3',
+                    },
+                }) }}
+
+                {{ form_row(form.address, {
+                    label: 'Adresse (facultatif)',
+                    attr: {
+                        placeholder: 'Adresse (facultatif)',
                     },
                     row_attr: {
                         class: 'form-floating my-3',
@@ -61,14 +86,20 @@
                 }) }}
 
                 <button type="submit" class="btn btn-outline-light w-100 mt-4"><i class="far fa-edit pe-2"></i>{{ button_label|default('Modifier') }}</button>
+
                 {{ form_end(form) }}
 
                 {# Lien de retour sur la page de gestion de compte #}
                 <div class="my-5">
+
                     <a href="{{ path('account_show') }}" class="btn btn-outline-light w-100"><i class="fas fa-caret-square-left pe-2"></i>Retour à votre profil</a>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
 

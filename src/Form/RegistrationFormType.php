@@ -32,7 +32,13 @@ class RegistrationFormType extends AbstractType
             ->add('phone', TextType::class, [
                 'required' => false
             ])
-            ->add('corporateName', TextType::class, [
+            ->add('zipCode', TextType::class, [
+                'required' => false
+            ])
+            ->add('city', TextType::class, [
+                'required' => false
+            ])
+            ->add('address', TextType::class, [
                 'required' => false
             ])
                 // TODO : Problème avec les contrôles en attribut/annotation pour le password, donc ici pour le moment

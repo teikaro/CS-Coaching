@@ -20,7 +20,13 @@ class UserType extends AbstractType
             ->add('phone', TextType::class, [
                 'required' => false,
             ])
-            ->add('corporateName', TextType::class, [
+            ->add('zipCode', TextType::class, [
+                'required' => false,
+            ])
+            ->add('city', TextType::class, [
+                'required' => false,
+            ])
+            ->add('address', TextType::class, [
                 'required' => false,
             ])
         ;

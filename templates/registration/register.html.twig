@@ -14,6 +14,7 @@
                     </div>
 
                     {{ form_start(registrationForm) }}
+
                         {{ form_row(registrationForm.lastName, {
                             label: 'Nom',
                             attr: {
@@ -23,6 +24,7 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
+
                         {{ form_row(registrationForm.firstName, {
                             label: 'Prénom',
                             attr: {
@@ -32,6 +34,7 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
+
                         {{ form_row(registrationForm.phone, {
                             label: 'Téléphone (facultatif)',
                             attr: {
@@ -41,15 +44,37 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
-                        {{ form_row(registrationForm.corporateName, {
-                            label: 'Nom d\'entreprise (facultatif)',
-                            attr: {
-                                placeholder: 'Nom d\'entreprise (facultatif)',
-                            },
-                            row_attr: {
-                                class: 'form-floating my-3',
-                            },
+
+                        {{ form_row(registrationForm.zipCode, {
+                        label: 'Code postal (facultatif)',
+                        attr: {
+                            placeholder: 'Code postal (facultatif)',
+                        },
+                        row_attr: {
+                            class: 'form-floating my-3',
+                        },
                         }) }}
+
+                        {{ form_row(registrationForm.city, {
+                        label: 'Ville (facultatif)',
+                        attr: {
+                            placeholder: 'Ville (facultatif)',
+                        },
+                        row_attr: {
+                            class: 'form-floating my-3',
+                        },
+                        }) }}
+
+                        {{ form_row(registrationForm.address, {
+                        label: 'Adresse (facultatif)',
+                        attr: {
+                            placeholder: 'Adresse (facultatif)',
+                        },
+                        row_attr: {
+                            class: 'form-floating my-3',
+                        },
+                        }) }}
+
                         {{ form_row(registrationForm.email, {
                             label: 'Email',
                             attr: {
@@ -59,6 +84,7 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
+
                         {{ form_row(registrationForm.plainPassword.first, {
                             label: 'Mot de passe',
                             attr: {
@@ -68,6 +94,7 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
+
                         {{ form_row(registrationForm.plainPassword.second, {
                             label: 'Confirmation du mot de passe',
                             attr: {
@@ -77,16 +104,15 @@
                                 class: 'form-floating my-3',
                             },
                         }) }}
+
                         {#        {{ form_row(registrationForm.agreeTerms) }}#}
 
                         <button type="submit" class="btn bg-light w-100 mt-4">S'inscrire</button>
+
                     {{ form_end(registrationForm) }}
 
                 </div>
             </div>
-
-            <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
-
         </div>
     </div>
 

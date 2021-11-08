@@ -11,25 +11,30 @@
 
                 {# Menu de gestion de compte #}
                 <nav class="py-2 bg-custom-celadon w-100">
+
                     <ul class="list-unstyled d-flex justify-content-center">
 
-                        {# Lien pour la modification du compte #}
-                        <li class="mx-3"><a href="{{ path('account_edit', {'id': app.user.id}) }}" class="btn btn-outline-light text-decoration-none">Modifier le profil</a></li>
-
                         {# Lien uniquement pour les clients et consultants #}
-                        {% if (is_granted('ROLE_CLIENT') or is_granted('ROLE_CONSULTANT')) and app.user.roles[0] != "ROLE_ADMIN" %}
+                        
+
                             <li class="mx-3"><a href="{{ path('account_profile', {'id': app.user.id}) }}" class="btn btn-outline-light text-decoration-none">Voir le profil public</a></li>
-                        {% endif %}
+
+
 
                         {# Lien uniquement pour les clients #}
-                        {% if is_granted('ROLE_CLIENT') and app.user.roles[0] != "ROLE_ADMIN" %}
+
+
                             <li class="mx-3"><a href="{{ path('project_interface') }}" class="btn btn-outline-light text-decoration-none">Accéder à l'interface client</a></li>
-                        {% endif %}
+
+
 
                         {# Lien uniquement pour les consultants #}
-                        {% if is_granted('ROLE_CONSULTANT') and app.user.roles[0] != "ROLE_ADMIN" %}
+
+
                             <li class="mx-3"><a href="{{ path('service_interface') }}" class="btn btn-outline-light text-decoration-none">Accéder à l'interface consultant</a></li>
-                        {% endif %}
+
+
+
                     </ul>
                 </nav>
 
@@ -66,35 +71,47 @@
 
         {# Informations du compte #}
         <div class="row my-5">
+
             <div class="col-12 text-center">
+
                 <ul class="list-unstyled">
 
                     {# Affichage de l'adresse e-mail #}
                     <li class="fs-4 my-2">Adresse e-mail: {{ app.user.email }}</li>
 
                     {# Contrôle si l'utilisateur a un numéro de téléphone ou pas #}
-                    {% if app.user.corporateName %}
+                    {% if app.user.phone %}
+
                         <li class="fs-4 my-2">Téléphone: {{ app.user.phone }}</li>
+
                     {% else %}
+
                         <li class="fs-4 my-2">Téléphone: <span class="fst-italic">non renseigné</span></li>
+
                     {% endif %}
 
-                    {# Contrôle si l'utilisateur a un nom d'entreprise ou pas #}
-                    {% if app.user.corporateName %}
-                        <li class="fs-4 my-2">Entreprise: {{ app.user.corporateName }}</li>
-                    {% else %}
-                        <li class="fs-4 my-2">Entreprise: <span class="fst-italic">non renseigné</span></li>
-                    {% endif %}
                 </ul>
+
             </div>
+
         </div>
 
         <div class="row my-5">
+
             <div class="mx-auto text-center d-flex justify-content-center">
-                <a href="{{ path('main_home') }}" class="btn btn-outline-success w-md-50 text-decoration-none px-4 mx-3"><i class="fas fa-caret-square-left pe-2"></i>Retour</a>
-                <form method="post" action="{{ path('account_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre compte?');">
+
+                <a href="{{ path('main_home') }}" class="btn btn-outline-success text-decoration-none px-4 mx-3"><i class="fas fa-caret-square-left pe-2"></i>Retour</a>
+
+                <form method="post" action="{{ path('account_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte?');">
+
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+
+                    {# Lien pour la modification du compte #}
+                    <p class="mx-3"><a href="{{ path('account_edit', {'id': app.user.id}) }}" class="btn btn-outline-info text-decoration-none">Modifier le profil</a></>
+
+                    {# Lien pour la suppression du compte #}
                     <button class="btn btn-outline-danger w-md-50 mx-3"><i class="fas fa-trash-alt me-2"></i>Supprimer</button>
+
                 </form>
             </div>
         </div>

@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="L'email que vous avez renseigner existe déjà.")
+ * @UniqueEntity(fields={"email"}, message="L'email que vous avez renseignée existe déjà.")
  * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -94,12 +94,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(type="string", length=15, nullable=true)
      */
-    // TODO : Note pour STAGE, max 15 caractères, considérer les numéros étrangers (min et max)
-    // Le numéro est au format 10 chiffres actuellement
+
     #[Assert\Length(
         min: 10,
-        max: 10,
-        minMessage: 'Le numéro de téléphone doit contenir {{ 10 }} chiffres.',
+        max: 15,
+        minMessage: 'Le numéro de téléphone doit contenir {{ limit }} chiffres minimum.',
         maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères.',
     )]
     #[Assert\Regex(
@@ -121,13 +120,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Facultatif
      *
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Le code postal doit contenir {{ limit }} chiffres minimum.',
+        maxMessage: 'Le code postal ne peut dépasser {{ limit }} caractères.',
+    )]
+    #[Assert\Regex(
+        pattern: '/[0-9]/',
+        message: 'Le code postal ne peut contenir que des chiffres.',
+    )]
+    private $zipCode;
+
+    /**
+     * Facultatif
+     *
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     #[Assert\Length(
+        min: 1,
         max: 100,
-        maxMessage: 'Le nom de l\'entreprise ne peut dépasser {{ limit }} caractères.',
+        minMessage: 'La ville doit contenir {{ limit }} caractères minimum.',
+        maxMessage: 'La ville ne peut dépasser {{ limit }} caractères.',
     )]
-    private $corporateName;
+    private $city;
+
+    /**
+     * Facultatif
+     *
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'L\'adresse doit contenir {{ limit }} caractères minimum.',
+        maxMessage: 'L\'adresse ne peut dépasser {{ limit }} caractères.',
+    )]
+    private $address;
 
     /**
      * @ORM\ManyToMany(targetEntity=SocialNetwork::class, inversedBy="users")
@@ -286,6 +317,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->registeredAt;
     }
 
+    public function getZipCode(): ?string
+    {
+        return $this->zipCode;
+    }
+
+    public function setZipCode(string $zipCode): self
+    {
+        $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     /* Doctrine Lifecycle Listeners */
     /**
      * @ORM\PrePersist
@@ -309,17 +376,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->UpdatedAt = new \DateTime();
     }
 
-    public function getCorporateName(): ?string
-    {
-        return $this->corporateName;
-    }
-
-    public function setCorporateName(?string $corporateName): self
-    {
-        $this->corporateName = $corporateName;
-
-        return $this;
-    }
 
     /**
      * @return Collection|SocialNetwork[]
@@ -423,4 +479,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

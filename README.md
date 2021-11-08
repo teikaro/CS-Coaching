@@ -162,11 +162,6 @@ propriété du téléphone -> phone
     longueur: 15
     null: yes
     
-propriété de nom d'Entreprise -> corporateName
-    type: string
-    longueur: 100
-    null: yes
-    
 propriété date de souscription -> registeredAt
     type: datetime
     null: no
@@ -482,7 +477,6 @@ Dans RegistrationFormType.php :
 ->add('firstName', TextType::class)
 ->add('lastName', TextType::class)
 ->add('phone', TextType::class)
-->add('corporateName', TextType::class)
     // TODO : Porblème avec le regex en attribue côté entité donc ici pour le moment.
 ->add('plainPassword', RepeatedType::class, [
     'type' => PasswordType::class,
@@ -625,22 +619,6 @@ Pour le phone :
 private $phone;
 ```
 
-<br>
-
-Pour le corporateName :
-
-```php
-/**
- * Facultatif
- *
- * @ORM\Column(type="string", length=100, nullable=true)
- */
-#[Assert\Length(
-    max: 100,
-    maxMessage: 'Le nom de l\'entreprise ne peut dépasser {{ limit }} caractères.',
-)]
-private $corporateName;
-```
 
 <br>
 
@@ -1344,15 +1322,9 @@ On ajoute des conditions pour savoir si certains éléments sont présent ou pas
 Si oui on les affiche, sinon on affiche un élément de remplacement :
 
 ```html
-{# Contrôle si l'utilisateur à un nom d'entreprise ou pas #}
-{% if app.user.corporateName %}
-    <p>Entreprise: {{ app.user.corporateName }}</p>
-{% else %}
-    <p>Entreprise: <span class="fst-italic">non renseigné</span></p>
-{% endif %}
 
 {# Conrtôle si l'utilisateur à une photo ou pas #}
-{% if app.user.corporateName %}
+{% if app.user.photo %}
     <p>Photo de profil: <img src="{{ app.user.photos }}" alt=""></p>
 {% else %}
     {# TODO : Ajouter une image par défaut s'il n'y en a pas #}

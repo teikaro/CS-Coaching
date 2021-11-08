@@ -34,7 +34,10 @@ class AppFixtures extends Fixture
             ->setPassword(
                 $this->encoder->hashPassword($admin, 'Password1*')
             )
-            ->setPhone('0000000000');
+            ->setPhone('0000000000')
+            ->setZipCode($faker->postcode())
+            ->setCity('Dijon')
+            ->setAddress($faker->streetAddress());
 
         $manager->persist($admin);
 
@@ -48,7 +51,10 @@ class AppFixtures extends Fixture
             ->setPassword(
                 $this->encoder->hashPassword($admin, 'Password1*')
             )
-            ->setPhone('0000000000');
+            ->setPhone('0000000000')
+            ->setZipCode($faker->postcode())
+            ->setCity('Dijon')
+            ->setAddress($faker->streetAddress());
 
         $manager->persist($client);
 
@@ -62,7 +68,10 @@ class AppFixtures extends Fixture
             ->setPassword(
                 $this->encoder->hashPassword($admin, 'Password1*')
             )
-            ->setPhone('0000000000');
+            ->setPhone('0000000000')
+            ->setZipCode($faker->postcode())
+            ->setCity('Dijon')
+            ->setAddress($faker->streetAddress());
 
         $manager->persist($consultant);
 
@@ -78,7 +87,10 @@ class AppFixtures extends Fixture
                 ->setPassword(
                     $this->encoder->hashPassword($user, 'Password1*')
                 )
-                ->setPhone('0000000000');
+                ->setPhone('0000000000')
+                ->setZipCode($faker->postcode())
+                ->setCity('Dijon')
+                ->setAddress($faker->streetAddress());
 
             $manager->persist($user);
         }
@@ -95,7 +107,10 @@ class AppFixtures extends Fixture
                 ->setPassword(
                     $this->encoder->hashPassword($user, 'Password1*')
                 )
-                ->setPhone('0000000000');
+                ->setPhone('0000000000')
+                ->setZipCode($faker->postcode())
+                ->setCity('Dijon')
+                ->setAddress($faker->streetAddress());
 
             $manager->persist($user);
         }
@@ -112,7 +127,11 @@ class AppFixtures extends Fixture
                 ->setPassword(
                     $this->encoder->hashPassword($user, 'Password1*')
                 )
-                ->setPhone('0000000000');
+                ->setPhone('0000000000')
+                ->setZipCode($faker->postcode())
+                ->setCity('Dijon')
+                ->setAddress($faker->streetAddress());
+
             $manager->persist($user);
         }
 
@@ -128,7 +147,10 @@ class AppFixtures extends Fixture
                 ->setPassword(
                     $this->encoder->hashPassword($user, 'Password1*')
                 )
-                ->setPhone('0000000000');
+                ->setPhone('0000000000')
+                ->setZipCode($faker->postcode())
+                ->setCity('Dijon')
+                ->setAddress($faker->streetAddress());
 
             $manager->persist($user);
         }
