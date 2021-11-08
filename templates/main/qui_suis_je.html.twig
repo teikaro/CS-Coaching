@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos de moi{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid col-lg-10 align-self-center ">
+
+        {# Titre principal de la page #}
+        <div class="row p-4">
+            <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">A propos de moi</h1>
+        </div>
+
+        {# Text d'introduction #}
+        <div class="row col-lg-12 mt-5 mb-3 ">
+            <div class="row p-4">
+                <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Claire SAUREL, coach et formatrice</h1>
+            </div>
+
+            {# Image de support #}
+
+            <div class="container-CS offset-3 ">
+                <img class="image img-fluid w-100 " src="{{ asset('images/CailreSaurel.png') }}" alt="Claire Saurel" >
+                <div class="middle">
+                    <div class="text">Claire SAUREL</div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-8 mx-auto  align-self-center ">
+                <h2 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12 ">LES METHODES QUE J’UTILISE :</h2>
+
+                    <p class="lh-lg h2">
+                        <strong>La PNL (Programmation Neuro Linguistique)</strong> : méthode de développement  personnel qui s’appuie sur l’application des conduites les plus efficaces observées. Elle permet une reprogrammation de votre cerveau pour venir à bout de certains blocages.
+                        <strong>L’ennéagramme</strong> : vous serez à même de mieux connaître votre profil de personnalité.
+                        <strong>L’analyse transactionnelle</strong> : permet de mieux connaître votre fonctionnement interne mais surtout ce qui se joue dans vos relations.
+                        <strong>Le MPM (Modèle de Performance Mentale), méthode TARGET</strong> : un modèle complet permettant d’améliorer sa performance, construit par un sportif et coach de haut niveau.
+                        <strong>Les techniques d’orientation et de suivi de projet , l’ADVP (Activation du Développement Vocationnel et Personnel)</strong> : un modèle de l’orientation qui vous permet une construction de votre projet à partir de mises en situations.
+                        <strong>Les techniques de relaxation et de relâchement</strong>  : pour votre détente et préparer la séance.
+                        <strong>La création artistique ou les exercices corporels issus de la kinésiologie</strong> : brain Gym, une gymnastique qui améliore les performances de votre cerveau
+                        <strong>La didactique professionnelle et l’analyse de pratique pour les collectifs professionnels</strong>
+                        <strong>L’EFT ( Technique de Libération Émotionnelle)</strong> : une méthode simple psycho-corporelle que vous pourrez apprendre et reproduire chez vous. Elle consiste en des tapotements sur des points précis du corps. Pour mieux accepter et gérer vos émotions.
+                    </p>
+
+            </div>
+            <div class="col-lg-8 mx-auto  align-self-center">
+                <h3 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Pour les suivis de soutien<br> scolaires et étudiants :</h3>
+                <p class="lh-lg h2" >
+                    contenus de cours, outils méthodologiques, profils d’apprentissage, les cartes mentales, mises en situation, entretiens d’explicitation, ateliers de création littéraires, artistiques, exercices corporels…
+                </p>
+            </div>
+            <div class="col-lg-8 mx-auto p-5  align-self-center">
+                <h2 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">MES DOMAINES DE COMPETENCES</h2>
+                <h3>Je bénéficie de solides formations en :</h3>
+                <p class="lh-lg h2">
+                    Praticienne EFT (Emotional Freedom Technics) niveau 1 et 2,
+                    Coaching « orienté action » et Performance Mentale : formée au DU coaching et performance mentale (Université Dijon), à l’ennéagramme, à l’analyse transactionnelle (Ecole d’Analyse Transactionnelle de Conseil Guidance St Bernard).
+                    Ingénieure de formation en psychologie cognitive (master 2 IAFPTE, Dijon)
+                    Docteure-ès-sciences en biochimie alimentaire (Université Montpellier 2).
+                    Formatrice professionnelle : expérience de l’apprentissage par alternance (MFR, CFA, lycée agricole, centres de formation pour adultes).
+                    Enseignante dans l’Education Nationale pendant plus de quinze ans : expériences et connaissances du milieu scolaire, de l’école primaire à l’université.
+                    Connaissance de soi par une analyse de 5 ans d’inspiration psychanalytique.
+                </p>
+            </div>
+            <div class="col-lg-8 mx-auto  align-self-center">
+                <h3 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Et toujours en formation !!!</h3>
+                <p class="h2" >
+                    Je fais partie du réseau Coachs <strong>A L’ECOLE :</strong>
+                </p>
+            </div>
+            <div class="col-lg-8 offset-2 p-5 text-center">
+                <img class="img-fluid w-100" src="{{ asset('images/Coachs_a_lecole_quadri@3x-100.jpg') }}" alt="coachs à l'école" >
+            </div>
+        </div>
+
+        <hr class="col-8 mx-auto">
+
+
+
+        <div class="col-12 offset-1 text-justify h3 pb-3">
+            <!--Google map-->
+            <h3>
+                <a target="_blank" class="text-center" href="https://www.google.fr/maps/place/Claire+Saurel+Coaching/@47.0186306,4.8328964,17z/data=!3m1!4b1!4m5!3m4!1s0x47f2f27e858f1edd:0xe7a0046516b443de!8m2!3d47.0186306!4d4.8350851"> <i class="fas fa-home-lg text-black "></i> </a>Localisation : de mon bureau</h3>
+            <p>Je reçois à mon cabinet à Beaune ou en visio sur rendez-vous uniquement. </p>
+        </div>
+
+
+    </main>
+
+{% endblock %}
+

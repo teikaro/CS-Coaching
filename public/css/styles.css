@@ -1,0 +1,443 @@
+/*-------------------- IMPORTS --------------------*/
+/* Import des fonts pour les pages d'erreur*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Source+Code+Pro:wght@700&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+/*-------------------- HTML ELEMENTS --------------------*/
+
+html, body{
+    background-color: #DDDDDD;
+    font-family: 'ubuntu', sans-serif;
+    Font-size: 15px;
+    color: black;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+/*--------Partie front---------*/
+main{
+    background-image: url("../plages/modifPlage.png");
+    background-size: cover;
+    color: #fefefe;
+    }
+
+.main-Mentions{
+    /*background-color: #1b9173;*/
+    background-image: url("../plages/modifPlage.png");
+    background-size: cover;
+}
+
+
+.bg-custom-dark-celadon{
+    background: #388991;
+}
+.plage{
+    align-items: center;
+    justify-content: center;
+    background-image: url("../plages/piqsels.com-id-jzuiy.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    height: 400px;
+    opacity: 1;
+}
+p {
+    text-align: justify;
+    /*text-indent : 20px;*/
+
+}
+/* le block conteneur */
+.marquee-rtl {
+    max-width: 120em;                      /* largeur de la fenêtre */
+    margin: 1em auto 2em;
+    border: 1px solid #F0F0FF;
+    overflow: hidden;                     /* masque tout ce qui dépasse */
+    box-shadow: 0 .25em .5em #CCC,inset 0 0 1em .25em #CCC;
+}
+.marquee-rtl:hover :first-child {
+    animation-play-state: paused;
+}
+.msg {
+    color: #fefefe;
+    font-size: 1.5em;
+    line-height: 2em;
+}
+
+/* le bloc défilant */
+.marquee-rtl > :first-child {
+    display: inline-block;                /* modèle de boîte en ligne */
+    padding-right: 1em;                   /* un peu d'espace pour la transition */
+    padding-left: 100%;                   /* placement à droite du conteneur */
+    white-space: nowrap;                  /* pas de passage à la ligne */
+    animation: defilement-rtl 70s infinite linear;
+    animation-name: defilement-rtl;       /* référence à la règle @keyframes mise en oeuvre */
+    animation-delay: 1s;                 /* valeur à ajuster suivant la longueur du message */
+    animation-iteration-count: infinite;  /* boucle continue */
+    animation-timing-function: linear;
+}
+@keyframes defilement-rtl {
+    0% {
+        transform: translate3d(0,0,0);      /* position initiale à droite */
+    }
+    100% {
+        transform: translate3d(-100%,0,0);  /* position finale à gauche */
+    }
+}
+
+/* voile CS dans qui suis-je */
+.container-CS {
+    position: relative;
+    width: 50%;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container-CS:hover .image {
+    opacity: 0.3;
+}
+
+.container-CS:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color:darkolivegreen ;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+/*bouton haut*/
+#scroll_to_top {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    bottom: 50px;
+    right: 30px;
+}
+#scroll_to_top img {
+    width: 25px;
+}
+
+/* lettre Q du paragraphe*/
+.Malettrine{
+    font-size:3em;
+}
+
+/*Trait de séparation avec '$'*/
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #000;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+hr:after {
+    background: #83A697;
+    content: '§';
+    color: #000;
+    padding: 0 10px;
+    position: relative;
+    top: -10px;
+}
+
+/*-------------------- CUSTOM CLASSES --------------------*/
+
+/* BGCs */
+.bg-custom-celadon{
+    background-color: #83A697;
+}
+
+.bg-custom-dark-celadon{
+    background-color: #fefefe;
+}
+
+/* COLORs */
+.text-color-dark-celadon{
+    color: #718b80;
+}
+
+.error-403{
+    color: #f05c00;
+}
+
+.error-404{
+    color: #db0000;
+}
+
+.error-500{
+    color: #b900ff;
+}
+
+/* FONT-SIZE */
+.fs-custom-1{
+    font-size: 4rem;
+}
+
+/* MARGINs */
+/* Utilisé sur la page WIP */
+.custom-margin-1{
+    margin-top: 37vh;
+    margin-bottom: 37vh;
+}
+
+/* Utilisé sur les interfaces client et consultant */
+.custom-margin-2{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+/* Utilisé sur les listes de projet et service */
+.custom-margin-3{
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+}
+
+/* TITLE */
+.custom-title{
+    font-weight: bold;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 4rem;
+}
+
+/* base.html.twig FOOTER */
+.base-footer{
+    min-height: 200px;
+    padding-bottom: 1px;
+}
+
+/* Menu d'interface */
+.side-menu{
+    width: 300px !important;
+    height: 200px;
+    position: static;
+    top: 200px;
+    margin-left: 12px;
+}
+
+.side-menu a{
+    text-decoration: none;
+}
+
+.side-menu a:hover{
+    text-decoration: underline;
+}
+
+/* base.html.twig NAVBAR */
+.base-navbar a{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Utilisé pour la photo de profil */
+.profil-picture{
+    height: 200px;
+    width: 200px;
+}
+
+/* Bouton retour en haut */
+.backTop-btn {
+    position: fixed;
+    right: 150px;
+    bottom: 200px;
+    font-size: 60px;
+}
+
+/*-------------------- BOOTSTRAP ADJUSTMENTS --------------------*/
+/* Utilisé pour le placement des messages de succès */
+.alert-success{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.footer a, .footer .copyright, .navbar a{
+    color: #388991;
+}
+
+.footer a{
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+}
+
+.footer a:hover, .navbar a:hover{
+    color: #63a563;
+    text-shadow: 0 1px 6px #EAEAEAFF;
+}
+
+/*-------------------- CUSTOM PLACEMENT --------------------*/
+/* Title of error pages */
+.error-title{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 12rem;
+    font-weight: bold;
+    font-family: 'Source Code Pro', monospace;
+    opacity: .5;
+}
+
+/* Texte of error pages */
+.error-text{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    font-size: 3rem;
+    font-weight: bold;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-family: 'Dancing Script', cursive;
+}
+
+.row-error{
+    min-height: 75vh;
+}
+
+/*-------------------- CUSTOM FORM --------------------*/
+.form-container{
+    background-color:#83A697 ;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.form-box{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form-box h1{
+    font-weight: bold;
+    color: #fff;
+}
+
+.form-box .form-input {
+    position: relative;
+}
+
+.form-box .form-input input{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    padding-left: 45px;
+}
+
+.form-box .form-input span{
+    position: absolute;
+    top: 8px;
+    padding-left: 20px;
+    color:#404241;
+}
+
+.form-box .form-input input::-webkit-input-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input::-moz-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input:-ms-input-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input::-ms-input-placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input::placeholder{
+    padding-left: 0;
+}
+
+.form-box .form-input input:focus,
+.form-box .form-input input:valid{
+    border-bottom: 2px solid #dc3545;
+}
+
+.form-box button[type="submit"]{
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.form-box button[type="submit"]:hover{
+    -webkit-box-shadow: 0 9px 10px -2px rgba(0,0,0,0.55);
+    box-shadow: 0 9px 10px -2px rgba(0,0,0,0.55);
+}
+
+/*-------------------- MEDIA QUERIES --------------------*/
+@media screen and (min-width: 1920px){
+    /* Placement du menu */
+    .side-menu{
+        position: sticky;
+        top: 200px;
+        left: 12px;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+}
+
+/* Pour l'utilisation de checkbox */
+/*.form-box input[type="checkbox"]:not(:checked) + label:before{*/
+/*    background: transparent;*/
+/*    border: 2px solid #fff;*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*}*/
+
+/*.form-box .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{*/
+/*    background-color: #dc3545;*/
+/*    border: 0px;*/
+/*}*/

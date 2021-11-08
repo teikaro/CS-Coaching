@@ -1,0 +1,231 @@
+{# Variable twig contenant le nom de la route actuelle pour le menu #}
+{% set route = app.request.attributes.get('_route') %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,  user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 ">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="CS Coaching, Coach et formatrice, gestion du stress">
+        {# Bootstrap #}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        {# FontAwesome #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+        {# Styles #}
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {# FAVICON #}
+        <link rel="icon" type="img/png" href="{{ asset('favicon-32x32.png') }}">
+
+
+        {# bloc pour ajouter du CSS/JS additionnel #}
+        {% block css %}{% endblock %}
+
+        {# Block pour le titre du document #}
+        <title>{% block title %}{% endblock %} - {{ site_name }}</title>
+    </head>
+    <body>
+
+        {# navbar #}
+        <nav class="navbar navbar-expand-xl bg-custom-dark-celadon navbar-dark base-navbar ">
+            <div class="container-fluid ">
+
+                <a id="site-header" class="navbar-brand fs-4 text-success" href="#">
+                    <img id="img_logo" class="img-logo" src="{{ asset('/images/coaching-logo.jpg') }}" alt="Logo claire Saurel">
+                    <p id="text_logo text-success">Pour être l'auteur de sa vie</p>
+                </a>
+                {# Nom du site #}
+                <a class="navbar-brand text-uppercase fw-bold fs-4 text-success" href="{{ path('main_home') }}">CS Coaching</a>
+                {# Logo du site #}
+                {# Bouton burger #}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    {# Liens pour tous les utilisateurs #}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        {# page : accueil #}
+                        <li class="nav-item">
+                            <a class=" fs-4 text-success nav-link{{ route == 'main_home' ? ' active' }}" href="{{ path('main_home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Coaching</a>
+                            <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                                {# page : Coaching adulte #}
+                                <a class=" dropdown-item" href="{{ path('main_coachingPro') }}">Coaching professionnel</a>
+                                {# page : liste des managers #}
+                                <a class="dropdown-item" href="{{ path('main_coachingScolaire') }}">Coaching scolaire et étudiant</a>
+                                {# page : liste des clients #}
+                                <a class="dropdown-item" href="{{ path('main_orientation_reconversion') }}">Orientation/reconversion</a>
+                                {# page  déroulement d'un coaching pro #}
+                                <a class="dropdown-item" href="{{ path('main_deroulement_coachingPro') }}">Déroulement d'un coaching pro</a>
+                            </div>
+                        </li>
+{#                        #}{# page : nos missions #}
+{#                        <li class="nav-item">#}
+{#                            <a class=" fs-4 nav-link{{ route == 'main_missions' ? ' active' }}" href="{{ path('main_missions') }}">Nos missions</a>#}
+{#                        </li>#}
+
+                    {# page : profil pro #}
+                        <li class="nav-item dropdown">
+                            <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="#" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon profil pro</a>
+                            <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                                {# page : Coaching adulte #}
+                                <a class="dropdown-item" href="{{ path('main_partenaires') }}">Mes partenaires</a>
+                                {# page : liste des managers #}
+                                <a class="dropdown-item" href="{{ path('main_revuesPresses') }}">Revues de presse</a>
+                                {# page : à propos de moi : qui suis-je? #}
+                                <a class="dropdown-item" href="{{ path('main_qui_suis_je') }}">A propos de moi</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {# Liens uniquement pour les personnes non-connectées #}
+                        {% if not app.user %}
+                            {# page : connexion #}
+                            <li class="nav-item">
+                                <a class=" fs-4 text-success nav-link{{ route == 'app_login' ? ' active' }}" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                            {# page : inscription #}
+                            <li class="nav-item">
+                                <a class=" fs-4 text-success nav-link{{ route == 'app_register' ? ' active' }}" href="{{ path('app_register') }}">Inscription</a>
+                            </li>
+                        {% endif %}
+
+                        {# Liens uniquement pour les personnes connectées #}
+                        {% if app.user  %}
+                            {# Liens uniquement pour les Admins #}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                {# liste déroulante des interfaces d'administration #}
+                                <li class="nav-item dropdown">
+                                    <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="{{ path('admin_index') }}" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interface d'administration</a>
+                                    <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+                                        {# page : tous les profils #}
+                                        <a class="dropdown-item" href="{{ path('admin_index') }}">Tous les profils</a>
+                                        <div class="dropdown-divider"></div>
+                                        {# page : liste des managers #}
+                                        <a class="dropdown-item" href="{{ path('admin_manager') }}">Managers</a>
+                                        {# page : liste des clients #}
+                                        <a class="dropdown-item" href="{{ path('admin_client') }}">Clients</a>
+                                        {# page : liste des consultants #}
+                                        <a class="dropdown-item" href="{{ path('admin_consultant') }}">Consultants</a>
+                                        {# page : liste des utilisateurs non-validés #}
+                                        <a class="dropdown-item" href="{{ path('admin_user') }}">Profils en attente</a>
+                                    </div>
+                                </li>
+                            {% endif %}
+
+                            {# Liens uniquement pour les utilisateurs non-validés #}
+                            {% if is_granted('ROLE_USER') %}
+                                {# page : gestion de compte #}
+                                <li class="nav-item">
+                                    <a class=" fs-4 text-success nav-link{{ route == 'account_show' ? ' active' }}" href="{{ path('account_show') }}">Compte</a>
+                                </li>
+                            {% endif %}
+
+                            {# Liens uniquement pour les clients #}
+                            {% if is_granted('ROLE_CLIENT') and app.user.roles[0] != "ROLE_ADMIN" %}
+                                {# page : interface client #}
+                                <li class="nav-item">
+                                    <a class=" fs-4 text-success nav-link" href="{{ path('project_interface') }}">Interface Client</a>
+                                </li>
+                            {% endif %}
+                            {# Liens uniquement pour les consultants #}
+                            {% if is_granted('ROLE_CONSULTANT') and app.user.roles[0] != "ROLE_ADMIN" %}
+                                {# page : interface consultant #}
+                                <li class="nav-item">
+                                    <a class=" fs-4 text-success nav-link" href="{{ path('service_interface') }}">Interface Consultant</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+
+                        {# Liens uniquement pour les personnes connectées #}
+                        {% if app.user %}
+                            {# lien de déconnexion #}
+                            <li class="nav-item">
+                                <a class=" fs-4 text-success nav-link" href="{{ path('app_logout') }}">Déconnecter</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    {# *********************  BARRE DE RECHERCHE ************************ #}
+                    <form class="d-flex" method="GET" action="#">
+                        <input name="q" class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
+                        <button class="btn bg-success btn-info" type="submit"><i class="fas fa-search"></i></button>
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
+        {# Message flashs en cas de succès #}
+        {% if app.session.flashBag.has('success') %}
+            <div class="container">
+                <div class="row">
+
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success text-center col-8 my-3 fw-bold" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        {% endif %}
+        <h1 class="text-center" id="title">CS Coaching</h1>
+
+        {# Block pour le contenu de la page #}
+        <div class="min-vh-100">
+        {# Block pour le contenu de la page #}
+        {% block body %}{% endblock %}
+        </div>
+        {#lien haut#}
+        <div id="scroll_to_top">
+            <a href="#site-header"><img src="{{ asset('/images/angle-double-up-solid.svg')  }}" alt="Retourner en haut" /></a>
+        </div>
+
+        <section class="row justify-content-around section offset-2">
+            {# Titre ention légales #}
+            <div class="row mt-5 mb-3 text-black-50 h3">
+                <a class="text-black-50" href="{{ path('main_Mentions_coachingScolaire')}}">Mentions Légales</a>
+            </div>
+        </section>
+
+        {# footer #}
+        <footer class="footer container-fluid bg-custom-dark-celadon base-footer">
+            <div class="row py-3">
+                {# partie réseaux sociaux #}
+                <div class="col-4">
+                    <nav class="footer-nav-network py-4 px-3 text-center">
+                        {# TODO : adresser les liens des réseaux sociaux #}
+                        <a target="_blank" href="https://m.facebook.com/claire.saurel.18?locale2=fr_FR"><i class="fab fa-facebook-f d-inline-block me-3 fa-2x"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/claire.saurel/"><i class="fab fa-instagram d-inline-block mx-3 fa-2x"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/claire-saurel-49892539/"><i class="fab fa-linkedin-in d-inline-block ms-3 fa-2x"></i></a>
+                    </nav>
+                </div>
+
+                {# partie navigation #}
+                <div class="col-8">
+                    <nav class="footer-nav row py-4 px-3">
+                        {# TODO : rajouter les CGUs, mentions légales, contactez-nous #}
+                        <div class="col-4"><a href="#" class="text-decoration-none fs-4">Qui sommes-nous?</a></div>
+                        <div class="col-4"><a href="{{ path('main_qui_suis_je') }}" class="text-decoration-none fs-4">À propos</a></div>
+                        <div class="col-4"><a href="{{ path('main_contact') }}" class="text-decoration-none fs-4">Contactez-moi</a></div>
+                    </nav>
+                </div>
+            </div>
+
+            {# copyright #}
+            <div class="row text-center">
+                <p class="copyright text-color-custom-1">© 2021 CS COACHING </p>
+            </div>
+        </footer>
+
+        {# Inclusion JS Bootstrap #}
+        <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        {# bloc pour ajouter du JS additionnel #}
+        {% block js %}{% endblock %}
+
+    </body>
+</html>

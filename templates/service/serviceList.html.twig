@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{# Titre du document #}
+{% block title %}Catalogue des service{% endblock %}
+
+{# Corps du document #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row my-5">
+            <h1 class="fs-custom-1 text-center my-5">Catalogue des services</h1>
+        </div>
+
+        {# Affichage du catalogue #}
+        <div class="d-flex flex-row flex-lg-wrap justify-content-center mx-5">
+
+            {% for service in services %}
+                {# Carte d'un service #}
+                <div class="card mx-5 my-5" style="width: 18rem;">
+                    {# Image du projet #}
+                    <img class="card-img-top" src="{{ asset('images/eolienne.jpg')|imagine_filter('service_picture') }}" style="height: 350px" alt="Card image cap">
+                    {# Coprs du projet #}
+                    <div class="card-body">
+                        {# Titre du projet #}
+                        <h2 class="fs-5 card-title">{{ service.name }}</h2>
+                        {# Description abrégée du projet #}
+                        <p class="card-text" style="height: 220px">{{ service.description|excerpt(25) }}</p>
+                        {# Pied de page avec lien pour en voir plus #}
+                        <footer class="my-2">Ajouté le <span class="fw-bold">{{ service.createdAt|date('d/m/Y à H\\hi') }}</span> <br>par
+                            <span class="fw-bold">{{ service.user.firstName }} {{ service.user.lastName }}</span>
+                        </footer>
+                        <a href="{{ path('service_view', {'slug': service.slug}) }}" class="btn btn-primary">Accéder à ce service</a>
+                    </div>
+                </div>
+            {% else %}
+                {# Texte de substitution s'il n'y a rien à afficher #}
+                <div class="row">
+                    <p class="fs-1 text-center text-danger custom-margin-3">Aucun service n'est proposé pour le moment</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="scrollUp">
+        <a href="#backTop" class="backTop-btn"><i class="fas fa-arrow-alt-circle-up text-secondary" aria-hidden="true"></i></a>
+    </div>
+
+    {% block js %}
+        <script src="{{ asset('js/to-top.js') }}"></script>
+    {% endblock %}
+
+{% endblock %}

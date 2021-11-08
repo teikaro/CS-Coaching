@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface client{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row mt-5">
+            {# Titre de l'interface #}
+            <h1 class="text-center fs-custom-1">Interface client</h1>
+        </div>
+
+        {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+        <div class="row p-4 side-menu">
+            <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+            <ul>
+                {# Liens du side menu (Voir catalogue & Proposer/Créer un projet #}
+                <li><a href="{{ path('service_list') }}">Voir le catalogue des services</a></li>
+                <li><a href="{{ path('project_create') }}">Proposer un nouveau projet</a></li>
+            </ul>
+        </div>
+
+        {# Table des projets appartenants au client connecté #}
+        <div class="row mb-5">
+            <h2 class="text-center">Liste de vos projets</h2>
+        </div>
+
+        <div class="row my-5">
+            {# Si il existe des projets chez le client, les afficher #}
+            {% if projects %}
+                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Secteur</th>
+                            <th scope="col">Date de création</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {# Affiche les informations des projets individuellement #}
+                        {% for project in projects %}
+                            <tr>
+                                <td>{{ project.name|excerpt(5) }}</td>
+                                <td>{{ project.description|excerpt(10) }}</td>
+                                <td>{{ project.sector }}</td>
+                                <td>{{ project.createdAt|date('d/m/Y à H\\hi') }}</td>
+                                <td><a href="{{ path('project_view', {'slug': project.slug}) }}"><i class="far fa-eye"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {# Sinon, afficher un message pour indiquer que le client ne possède aucun projets #}
+            {% else %}
+                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun projet en cours</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

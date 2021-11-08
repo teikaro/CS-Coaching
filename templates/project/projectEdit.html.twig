@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un projet{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 form-container">
+                <div class="col-lg-8 col-md-12 col-10 form-box text-center">
+
+                    {# Titre de la page d'edition #}
+                    <div class="heading mb-5">
+                        <h1 class="fs-1 text-light">Editer un projet</h1>
+                    </div>
+
+                    {# Formulaire d'édition, inclus des labels pour le nom, la description, et le secteur d'activité #}
+                    {{ form_start(form) }}
+                        {{ form_row(form.name, {
+                            label: 'Nom',
+                            label_attr: {
+                                class: 'text-light fw-bold',
+                            }
+                        }) }}
+                        {{ form_row(form.description, {
+                            label: 'Décrivez votre projet',
+                            label_attr: {
+                                class: 'text-light fw-bold',
+                            }
+                        }) }}
+                        {{ form_row(form.sector, {
+                            label: 'Secteur',
+                            label_attr: {
+                                class: 'text-light fw-bold',
+                            }
+                        }) }}
+                    {# Bouton pour valider l'édition du projet #}
+                        <button class="btn btn-light mt-4 w-100" type="submit">Editer le projet</button>
+                    {{ form_end(form) }}
+                    {# Annuler l'édition, qui redirige vers la view du projet correspondant #}
+                    <a class="btn btn-secondary mt-4 w-100 d-block fw-bold" href="{{ path('project_view', {'slug': slug}) }}">Annuler</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

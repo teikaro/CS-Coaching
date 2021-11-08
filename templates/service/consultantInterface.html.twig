@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface consultant{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row mt-5">
+            {# Titre de l'interface #}
+            <h1 class="text-center fs-custom-1">Interface consultant</h1>
+        </div>
+
+        {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+        <div class="row p-4 side-menu">
+            <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+            <ul>
+                {# Liens du side menu (Voir catalogue & Proposer/Créer un service #}
+                <li><a href="{{ path('project_list') }}">Voir le catalogue des projets</a></li>
+                <li><a href="{{ path('service_create') }}">Proposer un nouveau service</a></li>
+            </ul>
+        </div>
+
+        {# Table des services appartenants au consultant connecté #}
+        <div class="row mb-5">
+            <h2 class="text-center">Liste de vos services</h2>
+        </div>
+
+        <div class="row my-5">
+            {# Si il existe des services chez le consultant, les afficher #}
+            {% if services %}
+                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Secteur</th>
+                            <th scope="col">Date de création</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {# Affiche les informations des services individuellement #}
+                        {% for service in services %}
+                            <tr>
+                                <td>{{ service.name|excerpt(5) }}</td>
+                                <td>{{ service.description|excerpt(10) }}</td>
+                                <td>{{ service.sector }}</td>
+                                <td>{{ service.createdAt|date('d/m/Y à H\\hi') }}</td>
+                                <td><a href="{{ path('service_view', {'slug': service.slug}) }}"><i class="far fa-eye"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {# Sinon, affiche un message pour indiquer que le consultant ne possède aucun services #}
+            {% else %}
+                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun service en cours</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

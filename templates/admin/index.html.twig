@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{# Titre du document #}
+{% block title %}Administration{% endblock %}
+
+{# Corps du document #}
+{% block body %}
+
+    <div class="row my-5">
+        {# Titre principal de la page #}
+        <h1 class="text-center fs-custom-1">Liste des {{ titre }}</h1>
+    </div>
+
+    {# Table des profils #}
+    {# TODO : STAGE mettre en place une pagination #}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>Phone</th>
+                <th>Créé le</th>
+                <th>Modifié le</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {# Affichage des utilisateurs #}
+            {% for user in users %}
+                {% if user.roles[0] != "ROLE_ADMIN" %}
+                    <tr>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles|json_encode }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.registeredAt|date('d-m-Y H:i') }}</td>
+                        <td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y H:i') : '' }}</td>
+                        <td><a class="btn btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">Modifier</a></td>
+                        <td>
+                            <form method="post" action="{{ path('admin_user_delete', {'id': user.id} ) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce profil ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                <button class="btn btn-outline-danger">Effacer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif%}
+            {% else %}
+                <tr>
+                    <td colspan="8">Pas d'utilisateurs</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

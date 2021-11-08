@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-12 form-container">
+                <div class="col-lg-8 col-md-12 col-10 form-box text-center">
+
+                    <div class="heading mb-3">
+                        <h1 class="fs-4 text-light">Inscription</h1>
+                    </div>
+
+                    {{ form_start(registrationForm) }}
+                        {{ form_row(registrationForm.lastName, {
+                            label: 'Nom',
+                            attr: {
+                                placeholder: 'Nom'
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.firstName, {
+                            label: 'Prénom',
+                            attr: {
+                                placeholder: 'Prénom'
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.phone, {
+                            label: 'Téléphone (facultatif)',
+                            attr: {
+                                placeholder: 'Téléphone (facultatif)',
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.corporateName, {
+                            label: 'Nom d\'entreprise (facultatif)',
+                            attr: {
+                                placeholder: 'Nom d\'entreprise (facultatif)',
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.email, {
+                            label: 'Email',
+                            attr: {
+                                placeholder: 'Email'
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.plainPassword.first, {
+                            label: 'Mot de passe',
+                            attr: {
+                                placeholder: 'Mot de passe'
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {{ form_row(registrationForm.plainPassword.second, {
+                            label: 'Confirmation du mot de passe',
+                            attr: {
+                                placeholder: 'Confirmation du mot de passe'
+                            },
+                            row_attr: {
+                                class: 'form-floating my-3',
+                            },
+                        }) }}
+                        {#        {{ form_row(registrationForm.agreeTerms) }}#}
+
+                        <button type="submit" class="btn bg-light w-100 mt-4">S'inscrire</button>
+                    {{ form_end(registrationForm) }}
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
+
+        </div>
+    </div>
+
+{% endblock %}
