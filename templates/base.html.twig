@@ -184,13 +184,6 @@
             <a href="#site-header"><img src="{{ asset('/images/angle-double-up-solid.svg')  }}" alt="Retourner en haut" /></a>
         </div>
 
-        <section class="row justify-content-around section offset-2">
-            {# mention légales #}
-            <div class="row mt-5 mb-3 text-black-50 h3">
-                <a class="text-black-50" href="{{ path('main_Mentions_coachingScolaire')}}">Mentions Légales</a>
-            </div>
-        </section>
-
         {# footer #}
         <footer class="footer container-fluid bg-custom-dark-celadon base-footer">
             <div class="row py-3">
@@ -206,9 +199,8 @@
                 {# partie navigation #}
                 <div class="col-8">
                     <nav class="footer-nav row py-4 px-3">
-                        {# TODO : rajouter les CGUs, mentions légales, contactez-nous #}
-                        <div class="col-4"><a href="#" class="text-decoration-none fs-4">Qui sommes-nous?</a></div>
-                        <div class="col-4"><a href="{{ path('main_qui_suis_je') }}" class="text-decoration-none fs-4">À propos</a></div>
+                        <div class="col-4"><a href="#" class="text-decoration-none fs-4">CGU</a></div>
+                        <div class="col-4"> <a href="{{ path('main_Mentions_coachingScolaire')}}" class="text-decoration-none fs-4">Mentions Légales</a></div>
                         <div class="col-4"><a href="{{ path('main_contact') }}" class="text-decoration-none fs-4">Contactez-moi</a></div>
                     </nav>
                 </div>
