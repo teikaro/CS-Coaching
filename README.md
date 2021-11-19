@@ -7,8 +7,8 @@
 Dans un dossier vide, faire cette commande pour récupérer le projet :
 
 ```
-git clone https://github.com/Dvdljz/ryl-scope-3.git
-cd ryl-scope-3
+git clone https://github.com/teikaro/CS-Coaching.git
+cd CS-Coaching
 ```
 
 <br>

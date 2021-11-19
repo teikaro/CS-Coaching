@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mt-5">
             {# Titre de l'interface #}
-            <h1 class="text-center fs-custom-1">Interface consultant</h1>
+            <h1 class="text-center fs-custom-1">Interface résumés de séances</h1>
         </div>
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
@@ -15,14 +15,14 @@
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
             <ul>
                 {# Liens du side menu (Voir catalogue & Proposer/Créer un service #}
-                <li><a href="{{ path('project_list') }}">Voir le catalogue des projets</a></li>
-                <li><a href="{{ path('service_create') }}">Proposer un nouveau service</a></li>
+                <li><a href="{{ path('project_list') }}">Voir les articles</a></li>
+                <li><a href="{{ path('service_create') }}">Écrire un résumé de séance</a></li>
             </ul>
         </div>
 
         {# Table des services appartenants au consultant connecté #}
         <div class="row mb-5">
-            <h2 class="text-center">Liste de vos services</h2>
+            <h2 class="text-center">Liste de vos résumés de séances</h2>
         </div>
 
         <div class="row my-5">
@@ -55,7 +55,7 @@
                 </div>
             {# Sinon, affiche un message pour indiquer que le consultant ne possède aucun services #}
             {% else %}
-                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun service en cours</p>
+                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun résumé de séance</p>
             {% endif %}
         </div>
     </div>

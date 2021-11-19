@@ -23,7 +23,7 @@ class AccountController extends AbstractController
     }
 
     /* Contrôleur de la vue "edit" */
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET','POST'])]
+    #[Route('/{lastName}/edit', name: 'edit', methods: ['GET','POST'])]
     public function edit(Request $request, User $user): Response
     {
         // Création du formulaire et réinjection de la requête

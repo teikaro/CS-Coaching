@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface client{% endblock %}
+{% block title %}Interface article{% endblock %}
 
 {% block body %}
 
     <div class="container-fluid">
         <div class="row mt-5">
             {# Titre de l'interface #}
-            <h1 class="text-center fs-custom-1">Interface client</h1>
+            <h1 class="text-center fs-custom-1">Interface article</h1>
         </div>
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
         <div class="row p-4 side-menu">
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
             <ul>
-                {# Liens du side menu (Voir catalogue & Proposer/Créer un projet #}
-                <li><a href="{{ path('service_list') }}">Voir le catalogue des services</a></li>
-                <li><a href="{{ path('project_create') }}">Proposer un nouveau projet</a></li>
+                {# Liens du side menu (Voir les résumés de séances & Créer un article #}
+                <li><a href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
+                <li><a href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
             </ul>
         </div>
 
         {# Table des projets appartenants au client connecté #}
         <div class="row mb-5">
-            <h2 class="text-center">Liste de vos projets</h2>
+            <h2 class="text-center">Liste de vos articles</h2>
         </div>
 
         <div class="row my-5">
@@ -53,9 +53,9 @@
                         </tbody>
                     </table>
                 </div>
-            {# Sinon, afficher un message pour indiquer que le client ne possède aucun projets #}
+            {# Sinon, afficher un message pour indiquer que le client ne possède aucun article #}
             {% else %}
-                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun projet en cours</p>
+                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun article écrit pour le moment</p>
             {% endif %}
         </div>
     </div>

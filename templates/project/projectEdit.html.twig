@@ -11,33 +11,33 @@
 
                     {# Titre de la page d'edition #}
                     <div class="heading mb-5">
-                        <h1 class="fs-1 text-light">Editer un projet</h1>
+                        <h1 class="fs-1 text-light">Éditer un article</h1>
                     </div>
 
-                    {# Formulaire d'édition, inclus des labels pour le nom, la description, et le secteur d'activité #}
+                    {# Formulaire d'édition, inclus des labels pour le nom, la description et le domaine #}
                     {{ form_start(form) }}
                         {{ form_row(form.name, {
-                            label: 'Nom',
+                            label: 'Titre de l\'article :',
                             label_attr: {
-                                class: 'text-light fw-bold',
+                                class: 'text-light display-6 fw-bold',
                             }
                         }) }}
                         {{ form_row(form.description, {
-                            label: 'Décrivez votre projet',
+                            label: 'Description de votre article :',
                             label_attr: {
-                                class: 'text-light fw-bold',
+                                class: 'text-light display-6 fw-bold',
                             }
                         }) }}
                         {{ form_row(form.sector, {
-                            label: 'Secteur',
+                            label: 'Domaine :',
                             label_attr: {
-                                class: 'text-light fw-bold',
+                                class: 'text-light display-6 fw-bold',
                             }
                         }) }}
-                    {# Bouton pour valider l'édition du projet #}
-                        <button class="btn btn-light mt-4 w-100" type="submit">Editer le projet</button>
+                    {# Bouton pour valider l'édition de l'article #}
+                        <button class="btn btn-light mt-4 w-100" type="submit">Éditer cet article</button>
                     {{ form_end(form) }}
-                    {# Annuler l'édition, qui redirige vers la view du projet correspondant #}
+                    {# Annuler l'édition, qui redirige vers la view de l'article correspondant #}
                     <a class="btn btn-secondary mt-4 w-100 d-block fw-bold" href="{{ path('project_view', {'slug': slug}) }}">Annuler</a>
 
                 </div>

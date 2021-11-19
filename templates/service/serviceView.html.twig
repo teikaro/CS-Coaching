@@ -15,7 +15,7 @@
         <div class="row">
             <p class="text-center col-12 my-5">
                 {# Si l'utilisateur est un consultant, affiche un lien vers son interface. Sinon, vers liste de projets #}
-                {% if service.user == app.user %}
+                {% if app.user == app.user %}
                     <a class="text-decoration-none fs-5" href="{{ path('service_interface') }}">Retour à l'interface</a>
                 {% else %}
                     <a class="text-decoration-none fs-5" href="{{ path('service_list') }}">Retour au catalogue services</a>
@@ -67,7 +67,7 @@
                     </a>
 
                     {# bouton de suppression du service #}
-                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('service_delete', {'id': service.id, csrf_token: csrf_token('service_delete_' ~ service.id ) }) }}">
+                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce résumé de séance ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('service_delete', {'id': service.id, csrf_token: csrf_token('service_delete_' ~ service.id ) }) }}">
                         <i class="fas fa-trash-alt me-1"></i> Supprimer
                     </a>
                 </div>

@@ -28,13 +28,13 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin
             ->setEmail('a@a.fr')
-            ->setFirstName('Admin')
-            ->setLastName('Admin')
+            ->setFirstName('Claire')
+            ->setLastName('Saurel')
             ->setRoles(["ROLE_ADMIN"])
             ->setPassword(
                 $this->encoder->hashPassword($admin, 'Password1*')
             )
-            ->setPhone('0000000000')
+            ->setPhone('06.72.69.98.95')
             ->setZipCode($faker->postcode())
             ->setCity('Dijon')
             ->setAddress($faker->streetAddress());
@@ -44,19 +44,20 @@ class AppFixtures extends Fixture
         // USER CLIENT pour les tests avec les projets
         $client = new User();
         $client
-            ->setEmail('client@a.fr')
-            ->setFirstName('client')
-            ->setLastName('client')
+            ->setEmail('varraut.corentin@gmail.com')
+            ->setFirstName('Corentin')
+            ->setLastName('Varraut')
             ->setRoles(["ROLE_CLIENT"])
             ->setPassword(
                 $this->encoder->hashPassword($admin, 'Password1*')
             )
-            ->setPhone('0000000000')
+            ->setPhone('07.83.71.33.58')
             ->setZipCode($faker->postcode())
             ->setCity('Dijon')
             ->setAddress($faker->streetAddress());
 
         $manager->persist($client);
+
 
         // USER CONSULTANT pour les tests avec les services
         $consultant = new User();

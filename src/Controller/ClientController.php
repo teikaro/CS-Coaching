@@ -22,7 +22,6 @@ class ClientController extends AbstractController
     #[Security("is_granted('ROLE_CONSULTANT')")]
     public function projectList(Request $request, PaginatorInterface $paginator): Response
     {
-        // TODO : STAGE gérer entièrement le paginator
         // Récupération du numéro de page
         $requestedPage = $request->query->getInt('page', 1);
 
@@ -41,7 +40,7 @@ class ClientController extends AbstractController
         $projets = $paginator->paginate(
             $query,
             $requestedPage,
-            10
+            3
         );
 
         // Retour à la page de la liste des projets
@@ -77,7 +76,7 @@ class ClientController extends AbstractController
             $em->flush();
 
             // Message flash
-            $this->addFlash('success', 'Projet modifié avec succès !');
+            $this->addFlash('success', 'Cet article à été modifié avec succès !');
 
             // Redirection sur la vue détaillée du projet
             return $this->redirectToRoute('project_view', [
@@ -110,7 +109,7 @@ class ClientController extends AbstractController
             $em->flush();
 
             // Message flash
-            $this->addFlash('success', 'Le projet a été supprimé avec succès !');
+            $this->addFlash('success', 'Cet article a été supprimé avec succès !');
         }
 
         // Redirection sur la page d'interface
@@ -137,7 +136,7 @@ class ClientController extends AbstractController
             $entityManager->flush();
 
             // Message flash
-            $this->addFlash('success', 'Votre projet à été créé avec succès !');
+            $this->addFlash('success', 'Votre article à été créé avec succès !');
 
             // Redirection sur la page d'interface client
             return $this->redirectToRoute('project_interface');

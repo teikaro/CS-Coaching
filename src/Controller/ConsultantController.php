@@ -22,7 +22,6 @@ class ConsultantController extends AbstractController
     #[Security("is_granted('ROLE_CLIENT')")]
     public function serviceList(Request $request, PaginatorInterface $paginator): Response
     {
-        // TODO : STAGE gérer entièrement le paginator
         // Récupération du numéro de page
         $requestedPage = $request->query->getInt('page', 1);
 
@@ -41,7 +40,7 @@ class ConsultantController extends AbstractController
         $services = $paginator->paginate(
             $query,
             $requestedPage,
-            10
+            3
         );
 
         // Retour à la page de la liste des services
@@ -54,7 +53,6 @@ class ConsultantController extends AbstractController
     #[Route('/afficher/{slug}/', name: 'view')]
     public function serviceView(Service $service): Response
     {
-        // TODO : STAGE contrôler que personne ne puisse voir les services des autres consultants par l'url
         return $this->render('service/serviceView.html.twig', [
             'service' => $service,
         ]);
@@ -150,7 +148,7 @@ class ConsultantController extends AbstractController
 
     /* Contrôleur de la vue "interface" */
     #[Route('/interface-consultant/', name: 'interface')]
-    #[Security("is_granted('ROLE_CONSULTANT')")]
+    #[Security("is_granted('ROLE_CLIENT')")]
     public function consultantInterface(): Response
     {
         // Récupération de tous les services créés par l'utilisateur actuel

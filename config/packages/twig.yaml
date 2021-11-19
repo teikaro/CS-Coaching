@@ -3,7 +3,12 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 
     globals:
+
+        # Définition du nom du site, utilisable sur nos pages twig pour l'URL.
         site_name: 'CS Coaching'
+
+        # Récupération de la clé publique Google Recaptcha depuis le fichier services.yaml
+        google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 when@test:
     twig:

@@ -16,10 +16,10 @@
         <div class="row">
             <p class="text-center col-12 my-5">
                 {# Si l'utilisateur est un client, affiche un lien vers son interface. Sinon, vers liste de projets #}
-                {% if project.user == app.user %}
+                {% if app.user == app.user %}
                     <a class="text-decoration-none fs-5" href="{{ path('project_interface') }}">Retour à l'interface</a>
                 {% else %}
-                    <a class="text-decoration-none fs-5" href="{{ path('project_list') }}">Retour au catalogue projets</a>
+                    <a class="text-decoration-none fs-5" href="{{ path('project_list') }}">Retour au catalogue des articles</a>
                 {% endif %}
             </p>
         </div>
@@ -66,7 +66,7 @@
                     </a>
 
                     {# bouton de suppression du projet #}
-                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('project_delete', {'id': project.id, csrf_token: csrf_token('project_delete_' ~ project.id ) }) }}">
+                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('project_delete', {'id': project.id, csrf_token: csrf_token('project_delete_' ~ project.id ) }) }}">
                         <i class="fas fa-trash-alt me-1"></i> Supprimer
                     </a>
                 </div>

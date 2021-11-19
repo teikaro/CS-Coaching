@@ -9,56 +9,75 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Recaptcha\RecaptchaValidator;  // Importation de notre service de validation du captcha
+use Symfony\Component\Form\FormError;  // Importation de la classe permettant de créer des erreurs dans les formulaires
 
 class RegistrationController extends AbstractController
 {
     /* Contrôleur de la vue "inscription" */
     #[Route('/inscription/', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, RecaptchaValidator $recaptcha): Response
     {
         // Si l'utilisateur est connecté on le redirige sur l'accueil
-        if($this->getUser()) {
+        if ($this->getUser()) {
             return $this->redirectToRoute('main_home');
         }
+        // TODO : STAGE confirmation email par mail
+        // TODO : STAGE Possibilité de changer le mot de passe en cas d'oubli
 
         // Création du formulaire et réinjection de la requête
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        // Contrôle sur la validité d'un formulaire envoyé
-        if ($form->isSubmitted() && $form->isValid()) {
+        // Si le formulaire a été envoyé
+        if ($form->isSubmitted()) {
 
-            // TODO : STAGE gestion du captcha
-            // TODO : STAGE confirmation email par mail
-            // TODO : STAGE Possibilité de changer le mot de passe en cas d'oubli
+            // Récupération de la valeur du captcha ( $_POST['g-recaptcha-response'] )
+            $captchaResponse = $request->request->get('g-recaptcha-response', null);
 
-            // Hashage du password
-            $user->setPassword(
+            // Récupération de l'adresse IP de l'utilisateur ( $_SERVER['REMOTE_ADDR'] )
+            $ip = $request->server->get('REMOTE_ADDR');
+
+            // Si le captcha est null ou si il est invalide, ajout d'une erreur générale sur le formulaire (qui sera considéré comme échoué après)
+            if ($captchaResponse == null || !$recaptcha->verify($captchaResponse, $ip)) {
+
+                // Ajout d'une nouvelle erreur dans le formulaire
+                $form->addError(new FormError('Veuillez remplir le captcha de sécurité'));
+            }
+
+            // Si le formulaire n'a pas d'erreur
+            if ($form->isValid()) {
+
+                // Hashage du password
+                $user->setPassword(
                     $userPasswordHasherInterface->hashPassword(
                         $user,
                         $form->get('plainPassword')->getData()
                     )
-            );
+                );
 
-            // Attribution du role USER
-            $user->setRoles(["ROLE_USER"]);
+                // Attribution du role USER
+                $user->setRoles(["ROLE_CLIENT"]);
 
-            // Gestion de l'envoi des données en base de données
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+                // Gestion de l'envoi des données en base de données
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            // Message flash
-            $this->addFlash('success', 'Votre compte à été créé avec succès !');
+                // Message flash
+                $this->addFlash('success', 'Votre compte à été créé avec succès !');
 
-            // Redirection sur la page de connexion
-            return $this->redirectToRoute('app_login');
+                // Redirection sur la page de connexion
+                return $this->redirectToRoute('app_login');
+            }
         }
+
 
         // Envoi de l'utilisateur sur la page d'inscription
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+
     }
 }

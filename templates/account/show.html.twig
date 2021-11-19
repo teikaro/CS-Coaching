@@ -6,39 +6,29 @@
 
     <div class="container-fluid">
 
-        <div class="row mb-5">
-            <div class="text-center p-0">
+        {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+        <div class="row p-4 side-menu">
+            <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
 
-                {# Menu de gestion de compte #}
-                <nav class="py-2 bg-custom-celadon w-100">
+            <ul>
 
-                    <ul class="list-unstyled d-flex justify-content-center">
+                {% if is_granted('ROLE_ADMIN') %}
 
-                        {# Lien uniquement pour les clients et consultants #}
-                        
+                    <li><a href="{{ path('project_list') }}" class=" color-primary text-decoration-none">Accéder à tous les articles</a></li>
+                    <li><a href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
+                    <li><a href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
 
-                            <li class="mx-3"><a href="{{ path('account_profile', {'id': app.user.id}) }}" class="btn btn-outline-light text-decoration-none">Voir le profil public</a></li>
+                {% else %}
 
+                    <li class="mx-3"><a href="{{ path('service_interface') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
+                    <li><a href="{{ path('project_interface') }}">Accéder à mes résumés de séances</a></li>
+                    <li><a href="{{ path('service_interface') }}">Accéder aux articles</a></li>
 
-
-                        {# Lien uniquement pour les clients #}
-
-
-                            <li class="mx-3"><a href="{{ path('project_interface') }}" class="btn btn-outline-light text-decoration-none">Accéder à l'interface client</a></li>
-
-
-
-                        {# Lien uniquement pour les consultants #}
+                {% endif %}
 
 
-                            <li class="mx-3"><a href="{{ path('service_interface') }}" class="btn btn-outline-light text-decoration-none">Accéder à l'interface consultant</a></li>
+            </ul>
 
-
-
-                    </ul>
-                </nav>
-
-            </div>
         </div>
 
         {# Titre principal de la page #}
@@ -56,12 +46,12 @@
             <div class="col-12 text-center">
                 {# Contrôle si l'utilisateur a une photo ou pas #}
                 {% if app.user.photos %}
-                    <p class="fs-4 my-2">Photo de profil: </p>
+                    <p class="fs-4 text-center">Photo de profil: </p>
                     <div>
                         <img src="{{ app.user.photos|imagine_filter('show_picture') }}" class="img-fluid img-thumbnail profil-picture" alt="">
                     </div>
                 {% else %}
-                    <p class="fs-4 my-2">Photo de profil: </p>
+                    <p class="fs-4 text-center">Photo de profil: </p>
                     <div>
                         <img src="{{ asset('images/Portrait_Placeholder.png')|imagine_filter('show_picture') }}" class="img-fluid img-thumbnail profil-picture" alt="">
                     </div>
@@ -77,18 +67,52 @@
                 <ul class="list-unstyled">
 
                     {# Affichage de l'adresse e-mail #}
-                    <li class="fs-4 my-2">Adresse e-mail: {{ app.user.email }}</li>
+                    <li class="fs-4 my-2"> <i class="fas fa-envelope"></i> Adresse e-mail: {{ app.user.email }}</li>
 
                     {# Contrôle si l'utilisateur a un numéro de téléphone ou pas #}
                     {% if app.user.phone %}
 
-                        <li class="fs-4 my-2">Téléphone: {{ app.user.phone }}</li>
+                        <li class="fs-4 my-2"> <i class="fas fa-phone-square-alt"></i> Téléphone: {{ app.user.phone }}</li>
 
                     {% else %}
 
-                        <li class="fs-4 my-2">Téléphone: <span class="fst-italic">non renseigné</span></li>
+                        <li class="fs-4 my-2"> <i class="fas fa-phone-square-alt"></i> Téléphone: <span class="fst-italic">non renseigné</span></li>
 
                     {% endif %}
+
+                    {# Contrôle si l'utilisateur à renseigné un code postal ou pas #}
+                    {% if app.user.zipCode %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-marked"></i> Code postal : {{ app.user.zipCode }}</li>
+
+                    {% else %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-marked"></i> Code postal : <span class="fst-italic">non renseigné</span></li>
+
+                    {% endif %}
+
+                    {# Contrôle si l'utilisateur à renseigné une ville ou pas #}
+                    {% if app.user.city %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-marker-alt"></i> Ville : {{ app.user.city }}</li>
+
+                    {% else %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-marker-alt"></i> Ville : <span class="fst-italic">non renseigné</span></li>
+
+                    {% endif %}
+
+                    {# Contrôle si l'utilisateur a renseigné une adresse ou pas #}
+                    {% if app.user.address %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-pin"></i> Adresse : {{ app.user.address }}</li>
+
+                    {% else %}
+
+                        <li class="fs-4 my-2"> <i class="fas fa-map-pin"></i> Adresse : <span class="fst-italic">non renseigné</span></li>
+
+                    {% endif %}
+
 
                 </ul>
 
@@ -100,19 +124,18 @@
 
             <div class="mx-auto text-center d-flex justify-content-center">
 
-                <a href="{{ path('main_home') }}" class="btn btn-outline-success text-decoration-none px-4 mx-3"><i class="fas fa-caret-square-left pe-2"></i>Retour</a>
-
                 <form method="post" action="{{ path('account_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte?');">
 
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
 
                     {# Lien pour la modification du compte #}
-                    <p class="mx-3"><a href="{{ path('account_edit', {'id': app.user.id}) }}" class="btn btn-outline-info text-decoration-none">Modifier le profil</a></>
+                    <p class="mx-3"><a href="{{ path('account_edit', {'lastName': app.user.lastName}) }}" class="btn btn-outline-info text-decoration-none">Modifier le profil</a></p>
 
                     {# Lien pour la suppression du compte #}
                     <button class="btn btn-outline-danger w-md-50 mx-3"><i class="fas fa-trash-alt me-2"></i>Supprimer</button>
 
                 </form>
+
             </div>
         </div>
     </div>

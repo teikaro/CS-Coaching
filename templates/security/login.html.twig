@@ -37,27 +37,21 @@
 
 
 
-                        <input type="hidden" name="_csrf_token"
-                               value="{{ csrf_token('authenticate') }}"
-                        >
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                        {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
+                        <div class="checkbox text-start">
 
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
+                            <label> <input type="checkbox" name="_remember_me"> Se souvenir de moi </label>
+
                         </div>
-                        #}
 
-                        <button class="btn bg-light w-100 mt-4" type="submit">
-                            Se connecter
-                        </button>
+
+                        <button class="btn bg-light w-100 mt-4" type="submit"> Se connecter </button>
+
                     </form>
 
                 </div>
+
             </div>
 
             <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>

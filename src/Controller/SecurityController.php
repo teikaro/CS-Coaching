@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /* Sur ce contrôleur, on évite les attribue, et on préférera les annotations du fait que tous n'est pas encore pris en charge */
+    /* Sur ce contrôleur, on évite les attributs, et on préférera les annotations du fait que tout n'est pas encore pris en charge */
 
     /* Contrôleur de la vue "connexion" */
     /**

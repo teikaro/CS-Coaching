@@ -1,53 +1,97 @@
 {% extends 'base.html.twig' %}
 
 {# Titre du document #}
-{% block title %}Catalogue des service{% endblock %}
+{% block title %}Liste des résumé de séances{% endblock %}
 
 {# Corps du document #}
 {% block body %}
 
     <div class="container-fluid">
 
-        <div class="row my-5">
-            <h1 class="fs-custom-1 text-center my-5">Catalogue des services</h1>
+        {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+        <div class="row p-4 side-menu">
+            <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+
+            <ul>
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <li><a href="{{ path('project_list') }}" class=" color-primary text-decoration-none">Accéder à tous les articles</a></li>
+                    <li><a href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
+
+                {% else %}
+
+                    <li class="mx-3"><a href="{{ path('service_interface') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
+                    <li><a href="{{ path('project_interface') }}">Accéder à mes résumés de séances</a></li>
+                    <li><a href="{{ path('service_interface') }}">Accéder aux articles</a></li>
+
+                {% endif %}
+
+
+            </ul>
+
         </div>
 
-        {# Affichage du catalogue #}
+        <div class="row my-5">
+            <h1 class="fs-custom-1 text-center my-5">Liste des résumé de séances</h1>
+
+            {# Affichage du nombre total d'articles #}
+            <p class="text-center fw-bold">Nombre total de résumés de séances : {{ services.getTotalItemCount }}</p>
+
+            <p class="text-center my-3">
+                {# Création d'un lien permettant de trier par titre #}
+                <span class="mx-2">{{ knp_pagination_sortable(services, 'Trier par titre', 's.title') }}</span>
+
+                {# Création d'un lien permettant de trier par date #}
+                <span class="mx-2">{{ knp_pagination_sortable(services, 'Trier par Date', 's.publicationDate') }}</span>
+            </p>
+        </div>
+
+
+        {# Affichage du catalogue pour les résumé de séances#}
         <div class="d-flex flex-row flex-lg-wrap justify-content-center mx-5">
 
             {% for service in services %}
-                {# Carte d'un service #}
+                {# Carte d'un résumé de séance #}
                 <div class="card mx-5 my-5" style="width: 18rem;">
-                    {# Image du projet #}
-                    <img class="card-img-top" src="{{ asset('images/eolienne.jpg')|imagine_filter('service_picture') }}" style="height: 350px" alt="Card image cap">
-                    {# Coprs du projet #}
+
+                    {# Corps du résumé #}
                     <div class="card-body">
-                        {# Titre du projet #}
+
+                        {# Titre du résumé #}
                         <h2 class="fs-5 card-title">{{ service.name }}</h2>
-                        {# Description abrégée du projet #}
+
+                        {# Description abrégée du résumé #}
                         <p class="card-text" style="height: 220px">{{ service.description|excerpt(25) }}</p>
-                        {# Pied de page avec lien pour en voir plus #}
+
+                        {# Date d'ajout et prénom/nom de la personne qui a ajouté le résumé #}
                         <footer class="my-2">Ajouté le <span class="fw-bold">{{ service.createdAt|date('d/m/Y à H\\hi') }}</span> <br>par
                             <span class="fw-bold">{{ service.user.firstName }} {{ service.user.lastName }}</span>
                         </footer>
-                        <a href="{{ path('service_view', {'slug': service.slug}) }}" class="btn btn-primary">Accéder à ce service</a>
+
+                        {# Pied de page avec lien pour en voir plus #}
+                        <a href="{{ path('service_view', {'slug': service.slug}) }}" class="btn btn-primary">Accéder à ce résumé de séance</a>
                     </div>
                 </div>
             {% else %}
                 {# Texte de substitution s'il n'y a rien à afficher #}
+
                 <div class="row">
-                    <p class="fs-1 text-center text-danger custom-margin-3">Aucun service n'est proposé pour le moment</p>
+
+                    <p class="fs-1 text-center text-danger custom-margin-3">Aucun résumé de séance n'a été proposé pour le moment</p>
+
                 </div>
+
             {% endfor %}
         </div>
-    </div>
 
-    <div class="scrollUp">
-        <a href="#backTop" class="backTop-btn"><i class="fas fa-arrow-alt-circle-up text-secondary" aria-hidden="true"></i></a>
-    </div>
+        <div class="my-3 text-center">
+            <div class="d-inline-block">
+                {# Affichage du menu permettant de naviguer entre les différentes pages #}
+                {{ knp_pagination_render(services) }}
+            </div>
+        </div>
 
-    {% block js %}
-        <script src="{{ asset('js/to-top.js') }}"></script>
-    {% endblock %}
+    </div>
 
 {% endblock %}

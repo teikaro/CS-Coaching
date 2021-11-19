@@ -8,9 +8,45 @@
 
     <div class="container-fluid">
 
+        {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+        <div class="row p-4 side-menu">
+            <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+
+            <ul>
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <li><a href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
+                    <li><a class="fw-bold" href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
+
+                {% else %}
+
+                    <li class="mx-3"><a href="{{ path('service_interface') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
+                    <li><a href="{{ path('project_interface') }}">Accéder à mes résumés de séances</a></li>
+                    <li><a href="{{ path('service_interface') }}">Accéder aux articles</a></li>
+
+                {% endif %}
+
+
+            </ul>
+
+        </div>
+
         <div class="row my-5">
+
             {# titre principale de la page #}
-            <h1 class="fs-custom-1 text-center my-5">Catalogue des projets</h1>
+            <h1 class="fs-custom-1 text-center my-5">Liste des articles</h1>
+
+            {# Affichage du nombre total d'articles #}
+            <p class="text-center fw-bold">Nombre total d'articles : {{ projects.getTotalItemCount }}</p>
+
+            <p class="text-center my-3">
+                {# Création d'un lien permettant de trier par titre #}
+                <span class="mx-2">{{ knp_pagination_sortable(projects, 'Trier par titre', 'p.title') }}</span>
+
+                {# Création d'un lien permettant de trier par date #}
+                <span class="mx-2">{{ knp_pagination_sortable(projects, 'Trier par Date', 'p.publicationDate') }}</span>
+            </p>
         </div>
 
         {# Affichage du catalogue #}
@@ -31,20 +67,24 @@
                         <footer class="my-2">Ajouté le <span class="fw-bold">{{ project.createdAt|date('d/m/Y à H\\hi') }}</span> <br>par
                             <span class="fw-bold">{{ project.user.firstName }} {{ project.user.lastName }}</span>
                         </footer>
-                        <a href="{{ path('project_view', {'slug': project.slug}) }}" class="btn btn-primary">Voir ce projet</a>
+                        <a href="{{ path('project_view', {'slug': project.slug}) }}" class="btn btn-primary">Voir cet article</a>
                     </div>
                 </div>
             {% else %}
                 {# Texte de substitution s'il n'y a rien à afficher #}
                 <div class="row">
-                    <p class="fs-1 text-center text-danger custom-margin-3">Aucun projet n'est proposé pour le moment</p>
+                    <p class="fs-1 text-center text-danger custom-margin-3">Aucun article n'a été écrit pour le moment</p>
                 </div>
             {% endfor %}
         </div>
-    </div>
 
-    <div class="scrollUp">
-        <a href="#backTop" class="backTop-btn"><i class="fas fa-arrow-alt-circle-up text-secondary" aria-hidden="true"></i></a>
+        <div class="my-3 text-center">
+            <div class="d-inline-block">
+                {# Affichage du menu permettant de naviguer entre les différentes pages #}
+                {{ knp_pagination_render(projects) }}
+            </div>
+        </div>
+
     </div>
 
     {% block js %}
