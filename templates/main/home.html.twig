@@ -4,44 +4,43 @@
 
 {% block body %}
 
-    <main class="container-fluid bg-custom-celadon col-lg-10 align-self-center">
+    <main class="main-Mentions container-fluid col-lg-10 align-self-center">
 
         {# Titre principal de la page #}
-        <div class="row my-5">
+        <div class="row">
             <h1 class="text-center fs-custom-1 mt-3 m-lg-3 col-xl-12">Claire SAUREL, coach et formatrice</h1>
         </div>
 
+        <div class="container">
+                <div class="row mt-3 mb-5">
+                    {# Image de support #}
+                    <div class=" col-lg-10 p-5 mx-auto text-center">
+                        <img class="img-fluid col-lg-4 float-lg-start w-50 me-lg-5"  src="{{ asset('images/image10.jpg') }}" alt="portait de Claire Saurel" >
+                        <p class="lh-lg h4 text-light text-sm-left">
+                            Bonjour à vous,<br>
+                            Je suis coach scolaire et professionnelle.
+                            J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
+                            Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.<br>
 
-        <div class="row mt-5 mb-3">
+                            Je suis également formatrice professionnelle pour diverses structures.<br>
 
-            {# Image de support #}
-            <div class=" col-lg-6 p-5 m-5 text-center">
-                <img id="portrait" class="img-fluid  w-150 " src="{{ asset('images/image10.jpg') }}" alt="portait de Claire Saurel" >
-            </div>
-            {# Text d'introduction #}
-            <div class="col-lg-5 p-5 text-center">
-                <p class="lh-lg h3 text-light">
-                    Bonjour à vous,<br>
-                    Je suis coach scolaire et professionnelle.
-                    J’ai fait carrière dans l’enseignement élémentaire, secondaire et universitaire.
-                    Après m’être formée à la psychologie du travail, au coaching et à la performance mentale et à divers outils de développement personnel, je suis devenue coach. Une reconversion choisie.<br>
+                            Je suis également formatrice professionnelle pour diverses structures.<br>
 
-                    Je suis également formatrice professionnelle pour diverses structures.<br>
+                            Ma démarche :  Accompagner les changements de votre vie par l’échange, l’écoute, l’action, la visualisation des possibles, la gestion des émotions, l’amélioration des relations, la revalorisation de votre estime de vous…
+                            Nos séances seront confidentielles et dans le respect de chacun(e). Elles peuvent faire l’objet d’un contrat écrit.
+                            Les valeurs fondatrices de ma posture de coach sont :
+                            L’authenticité, la simplicité, la créativité, la bienveillance, le non-jugement<br>
 
-                    Je suis également formatrice professionnelle pour diverses structures.<br>
+                            N’hésitez pas à parcourir mon site pour en savoir plus, à bientôt en rdv !
+                        </p>
+                    </div>
 
-                    Ma démarche :  Accompagner les changements de votre vie par l’échange, l’écoute, l’action, la visualisation des possibles, la gestion des émotions, l’amélioration des relations, la revalorisation de votre estime de vous…
-                    Nos séances seront confidentielles et dans le respect de chacun(e). Elles peuvent faire l’objet d’un contrat écrit.
-                    Les valeurs fondatrices de ma posture de coach sont :
-                    L’authenticité, la simplicité, la créativité, la bienveillance, le non-jugement<br>
-
-                    N’hésitez pas à parcourir mon site pour en savoir plus, à bientôt en rdv !
-                </p>
-            </div>
-
+                </div>
         </div>
 
-        <hr class="col-8 mx-auto">
+        <div class="row ligne-cover p-4 ">
+            <hr class="col-8 mx-auto center ">
+        </div>
 
         {# Partie 1 : Ce que nous proposons #}
         <section id="text-color" class="row justify-content-around section">
@@ -51,69 +50,76 @@
                 <h2 class="text-center text-uppercase"></h2>
             </div>
 
-            <div class="row mt-3 mb-5">
+            <div class="row mt-3 mb-5 align-items-center">
                 {# Texte d'explication #}
-                <p  class="col-lg-4 offset-2 mx-auto align-self-center font-weight  h3">
-                    <span class="Malettrine">Q</span>uel que soit votre âge, je vous accompagne <strong>de manière personnalisée</strong> pour que vous deveniez l’auteur de votre vie, pour enfin être épanoui et heureux dans votre travail ou votre scolarité.
+                <p  class="col-6 mx-auto lh-lg h3 mt-5 ">
+                    <span class="Malettrine h1">Q</span>uel que soit votre âge, je vous accompagne <strong>de manière personnalisée</strong> pour que vous deveniez l’auteur de votre vie, pour enfin être épanoui et heureux dans votre travail ou votre scolarité.
                 </p>
 
                 {# Image de support #}
                 <div class="col-lg-4 mx-auto ">
-                    <img class="img-fluid shadow-lg w-200" src="{{ asset('images/inspi.jpg') }}" alt="personnage qui saute de joie">
+                    <img class="img-fluid shadow-lg w-100" src="{{ asset('imageOrientation/Accompagnement.jpg') }}" alt="personnage qui saute de joie">
                 </div>
             </div>
-            <div class="col-4 mx-auto p-4 text-center ">
+            <div class="col-sm-8 mx-auto p-4 text-center ">
                 <h2 class="mx-auto col-lg-12 ">Vous désirez me contacter !</h2>
-                <a href="#" class="btn btn-outline-success w-md-50 text-decoration-none text-light px-4 mx-3" role="button" data-bs-toggle="button">A domicile</a>
-                <a href="#" class="btn btn-outline-success w-md-50 text-decoration-none text-light px-4 mx-3" role="button" data-bs-toggle="button">En visio</a>
-                <a href="#" class="btn btn-outline-success w-md-50 text-decoration-none text-light px-4 mx-3" role="button" data-bs-toggle="button">Au cabinet</a>
+                <a href="{{ path('main_contact') }}"><button class="btn btn-success w-md-50 text-decoration-none text-light px-4 mx-3" type="button">A domicile</button></a>
+                <a href="{{ path('main_contact') }}"><button class="btn btn-success w-md-50 text-decoration-none text-light px-4 mx-3" type="button" >En visio</button></a>
+                <a href="https://www.google.fr/maps/place/Claire+Saurel+Coaching/@47.0186306,4.8328964,17z/data=!3m1!4b1!4m5!3m4!1s0x47f2f27e858f1edd:0xe7a0046516b443de!8m2!3d47.0186306!4d4.8350851"><button class="btn btn-success w-md-50 text-decoration-none text-light px-4 mx-3" type="button" >Au cabinet</button></a>
             </div>
         </section>
 
-        <hr class="col-8 mx-auto">
 
+        <div class="row ligne-cover p-4 ">
+            <hr class="col-8 mx-auto center ">
+        </div>
         {# Partie 2 : Notre objectif #}
 
         <section class="h3">
             {# Titre secondaire #}
-            <div class="row mt-5 mb-3">
+            <div class="row mt-5 mb-3 ">
                 <h1 class="text-center">Coaching</h1>
             </div>
 
-            <div class="row mt-3 mb-5">
+            <div class="row mt-3 mb-5 align-items-center">
                 {# Image de support #}
-                <div class="col-lg-4 mx-auto offset-2">
-                    <img class="img-fluid shadow-lg" src="{{ asset('images/Coaching.jpg') }}" alt="Aide au coaching">
-                </div>
+
+                    <div class="col-lg-4 mx-auto offset-2">
+                        <img class="img-fluid shadow-lg" src="{{ asset('images/Coaching.jpg') }}" alt="Aide au coaching">
+                    </div>
 
                 {# Texte d'explication #}
                 <div  class="d-grid gap-2 col-lg-5 mx-auto align-self-center lh-lg h4" >
-                    <a href="{{ path('main_coachingPro') }}"><button class="btn btn-outline-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Coaching-Pro</button><br></a>
+                    <a href="{{ path('main_coachingPro') }}"><button class="btn btn-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Coaching-Pro</button><br></a>
                     <p id="text-color">Pour une démarche orientée vers l’action qui permet de clarifier ses objectifs personnels et professionnels.</p><br>
-                    <a href="{{ path('main_coachingScolaire') }}"><button class="btn btn-outline-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Coaching-Scolaire et étudiant</button></a>
+                    <a href="{{ path('main_coachingScolaire') }}"><button class="btn btn-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Coaching-Scolaire et étudiant</button></a>
                     <p id="text-color">Pour un suivi personnalisé de l’élève ou de l’étudiant visant le développement de son potentiel et de son savoir-faire.</p><br>
-                    <a href="{{ path('main_orientation_reconversion') }}"><button class="btn btn-outline-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Orientation et reconversion</button></a>
+                    <a href="{{ path('main_orientation_reconversion') }}"><button class="btn btn-success text-light w-md-50 text-decoration-none px-4 mx-3" type="button">Orientation et reconversion</button></a>
                     <p id="text-color">Partons à la découverte de ce que le  Coaching en orientation ou transition professionnel peut vous apporter …</p>
                 </div>
             </div>
         </section>
 
-        <hr class="col-8 mx-auto">
+
+        <div class="row ligne-cover p-4 ">
+            <hr class="col-8 mx-auto center ">
+        </div>
 
         {# Partie  : Nous contacter #}
         <section class="section">
 
             {# Titre secondaire #}
             <div class="row mt-5 mb-3">
-                <h2 class="text-center text-uppercase">Vous voulez faire partie de l'aventure ?</h2>
+                <h2 class="text-center text-uppercase">Vous souhaitez en savoir plus ?</h2>
             </div>
 
             <div class="row mt-3 mb-5">
                 <div class="text-center my-2">
-                    <i class="fas fa-envelope fa-4x text-color-dark-celadon"></i>
+                    <a href="{{ path('main_contact') }}"><button class="btn w-md-50 text-decoration-none text-light px-4 mx-3" type="button"><i class="fas fa-envelope fa-4x text-color-dark-celadon"></i></button></a>
+
                 </div>
 
-                <p class="text-center mt-3">Si vous souhaitez en savoir plus, et faire partie de notre référentiel vous pouvez nous contacter <a href="{{ path('main_contact') }}">ici</a></p>
+                <p class="text-center mt-3">Si vous souhaitez en savoir plus,  vous pouvez me contacter.</p>
             </div>
         </section>
 

@@ -40,7 +40,7 @@ class ClientController extends AbstractController
         $projets = $paginator->paginate(
             $query,
             $requestedPage,
-            3
+            4
         );
 
         // Retour à la page de la liste des projets

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-moi{% endblock %}
+
+{% block body %}
+
+    <main class="container-fluid main-wip">
+        {% for message in app.flashes('message') %}
+            <div class="p-3 my-2 rounded-2 success"> {{ message }} </div>
+        {% endfor %}
+        <div class="row">
+            <h1 class="text-center text-uppercase custom-margin-1 custom-title">
+                Me contacter
+            </h1>
+            {{ form(form) }}
+        </div>
+
+
+    </main>
+
+{% endblock %}

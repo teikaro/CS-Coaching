@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {# Titre du document #}
-{% block title %}Liste des résumé de séances{% endblock %}
+{% block title %}Liste des résumés de séances{% endblock %}
 
 {# Corps du document #}
 {% block body %}
+
 
     <div class="container-fluid">
 
@@ -32,8 +33,10 @@
 
         </div>
 
-        <div class="row my-5">
-            <h1 class="fs-custom-1 text-center my-5">Liste des résumé de séances</h1>
+        <section class="liste container-fluid col-lg-8 align-self-center">
+
+        <div class="row my-5 text-light">
+            <h1 class="fs-custom-1 text-center my-5">Liste des résumés de séances</h1>
 
             {# Affichage du nombre total d'articles #}
             <p class="text-center fw-bold">Nombre total de résumés de séances : {{ services.getTotalItemCount }}</p>
@@ -56,7 +59,7 @@
                 <div class="card mx-5 my-5" style="width: 23rem;">
 
                     {# Corps du résumé #}
-                    <div class="card-body">
+                    <div class="card-body text-black">
 
                         {# Titre du résumé #}
                         <h2 class="fs-5 card-title">{{ service.name }}</h2>

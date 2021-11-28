@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Form\ContactFormType;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /* On prépare le nom des routes de la classe MainController */
@@ -53,6 +57,15 @@ class MainController extends AbstractController
         return $this->render('main/Mentions_coachingScolaire.html.twig');
     }
 
+    /*  Page CGU  */
+
+    #[Route("/CGU", name:"cgu")]
+
+    public function cgu(): Response
+    {
+        return $this->render('main/cgu.html.twig');
+    }
+
     /*  Page Orientation / reconversion */
 
     #[Route("/Module-orientation/reconversion", name:"orientation_reconversion")]
@@ -91,19 +104,6 @@ class MainController extends AbstractController
         return $this->render('main/qui_suis_je.html.twig');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /* Contrôleur de la vue "Nos missions" */
     #[Route('/nos-mission/', name: 'missions')]
     public function missions(): Response
@@ -111,28 +111,42 @@ class MainController extends AbstractController
         return $this->render('main/missions.html.twig');
     }
 
-//    /* Contrôleur de la vue "qui sommes nous" */
-//    #[Route('/qui-sommes-nous/', name: 'who_are_we')]
-//    public function whoAreWe(): Response
-//    {
-//        return $this->render('main/whoAreWe.html.twig');
-//    }
-
-    /* Contrôleur de la vue a propos */
-    #[Route('/a-propos/', name: 'qui_suis_je')]
-    public function about(): Response
-    {
-        return $this->render('main/qui_suis_je.html.twig');
-    }
 
 
     /* Contrôleur de la vue "contact" */
+    /**
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     */
     #[Route('/contactez-nous/', name: 'contact')]
-    public function contact(): Response
+    public function contact(Request $request, MailerInterface $mailer): Response
     {
-        /* Liens temporaire : page en construction */
-        /* TODO : STAGE Créer une page de contact avec formulaire et envoi de mail */
-        return $this->render('wip/wip.html.twig');
+        $form = $this->createForm(ContactFormType::class);
+
+        $contact = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $email = (new TemplatedEmail())
+                ->from($contact->get('email')->getData())
+                ->to('varraut.corentin@gmail.com')
+                ->subject('Contact depuis le site CS Coaching')
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context([
+                    'mail' => $contact->get('email')->getData(),
+                    'sujet' => $contact->get('sujet')->getData(),
+                    'message' => $contact->get('message')->getData()
+                ])
+            ;
+
+
+            $mailer->send($email);
+
+            $this->addFlash('message', 'mail de contact envoyé !');
+            return $this->redirectToRoute('main_contact');
+        }
+
+        return $this->render('contact/contact.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
 

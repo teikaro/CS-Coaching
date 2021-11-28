@@ -4,8 +4,12 @@
 @import url('https://rsms.me/inter/inter.css');
 /*-------------------- HTML ELEMENTS --------------------*/
 
-html, body{
+html, body {
     background-color: #DDDDDD;
+
+    /*background-image: url("../plages/modifPlage.png");*/
+    background-size: cover;
+    /*color: #fefefe;*/
     font-family: 'ubuntu', sans-serif;
     Font-size: 15px;
     color: black;
@@ -14,22 +18,36 @@ html, body{
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+
+    /*...effet sur les elements de la nav...*/
+    }
+#site-header .nav-link {
+    border-bottom: 1px solid transparent;
+    transition: padding-bottom 0.4s ease-in-out, border-color 0.3s ease;
 }
 
+#site-header .nav-link:hover {
+    padding-bottom: 20px;
+    border-bottom-color: var(--bs-teal);
+}
 
 /*--------Partie front---------*/
-main{
+main {
     background-image: url("../plages/modifPlage.png");
     background-size: cover;
     color: #fefefe;
-    }
+    width: 90%;
+}
 
 .main-Mentions{
-    /*background-color: #1b9173;*/
+    background-color: #1b9173;
     background-image: url("../plages/modifPlage.png");
     background-size: cover;
 }
-
+.liste{
+    background-color: #83a697;
+    background-size: cover;
+}
 
 .bg-custom-dark-celadon{
     background: #388991;
@@ -44,7 +62,7 @@ main{
     opacity: 1;
 }
 p {
-    text-align: justify;
+    text-align:justify;
     /*text-indent : 20px;*/
 
 }
@@ -92,13 +110,23 @@ p {
     width: 50%;
 }
 
+.portrait{
+    float:left;
+    margin-right:10px;
+}
+
 .image {
     opacity: 1;
     display: block;
-    width: 100%;
+    width: 135%;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+}
+
+.img-fluid{
+    max-width: 100%;
+
 }
 
 .middle {
@@ -114,6 +142,7 @@ p {
 
 .container-CS:hover .image {
     opacity: 0.3;
+
 }
 
 .container-CS:hover .middle {
@@ -126,6 +155,33 @@ p {
     font-size: 16px;
     padding: 16px 32px;
 }
+/*...Effet images revues...*/
+.zoom div img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.zoom div:hover img {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+/*...Effets image ronde...*/
+
+.rounded div img {
+    width: 200px; /* largeur de l'image */
+    height: auto; /* hauteur de l'image */
+    -webkit-transition: .3s ease-in-out !important;
+    transition: .3s ease-in-out !important;
+}
+.rounded div:hover img:hover {
+    width: 150px; /* on affiche l'image au carré */
+    height: 150px;
+    border-radius: 50%;
+}
+
+
 
 /*bouton haut*/
 #scroll_to_top {
@@ -174,6 +230,23 @@ hr:after {
 }
 
 /* COLORs */
+.ligne-cover{
+    background-image: url('../plages/modifPlage.png');
+    background-attachment: fixed;
+    background-size: cover;
+    height: 15px;
+
+}
+
+.text-success{
+    color:#02787e!important;
+}
+
+.btn-success{
+    background-color: #025d7e !important;
+    color: #fefefe;
+}
+
 .text-color-dark-celadon{
     color: #718b80;
 }
@@ -229,7 +302,7 @@ hr:after {
 
 /* Menu d'interface */
 .side-menu{
-    width: 300px !important;
+    width: 250px !important;
     height: 200px;
     position: static;
     top: 200px;
@@ -238,6 +311,7 @@ hr:after {
 
 .side-menu a{
     text-decoration: none;
+    color: black;
 }
 
 .side-menu a:hover{
@@ -263,6 +337,7 @@ hr:after {
     bottom: 200px;
     font-size: 60px;
 }
+
 
 /*-------------------- BOOTSTRAP ADJUSTMENTS --------------------*/
 /* Utilisé pour le placement des messages de succès */
@@ -293,7 +368,7 @@ hr:after {
 /* Title of error pages */
 .error-title{
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
@@ -307,7 +382,7 @@ hr:after {
 /* Texte of error pages */
 .error-text{
     position: absolute;
-    top: 45%;
+    top: 55%;
     left: 50%;
     font-size: 3rem;
     font-weight: bold;

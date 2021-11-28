@@ -76,6 +76,6 @@ class AccountController extends AbstractController
     #[Route('/{id}/profile', name: 'profile')]
     public function profile(): Response
     {
-        return $this->render('wip/wip.html.twig');
+        return $this->render('contact/contact.html.twig');
     }
 }
