@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -34,12 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email(
         message: 'L\'adresse Email {{ value }} n\'est pas valide !',
     )]
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
@@ -51,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'Votre mot de passe doit faire au moins {{ limit }} caractères.',
         maxMessage: 'Mot de passe trop grand !',
     )]
-    private $password;
+    private string $password;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -69,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         pattern: '/[A-Za-z]/',
         message: 'Le nom ne peut contenir que des lettres.',
     )]
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -87,7 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         pattern: '/[A-Za-z]/',
         message: 'Le prénom ne peut contenir que des lettres.',
     )]
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * Facultatif
@@ -105,17 +106,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         pattern: '/[0-9]/',
         message: 'Le numéro de téléphone ne peut contenir que des chiffres.',
     )]
-    private $phone;
+    private ?string $phone;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $registeredAt;
+    private ?\DateTimeInterface $registeredAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $UpdatedAt;
+    private ?\DateTimeInterface $UpdatedAt;
 
     /**
      * Facultatif
@@ -145,7 +146,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'La ville doit contenir {{ limit }} caractères minimum.',
         maxMessage: 'La ville ne peut dépasser {{ limit }} caractères.',
     )]
-    private $city;
+    private ?string $city;
 
     /**
      * Facultatif
@@ -158,33 +159,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'L\'adresse doit contenir {{ limit }} caractères minimum.',
         maxMessage: 'L\'adresse ne peut dépasser {{ limit }} caractères.',
     )]
-    private $address;
+    private ?string $address;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=SocialNetwork::class, inversedBy="users")
-     */
-    private $socialNetworks;
 
     /**
      * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="user", cascade={"persist", "remove"})
      */
-    private $photos;
+    private ?Photo $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Service::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Resume::class, mappedBy="user", orphanRemoval=true)
      */
-    private $proposeServices;
+    private Collection $proposeResumes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="user", orphanRemoval=true)
      */
-    private $presentProjects;
+    private Collection $presentArticles;
+    private Collection $socialNetworks;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->socialNetworks = new ArrayCollection();
-        $this->proposeServices = new ArrayCollection();
-        $this->presentProjects = new ArrayCollection();
+        $this->proposeResumes = new ArrayCollection();
+        $this->presentArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -378,7 +376,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     /**
-     * @return Collection|SocialNetwork[]
+     * @return Collection
      */
     public function getSocialNetworks(): Collection
     {
@@ -421,29 +419,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Service[]
+     * @return Collection
      */
-    public function getProposeServices(): Collection
+    public function getProposeResumes(): Collection
     {
-        return $this->proposeServices;
+        return $this->proposeResumes;
     }
 
-    public function addProposeService(Service $proposeService): self
+    public function addProposeResume(Resume $proposeResume): self
     {
-        if (!$this->proposeServices->contains($proposeService)) {
-            $this->proposeServices[] = $proposeService;
-            $proposeService->setUser($this);
+        if (!$this->proposeResumes->contains($proposeResume)) {
+            $this->proposeResumes[] = $proposeResume;
+            $proposeResume->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeProposeService(Service $proposeService): self
+    public function removeProposeResume(Resume $proposeResume): self
     {
-        if ($this->proposeServices->removeElement($proposeService)) {
+        if ($this->proposeResumes->removeElement($proposeResume)) {
             // set the owning side to null (unless already changed)
-            if ($proposeService->getUser() === $this) {
-                $proposeService->setUser(null);
+            if ($proposeResume->getUser() === $this) {
+                $proposeResume->setUser(null);
             }
         }
 
@@ -451,29 +449,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Project[]
+     * @return Collection
      */
-    public function getPresentProjects(): Collection
+    public function getPresentArticles(): Collection
     {
-        return $this->presentProjects;
+        return $this->presentArticles;
     }
 
-    public function addPresentProject(Project $presentProject): self
+    public function addPresentArticle(Article $presentArticle): self
     {
-        if (!$this->presentProjects->contains($presentProject)) {
-            $this->presentProjects[] = $presentProject;
-            $presentProject->setUser($this);
+        if (!$this->presentArticles->contains($presentArticle)) {
+            $this->presentArticles[] = $presentArticle;
+            $presentArticle->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePresentProject(Project $presentProject): self
+    public function removePresentArticle(Article $presentArticle): self
     {
-        if ($this->presentProjects->removeElement($presentProject)) {
+        if ($this->presentArticles->removeElement($presentArticle)) {
             // set the owning side to null (unless already changed)
-            if ($presentProject->getUser() === $this) {
-                $presentProject->setUser(null);
+            if ($presentArticle->getUser() === $this) {
+                $presentArticle->setUser(null);
             }
         }
 

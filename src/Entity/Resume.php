@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectRepository;
+use App\Repository\ResumeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=ProjectRepository::class)
+ * @ORM\Entity(repositoryClass=ResumeRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class Project
+class Resume
 {
     /**
      * @ORM\Id
@@ -25,36 +24,36 @@ class Project
     /**
      * @ORM\Column(type="string", length=100)
      */
-
-    //NotBlank sert à mettre un message si le champ est vide au moment de l'envoi
-
     #[Assert\NotBlank(
         message: 'Merci de renseigner un titre.',
     )]
-
-    //Lenght sert à définir des paramètres maximum/minimum et envoyer un message si le champ ne correspond pas à ces paramètres lors de l'envoi
-
     #[Assert\Length(
         min: 2,
         max: 100,
         minMessage: 'Le titre doit faire au moins {{ limit }} caractères.',
         maxMessage: 'Le titre ne peut dépasser {{ limit }} caractères.',
     )]
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="text")
      */
+
+    //NotBlank sert à mettre un message si le champ est vide au moment de l'envoi
+
     #[Assert\NotBlank(
         message: 'Merci de renseigner un contenu.',
     )]
+
+    //Lenght sert à définir des paramètres maximum/minimum et envoyer un message si le champ ne correspond pas à ces paramètres lors de l'envoi
+    
     #[Assert\Length(
         min: 2,
         max: 50000,
         minMessage: 'Le contenu doit faire au moins {{ limit }} caractères.',
         maxMessage: 'Le contenu ne peut dépasser {{ limit }} caractères.',
     )]
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -64,16 +63,16 @@ class Project
     )]
     #[Assert\Length(
         min: 2,
-        max: 50,
-        minMessage: 'Le secteur d\activité doit faire au moins {{ limit }} caractères.',
-        maxMessage: 'Le secteur d\activité ne peut dépasser {{ limit }} caractères.',
+        max: 150,
+        minMessage: 'Les précisions pour Claire Saurel doivent contenir au moins {{ limit }} caractères.',
+        maxMessage: 'Les précisions pour Claire Saurel ne peuvent dépasser {{ limit }} caractères.',
     )]
-    private $sector;
+    private ?string $sector;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private ?\DateTimeInterface $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -81,16 +80,16 @@ class Project
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=160, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
-    private $slug;
+    private ?string $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="presentProjects")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="proposeArticle")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private ?User $user;
 
     public function getSlug(): ?string
     {

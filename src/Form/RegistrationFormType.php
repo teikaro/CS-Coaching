@@ -18,30 +18,13 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            /*->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])*/
+
             ->add('email', EmailType::class)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
             ->add('phone', TextType::class, [
                 'required' => false
             ])
-            ->add('zipCode', TextType::class, [
-                'required' => false
-            ])
-            ->add('city', TextType::class, [
-                'required' => false
-            ])
-            ->add('address', TextType::class, [
-                'required' => false
-            ])
-                // TODO : Problème avec les contrôles en attribut/annotation pour le password, donc ici pour le moment
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe doit être identique.',

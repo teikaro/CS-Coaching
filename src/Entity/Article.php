@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ServiceRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=ServiceRepository::class)
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class Service
+class Article
 {
     /**
      * @ORM\Id
@@ -25,9 +24,15 @@ class Service
     /**
      * @ORM\Column(type="string", length=100)
      */
+
+    //NotBlank sert à mettre un message si le champ est vide au moment de l'envoi
+
     #[Assert\NotBlank(
         message: 'Merci de renseigner un titre.',
     )]
+
+    //Lenght sert à définir des paramètres maximum/minimum et envoyer un message si le champ ne correspond pas à ces paramètres lors de l'envoi
+
     #[Assert\Length(
         min: 2,
         max: 100,
@@ -39,22 +44,16 @@ class Service
     /**
      * @ORM\Column(type="text")
      */
-
-    //NotBlank sert à mettre un message si le champ est vide au moment de l'envoi
-
     #[Assert\NotBlank(
         message: 'Merci de renseigner un contenu.',
     )]
-
-    //Lenght sert à définir des paramètres maximum/minimum et envoyer un message si le champ ne correspond pas à ces paramètres lors de l'envoi
-    
     #[Assert\Length(
         min: 2,
         max: 50000,
         minMessage: 'Le contenu doit faire au moins {{ limit }} caractères.',
         maxMessage: 'Le contenu ne peut dépasser {{ limit }} caractères.',
     )]
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -68,12 +67,12 @@ class Service
         minMessage: 'Le secteur d\activité doit faire au moins {{ limit }} caractères.',
         maxMessage: 'Le secteur d\activité ne peut dépasser {{ limit }} caractères.',
     )]
-    private $sector;
+    private ?string $sector;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private ?\DateTimeInterface $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -81,16 +80,16 @@ class Service
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=160, unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
-    private $slug;
+    private ?string $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="proposeServices")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="presentArticles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private ?User $user;
 
     public function getSlug(): ?string
     {
@@ -104,7 +103,7 @@ class Service
         return $this;
     }
 
-    public function __construct()
+     public function __construct()
     {
         $this->users = new ArrayCollection();
     }

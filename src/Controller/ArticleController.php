@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Project;
-use App\Form\CreateProjectFormType;
-use App\Form\EditProjectFormType;
+use App\Entity\Article;
+use App\Form\CreateArticleFormType;
+use App\Form\EditArticleFormType;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-/* On prépare le nom des routes de la classe ClientController */
-#[Route('/projet', name: 'project_')]
-class ClientController extends AbstractController
+/* On prépare le nom des routes de la classe ArticleController */
+#[Route('/article', name: 'article_')]
+class ArticleController extends AbstractController
 {
     /* Contrôleur de la vue "liste" */
     #[Route('/liste/', name: 'list')]
-    #[Security("is_granted('ROLE_CONSULTANT')")]
-    public function projectList(Request $request, PaginatorInterface $paginator): Response
+    public function articleList(Request $request, PaginatorInterface $paginator): Response
     {
         // Récupération du numéro de page
         $requestedPage = $request->query->getInt('page', 1);
@@ -34,7 +34,7 @@ class ClientController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         // requête pour récupérer tous les projets
-        $query = $em->createQuery('SELECT p FROM App\Entity\Project p ORDER BY p.createdAt DESC');
+        $query = $em->createQuery('SELECT a FROM App\Entity\Article a ORDER BY a.createdAt DESC');
 
         // Récupération des projets
         $projets = $paginator->paginate(
@@ -44,28 +44,28 @@ class ClientController extends AbstractController
         );
 
         // Retour à la page de la liste des projets
-        return $this->render('project/projectList.html.twig', [
-            'projects' => $projets,
+        return $this->render('article/articleList.html.twig', [
+            'articles' => $projets,
         ]);
     }
 
     /* Contrôleur de la vue "view" */
     #[Route('/afficher/{slug}/', name: 'view')]
-    public function projectView(Project $project): Response
+    public function articleView(Article $article): Response
     {
         // TODO : STAGE contrôler que personne ne puisse voir les projets des autres clients par l'url
-        return $this->render('project/projectView.html.twig', [
-            'project' => $project,
+        return $this->render('article/articleView.html.twig', [
+            'article' => $article,
         ]);
     }
 
     /* Contrôleur de la vue "edit" */
     #[Route('/modifier/{slug}/', name: 'edit')]
-    public function projectEdit(Project $project, Request $request): Response
+    #[Security("is_granted('ROLE_ADMIN')")]
+    public function articleEdit(Article $article, Request $request): Response
     {
-        // TODO : STAGE contrôler que personne ne puisse modifier les projets des autres clients par l'url
-        // Création du formulaire de modification de service et réinjection de la requête
-        $form = $this->createForm(EditProjectFormType::class, $project);
+        // Création du formulaire de modification de resume et réinjection de la requête
+        $form = $this->createForm(EditArticleFormType::class, $article);
         $form->handleRequest($request);
 
         // Contrôle sur la validité d'un formulaire envoyé
@@ -79,25 +79,25 @@ class ClientController extends AbstractController
             $this->addFlash('success', 'Cet article à été modifié avec succès !');
 
             // Redirection sur la vue détaillée du projet
-            return $this->redirectToRoute('project_view', [
-                'slug' => $project->getSlug(),
+            return $this->redirectToRoute('article_view', [
+                'slug' => $article->getSlug(),
             ]);
         }
 
         // Envoi de l'utilisateur sur la page d'édition du projet
-        return $this->render('project/projectEdit.html.twig', [
+        return $this->render('article/articleEdit.html.twig', [
             'form' => $form->createView(),
-            'slug' => $project->getSlug()
+            'slug' => $article->getSlug()
         ]);
     }
 
     /* Contrôleur de la vue "delete" */
     #[Route('/supprimer/{id}/', name: 'delete')]
-    public function projectDelete(Project $project, Request $request): Response
+    #[Security("is_granted('ROLE_ADMIN')")]
+    public function articleDelete(Article $article, Request $request): Response
     {
-        // TODO : STAGE contrôler que personne ne puisse modifier les projets des autres clients par l'url
         // Contrôle du token csrf
-        if(!$this->isCsrfTokenValid('project_delete_' . $project->getId(), $request->query->get('csrf_token'))){
+        if(!$this->isCsrfTokenValid('article_delete_' . $article->getId(), $request->query->get('csrf_token'))){
 
             // Message flash
             $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
@@ -105,7 +105,7 @@ class ClientController extends AbstractController
 
             // Gestion de la suppression des données en base de données
             $em = $this->getDoctrine()->getManager();
-            $em->remove($project);
+            $em->remove($article);
             $em->flush();
 
             // Message flash
@@ -113,17 +113,17 @@ class ClientController extends AbstractController
         }
 
         // Redirection sur la page d'interface
-        return $this->redirectToRoute('project_interface');
+        return $this->redirectToRoute('article_interface');
     }
 
     /* Contrôleur de la vue "create" */
     #[Route('/creer/', name: 'create')]
-    #[Security("is_granted('ROLE_CLIENT')")]
-    public function projectCreate(Request $request): Response
+    #[Security("is_granted('ROLE_ADMIN')")]
+    public function articleCreate(Request $request): Response
     {
         // Création du formulaire et réinjection de la requête
-        $project = new Project();
-        $form = $this->createForm(CreateProjectFormType::class, $project);
+        $article = new Article();
+        $form = $this->createForm(CreateArticleFormType::class, $article);
         $form->handleRequest($request);
 
         // Contrôle sur la validité d'un formulaire envoyé
@@ -131,19 +131,19 @@ class ClientController extends AbstractController
 
             // Gestion de l'envoi des données en base de données
             $entityManager = $this->getDoctrine()->getManager();
-            $project->setUser($this->getUser());
-            $entityManager->persist($project);
+            $article->setUser($this->getUser());
+            $entityManager->persist($article);
             $entityManager->flush();
 
             // Message flash
             $this->addFlash('success', 'Votre article à été créé avec succès !');
 
             // Redirection sur la page d'interface client
-            return $this->redirectToRoute('project_interface');
+            return $this->redirectToRoute('article_interface');
         }
 
         // Envoi de l'utilisateur sur la page de création de projet
-        return $this->render('project/projectCreate.html.twig', [
+        return $this->render('article/articleCreate.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -154,12 +154,12 @@ class ClientController extends AbstractController
     public function clientInterface(): Response
     {
         // Récupération de tous les projet créés par l'utilisateur actuel
-        $projectRepo = $this->getDoctrine()->getRepository(Project::class);
-        $projects = $projectRepo->findBy(['user'=>$this->getUser()]);
+        $articleRepo = $this->getDoctrine()->getRepository(Article::class);
+        $articles = $articleRepo->findBy(['user'=>$this->getUser()]);
 
         // Envoi de l'utilisateur sur la page d'interface client
-        return $this->render('project/clientInterface.html.twig', [
-            'projects' => $projects
+        return $this->render('article/clientInterface.html.twig', [
+            'articles' => $articles
         ]);
     }
 

@@ -55,38 +55,8 @@
                             },
                         }) }}
 
-                        {{ form_row(registrationForm.zipCode, {
-                        label: 'Code postal (facultatif)',
-                        attr: {
-                            placeholder: 'Code postal (facultatif)',
-                        },
-                        row_attr: {
-                            class: 'form-floating my-3',
-                        },
-                        }) }}
-
-                        {{ form_row(registrationForm.city, {
-                        label: 'Ville (facultatif)',
-                        attr: {
-                            placeholder: 'Ville (facultatif)',
-                        },
-                        row_attr: {
-                            class: 'form-floating my-3',
-                        },
-                        }) }}
-
-                        {{ form_row(registrationForm.address, {
-                        label: 'Adresse (facultatif)',
-                        attr: {
-                            placeholder: 'Adresse (facultatif)',
-                        },
-                        row_attr: {
-                            class: 'form-floating my-3',
-                        },
-                        }) }}
-
                         {{ form_row(registrationForm.plainPassword.first, {
-                            label: 'Mot de passe',
+                            label: 'Mot de passe : doit contenir 8 caractères, une majuscule et un caractère spécial au minimum !',
                             attr: {
                                 placeholder: 'Mot de passe'
                             },
@@ -113,7 +83,6 @@
                         <div class="g-recaptcha" data-sitekey="{{ google_recaptcha_site_key }}"></div>
                     </div>
 
-                        {#        {{ form_row(registrationForm.agreeTerms) }}#}
 
                         <button type="submit" class="btn bg-light w-100 mt-4">Créer mon compte</button>
 
@@ -125,6 +94,7 @@
     </div>
 
 {% endblock %}
+
 
 {% block css %}
     {# Fichier JS nécessaire pour faire fonctionner le recaptcha de Google #}

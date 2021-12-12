@@ -7,22 +7,22 @@
     <div class="container-fluid">
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
-        <div class="row p-4 side-menu">
+        <div class="row p-4 bg-light side-menu">
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
 
             <ul>
 
                 {% if is_granted('ROLE_ADMIN') %}
 
-                    <li><a href="{{ path('project_list') }}" class=" color-primary text-decoration-none">Accéder à tous les articles</a></li>
-                    <li><a href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
-                    <li><a href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
+                    <li><a href="{{ path('article_list') }}" >Accéder à tous les articles</a></li>
+                    <li><a href="{{ path('resume_list') }}">Voir les résumés de séances</a></li>
+                    <li><a href="{{ path('article_create') }}">Écrire un nouvel article</a></li>
 
                 {% else %}
 
-                    <li class="mx-3"><a href="{{ path('service_interface') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
-                    <li><a href="{{ path('project_interface') }}">Accéder à mes résumés de séances</a></li>
-                    <li><a href="{{ path('service_interface') }}">Accéder aux articles</a></li>
+                    <li><a href="{{ path('resume_create') }}">Écrire un résumé de séance</a></li>
+                    <li><a href="{{ path('resume_interface') }}">Accéder à mes résumés de séances</a></li>
+                    <li><a href="{{ path('article_list') }}">Accéder aux articles</a></li>
 
                 {% endif %}
 

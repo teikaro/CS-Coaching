@@ -11,15 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/* On prépare le nom des routes de la classe ConsultantController */
+/* On prépare le nom des routes de la classe ResumeController */
 #[Route('/admin', name: 'admin_')]
-/* On met en place les contrôle d'accès des routes de la classe ConsultantController */
+/* On met en place les contrôle d'accès des routes de la classe ResumeController */
 #[IsGranted("ROLE_ADMIN")]
 class AdminController extends AbstractController
 {
-    // TODO : STAGE Pagination des tableaux
-    // TODO : STAGE Intégration du select dans le tableau
-    // TODO : STAGE Recherche dans la liste des utilisateurs (email, nom, ...)
 
     /* Contrôleur de la vue "index" */
     #[Route('/', name: 'index', methods: ['GET'])]

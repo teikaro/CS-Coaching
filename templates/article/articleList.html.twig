@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {# Titre du document #}
-{% block title %}Catalogue des projets{% endblock %}
+{% block title %}Catalogue des articles{% endblock %}
 
 {# Corps du document #}
 {% block body %}
@@ -11,21 +11,28 @@
 
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
-        <div class="row p-4 side-menu ">
+        <div class="row p-4 bg-light side-menu ">
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
 
             <ul>
 
+                {% if not app.user %}
+
+                <li><a class="fw-bold text-black" href="{{ path('app_register') }}">Se créer un compte</a></li>
+                <li><a class="fw-bold text-black" href="{{ path('app_login') }}">Se connecter</a></li>
+
+                {% endif %}
+
                 {% if is_granted('ROLE_ADMIN') %}
 
-                    <li><a class="text-black" href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
-                    <li><a class="fw-bold text-black" href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
+                    <li><a class="text-black" href="{{ path('resume_list') }}">Voir les résumés de séances</a></li>
+                    <li><a class="fw-bold text-black" href="{{ path('article_create') }}">Écrire un nouvel article</a></li>
 
-                {% else %}
 
-                    <li class="mx-3"><a href="{{ path('service_interface') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
-                    <li><a href="{{ path('project_interface') }}">Accéder à mes résumés de séances</a></li>
-                    <li><a href="{{ path('service_interface') }}">Accéder aux articles</a></li>
+                {% elseif is_granted('ROLE_CLIENT') %}
+
+                    <li><a href="{{ path('resume_create') }}" class=" color-primary text-decoration-none">Écrire un résumé de séance</a></li>
+                    <li><a href="{{ path('article_interface') }}">Accéder à mes résumés de séances</a></li>
 
                 {% endif %}
 
@@ -42,36 +49,36 @@
             <h1 class="fs-custom-1 text-center my-5">Liste des articles</h1>
 
             {# Affichage du nombre total d'articles #}
-            <p class="text-center fw-bold">Nombre total d'articles : {{ projects.getTotalItemCount }}</p>
+            <p class="text-center fw-bold">Nombre total d'articles : {{ articles.getTotalItemCount }}</p>
 
             <p class="text-center my-3">
                 {# Création d'un lien permettant de trier par titre #}
-                <span class="mx-2 ">{{ knp_pagination_sortable(projects, 'Trier par titre', 'p.title') }}</span>
+                <span class="mx-2 ">{{ knp_pagination_sortable(articles, 'Trier par titre', 'p.title') }}</span>
 
                 {# Création d'un lien permettant de trier par date #}
-                <span class="mx-2">{{ knp_pagination_sortable(projects, 'Trier par Date', 'p.publicationDate') }}</span>
+                <span class="mx-2">{{ knp_pagination_sortable(articles, 'Trier par Date', 'p.publicationDate') }}</span>
             </p>
         </div>
 
         {# Affichage du catalogue #}
         <div class="d-flex flex-row flex-lg-wrap justify-content-center mx-5">
 
-            {% for project in projects %}
+            {% for article in articles %}
                 {# Carte d'un projet #}
                 <div class="card mx-5 my-5" style="width: 23rem;">
                     {# Image du projet #}
-                    <img class="card-img-top" src="{{ asset('images/travail_au_bureau.jpg')|imagine_filter('project_picture') }}" style="height: 350px" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('images/travail_au_bureau.jpg')|imagine_filter('article_picture') }}" style="height: 350px" alt="Card image cap">
                     {# Coprs du projet #}
                     <div class="card-body text-black">
                         {# Titre du projet #}
-                        <h2 class="fs-5 card-title">{{ project.name }}</h2>
+                        <h2 class="fs-5 card-title">{{ article.name }}</h2>
                         {# Description abrégée du projet #}
-                        <p class="card-text" style="height: 220px">{{ project.description|excerpt(35) }}</p>
+                        <p class="card-text" style="height: 220px">{{ article.description|excerpt(35) }}</p>
                         {# Pied de page avec lien pour en voir plus #}
-                        <footer class="my-2">Ajouté le <span class="fw-bold">{{ project.createdAt|date('d/m/Y à H\\hi') }}</span> <br>par
-                            <span class="fw-bold">{{ project.user.firstName }} {{ project.user.lastName }}</span>
+                        <footer class="my-2">Ajouté le <span class="fw-bold">{{ article.createdAt|date('d/m/Y à H\\hi') }}</span> <br>par
+                            <span class="fw-bold">{{ article.user.firstName }} {{ article.user.lastName }}</span>
                         </footer>
-                        <a href="{{ path('project_view', {'slug': project.slug}) }}" class="btn btn-primary">Voir cet article</a>
+                        <a href="{{ path('article_view', {'slug': article.slug}) }}" class="btn btn-primary">Voir cet article</a>
                     </div>
                 </div>
             {% else %}
@@ -85,7 +92,7 @@
         <div class="my-3 text-center">
             <div class="d-inline-block">
                 {# Affichage du menu permettant de naviguer entre les différentes pages #}
-                {{ knp_pagination_render(projects) }}
+                {{ knp_pagination_render(articles) }}
             </div>
         </div>
 

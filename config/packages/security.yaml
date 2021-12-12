@@ -19,10 +19,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            # On limite à 5 essaies et 15 minutes de délai avant de réessayer
-            login_throttling:
-                max_attempts: 5
-                interval: '15 minutes'
+            # On limite à 50 essaies et 15 minutes de délai avant de réessayer
+          # login_throttling:
+          #     max_attempts: 50
+          #     interval: '0 minutes'
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthenticator
@@ -31,10 +31,8 @@ security:
                 # where to redirect after logout
                 target: main_home
     role_hierarchy:
-        ROLE_ADMIN:         [ROLE_MANAGER, ROLE_CLIENT, ROLE_CONSULTANT]
-        ROLE_MANAGER:       ROLE_USER
+        ROLE_ADMIN:         ROLE_CLIENT
         ROLE_CLIENT:        ROLE_USER
-        ROLE_CONSULTANT:    ROLE_USER
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

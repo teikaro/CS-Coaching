@@ -13,9 +13,22 @@
                 Me contacter
             </h1>
             {{ form(form) }}
+
+            {# Affichage du recaptcha #}
+            <div class="mb-3">
+                <div class="mb-2 text-start fw-bold text-light">Captcha de sécurité</div>
+
+                {# La clé publique est récupérée en paramètre dans le fichier config/packages/twig.yaml #}
+                <div class="g-recaptcha" data-sitekey="{{ google_recaptcha_site_key }}"></div>
+            </div>
         </div>
 
 
     </main>
 
+{% endblock %}
+
+{% block css %}
+    {# Fichier nécessaire pour faire fonctionner le recaptcha de Google #}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}

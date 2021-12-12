@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /* On prépare le nom des routes de la classe AccountController */
 #[Route('/compte', name: 'account_')]
-#[Security("is_granted('ROLE_USER')")]
+#[Security("is_granted('ROLE_CLIENT')")]
 class AccountController extends AbstractController
 {
     /* Contrôleur de la vue "account" */
@@ -71,7 +71,6 @@ class AccountController extends AbstractController
         return $this->redirectToRoute('main_home');
     }
 
-    // TODO : STAGE créer un formulaire de contact
     /* Contrôleur de la vue "profil" */
     #[Route('/{id}/profile', name: 'profile')]
     public function profile(): Response

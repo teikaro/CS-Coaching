@@ -3,3 +3,10 @@
 twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    configs:
+        general:
+            language: fr        # langue de l'éditeur
+            toolbar: standard     # type de toolbar (basic / standard / full)
+            uiColor: "#FFFFFF"  # Couleur de fond de l'éditeur
+            height: 400px       # hauteur de l'éditeur

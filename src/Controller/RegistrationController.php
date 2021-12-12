@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Recaptcha\RecaptchaValidator;  // Importation de notre service de validation du captcha
+use App\Recaptcha\RecaptchaValidator;  // Importation de notre resume de validation du captcha
 use Symfony\Component\Form\FormError;  // Importation de la classe permettant de créer des erreurs dans les formulaires
 
 class RegistrationController extends AbstractController
@@ -22,8 +22,6 @@ class RegistrationController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('main_home');
         }
-        // TODO : STAGE confirmation email par mail
-        // TODO : STAGE Possibilité de changer le mot de passe en cas d'oubli
 
         // Création du formulaire et réinjection de la requête
         $user = new User();
@@ -39,7 +37,7 @@ class RegistrationController extends AbstractController
             // Récupération de l'adresse IP de l'utilisateur ( $_SERVER['REMOTE_ADDR'] )
             $ip = $request->server->get('REMOTE_ADDR');
 
-            // Si le captcha est null ou si il est invalide, ajout d'une erreur générale sur le formulaire (qui sera considéré comme échoué après)
+            // Si le captcha est null ou s'il est invalide, ajout d'une erreur générale sur le formulaire (qui sera considéré comme échoué après)
             if ($captchaResponse == null || !$recaptcha->verify($captchaResponse, $ip)) {
 
                 // Ajout d'une nouvelle erreur dans le formulaire

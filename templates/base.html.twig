@@ -76,7 +76,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class=" fs-4 text-success nav-link{{ route == 'project_list' ? ' active' }}" href="{{ path('project_list') }}">Articles</a>
+                    <a class=" fs-4 text-success nav-link{{ route == 'article_list' ? ' active' }}" href="{{ path('article_list') }}">Articles</a>
                 </li>
 
             </ul>
@@ -99,45 +99,39 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         {# liste déroulante des interfaces d'administration #}
                         <li class="nav-item dropdown">
-                            <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle" href="{{ path('admin_index') }}" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interface d'administration</a>
+
+                            <a class="fs-4 text-success nav-link{{ route == 'admin_index' ? ' active' }} dropdown-toggle"
+                               href="{{ path('admin_index') }}" id="profil-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">Interface d'administration</a>
+
                             <div class="dropdown-menu" aria-labelledby="profil-dropdown">
+
                                 {# page : tous les profils #}
                                 <a class="dropdown-item" href="{{ path('admin_index') }}">Tous les profils</a>
-                                <div class="dropdown-divider"></div>
-                                {# page : liste des managers #}
-                                <a class="dropdown-item" href="{{ path('service_list') }}">Résumés de séances</a>
-                                {# page : liste des clients #}
-                                <a class="dropdown-item" href="{{ path('project_create') }}">Écrire un article</a>
-                                {# page : liste des consultants #}
-                                <a class="dropdown-item" href="{{ path('admin_consultant') }}">Consultants</a>
-                                {# page : liste des utilisateurs non-validés #}
-                                <a class="dropdown-item" href="{{ path('admin_user') }}">Profils en attente</a>
-                            </div>
-                        </li>
-                    {% endif %}
 
-                    {# Liens uniquement pour les utilisateurs non-validés #}
-                    {% if is_granted('ROLE_USER') %}
+                                <div class="dropdown-divider"></div>
+
+                                {# page : liste des résumés de séances des clients #}
+                                <a class="dropdown-item" href="{{ path('resume_list') }}">Résumés de séances</a>
+
+                                {# page : accès à la page de création des articles #}
+                                <a class="dropdown-item" href="{{ path('article_create') }}">Écrire un article</a>
+
+                            </div>
+
+                        </li>
+                    {% else %}
+
+                    {# Liens uniquement pour les utilisateurs "clients" #}
                         {# page : gestion de compte #}
+                        <li class="nav-item">
+                            <a class=" fs-4 text-success nav-link{{ route == 'resume_list' ? ' active' }}" href="{{ path('resume_interface') }}">Résumés de séances</a>
+                        </li>
                         <li class="nav-item">
                             <a class=" fs-4 text-success nav-link{{ route == 'account_show' ? ' active' }}" href="{{ path('account_show') }}">Compte</a>
                         </li>
                     {% endif %}
 
-                    {# Liens uniquement pour les clients #}
-                    {% if is_granted('ROLE_CLIENT') and app.user.roles[0] != "ROLE_ADMIN" %}
-                        {# page : interface client #}
-                        <li class="nav-item">
-                            <a class=" fs-4 text-success nav-link" href="{{ path('project_interface') }}">Interface Client</a>
-                        </li>
-                    {% endif %}
-                    {# Liens uniquement pour les consultants #}
-                    {% if is_granted('ROLE_CONSULTANT') and app.user.roles[0] != "ROLE_ADMIN" %}
-                        {# page : interface consultant #}
-                        <li class="nav-item">
-                            <a class=" fs-4 text-success nav-link" href="{{ path('service_interface') }}">Interface Consultant</a>
-                        </li>
-                    {% endif %}
                 {% endif %}
 
                 {# Liens uniquement pour les personnes connectées #}
@@ -190,7 +184,7 @@
         {# partie réseaux sociaux #}
         <div class="col-4">
             <nav class="footer-nav-network py-4 px-3 text-center">
-                <a target="_blank" href="https://m.facebook.com/claire.saurel.18?locale2=fr_FR"><i class="fab fa-facebook-f d-inline-block me-3 fa-2x"></i></a>
+                <a target="_blank" href="https://www.facebook.com/claire.saurel.18"><i class="fab fa-facebook-f d-inline-block me-3 fa-2x"></i></a>
                 <a target="_blank" href="https://www.instagram.com/claire.saurel/"><i class="fab fa-instagram d-inline-block mx-3 fa-2x"></i></a>
                 <a target="_blank" href="https://www.linkedin.com/in/claire-saurel-49892539/"><i class="fab fa-linkedin-in d-inline-block ms-3 fa-2x"></i></a>
             </nav>
@@ -199,8 +193,7 @@
         {# partie navigation #}
         <div class="row col-sm-8">
             <nav class="footer-nav row py-4 px-3">
-                <div class="row col-4 w-md-50 "><a href="{{ path('main_cgu') }}" class="text-decoration-none fs-4">CGU</a></div>
-                <div class="row col-4 w-md-50 "> <a href="{{ path('main_Mentions_coachingScolaire')}}" class="text-decoration-none fs-4">Mentions Légales</a></div>
+                <div class="row col-4 w-md-50 "><a href="{{ path('main_cgu') }}" class="text-decoration-none fs-4">CGU </a></div>
                 <div class="row col-4 w-md-50 "><a href="{{ path('main_contact') }}" class="text-decoration-none fs-4">Contactez-moi</a></div>
             </nav>
         </div>

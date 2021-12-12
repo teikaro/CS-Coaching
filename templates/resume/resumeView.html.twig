@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {# titre du document #}
-{% block title %} {{ service.name }} {% endblock %}
+{% block title %} {{ resume.name }} {% endblock %}
 
 {# Corps du document #}
 {% block body %}
@@ -9,16 +9,16 @@
     <div class="container-fluid">
         <div class="row my-5">
             {# Titre principal de la page #}
-            <h1 class="col-12 text-center">{{ service.name }}</h1>
+            <h1 class="col-12 text-center">{{ resume.name }}</h1>
         </div>
 
         <div class="row">
             <p class="text-center col-12 my-5">
                 {# Si l'utilisateur est un consultant, affiche un lien vers son interface. Sinon, vers liste de projets #}
                 {% if app.user == app.user %}
-                    <a class="text-decoration-none fs-5" href="{{ path('service_interface') }}">Retour à l'interface</a>
+                    <a class="text-decoration-none fs-5" href="{{ path('resume_interface') }}">Retour à l'interface</a>
                 {% else %}
-                    <a class="text-decoration-none fs-5" href="{{ path('service_list') }}">Retour au catalogue services</a>
+                    <a class="text-decoration-none fs-5" href="{{ path('resume_list') }}">Retour au catalogue resumes</a>
                 {% endif %}
             </p>
         </div>
@@ -26,48 +26,48 @@
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
 
-                {# Carte du service #}
+                {# Carte du resume #}
                 <div class="card my-2 bg-light">
 
-                    {# Corps du service #}
+                    {# Corps du resume #}
                     <div class="card-body">
-                        {# Description du service #}
+                        {# Description du resume #}
                         <div class="mb-2 fs-5">
                             {# Rendu description du projet filtré #}
-                            {{ service.description|purify }}
+                            {{ resume.description|purify }}
                         </div>
 
                     </div>
 
                     <div class="row my-5">
-                        {# Affichage du nom et prénom du créateur du service #}
+                        {# Affichage du nom et prénom du créateur du resume #}
                         <p class="text-start ps-5 mt-2 mb-4 fs-5 col-6">
                             {# Affiche nom et prénom de l'utilisateur #}
-                            <span class="fw-bold">{{ service.user.firstName }} {{ service.user.lastName }}</span>
+                            <span class="fw-bold">{{ resume.user.firstName }} {{ resume.user.lastName }}</span>
                         </p>
 
-                        {# Affichage de la date de création du service #}
+                        {# Affichage de la date de création du resume #}
                         <p class="text-end pe-5 mt-2 mb-4 fs-5 col-6">
                             {# Date de création #}
-                            Ajouté le <span class="fw-bold">{{ service.createdAt|date('d/m/Y à H\\hi') }}</span>
+                            Ajouté le <span class="fw-bold">{{ resume.createdAt|date('d/m/Y à H\\hi') }}</span>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         
-        {# Si l'utilisateur est un consultant, lui seul peut modifier ou supprimer ses services  #}
-        {% if service.user == app.user %}
+        {# Si l'utilisateur est un consultant, lui seul peut modifier ou supprimer ses resumes  #}
+        {% if resume.user == app.user %}
             <div class="row my-5">
                 <div class="col-6 mx-auto d-flex justify-content-center">
                 
-                    {# Bouton de modification du service #}
-                    <a href="{{ path('service_edit', {'slug': service.slug}) }}" class="btn btn-warning me-3 d-inline-block" style="width: 150px">
+                    {# Bouton de modification du resume #}
+                    <a href="{{ path('resume_edit', {'slug': resume.slug}) }}" class="btn btn-warning me-3 d-inline-block" style="width: 150px">
                         <i class="fas fa-edit me-1"></i> Modifier
                     </a>
 
-                    {# bouton de suppression du service #}
-                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce résumé de séance ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('service_delete', {'id': service.id, csrf_token: csrf_token('service_delete_' ~ service.id ) }) }}">
+                    {# bouton de suppression du resume #}
+                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce résumé de séance ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('resume_delete', {'id': resume.id, csrf_token: csrf_token('resume_delete_' ~ resume.id ) }) }}">
                         <i class="fas fa-trash-alt me-1"></i> Supprimer
                     </a>
                 </div>

@@ -32,11 +32,12 @@ class ContactFormType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn primary'
+                    'class' => 'btn-primary'
                 ]
             ])
         ;
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

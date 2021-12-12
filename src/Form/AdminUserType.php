@@ -20,10 +20,8 @@ class AdminUserType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices'  => [
-                    'Manager' => 'ROLE_MANAGER',
                     'Client' => 'ROLE_CLIENT',
-                    'Consultant' => 'ROLE_CONSULTANT',
-                    'User' => 'ROLE_USER'
+                    'Admin' => 'ROLE_ADMIN'
                 ],
             ]);
 

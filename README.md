@@ -1229,10 +1229,10 @@ Le purify consiste à supprimer les balises HTML apparentes en sortie, pour que 
 
             $this->addFlash('success', 'Votre projet à été créer avec succès !');
 
-            return $this->redirectToRoute('project/project_list.html.twig');
+            return $this->redirectToRoute('article/project_list.html.twig');
         }
 
-        return $this->render('project/projectInterface.html.twig', [
+        return $this->render('article/projectInterface.html.twig', [
             'CreateProjectForm' => $form->createView(),
         ]);
     }
@@ -1251,7 +1251,7 @@ Le purify consiste à supprimer les balises HTML apparentes en sortie, pour que 
 ###Ainsi que des use nécessaire
 
 ```php
-use App\Entity\Project;
+use App\Entity\Article;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 ```

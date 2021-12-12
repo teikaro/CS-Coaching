@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Faire un résumé d'une séance{% endblock %}
+{% block title %}Éditer un résumé de séance{% endblock %}
 
 {% block body %}
 
@@ -9,12 +9,12 @@
             <div class="col-12 form-container">
                 <div class="col-lg-8 col-md-12 col-10 form-box text-center">
 
-                    {# Titre de la page de création #}
+                    {# Titre de la page d'edition #}
                     <div class="heading mb-5">
-                        <h1 class="fs-1 text-light">Faire un résumé d'une séance</h1>
+                        <h1 class="fs-1 text-light">Éditer un résumé de séance</h1>
                     </div>
 
-                    {# Formulaire de création, inclus des labels pour le nom, la description et les précisions pour claire #}
+                    {# Formulaire d'édition, inclus des labels pour le nom, la description et les précisions pour claire #}
                     {{ form_start(form) }}
                         {{ form_row(form.name, {
                             label: 'Titre du résumé de séance :',
@@ -34,14 +34,18 @@
                                 class: 'text-light display-6 fw-bold',
                             }
                         }) }}
-                    {# Bouton pour valider la création dde résumé de séance #}
-                    <button class="btn btn-light mt-4 w-100" type="submit">Créer le résumé de séance</button>
+                    {# Bouton pour valider l'édition du résumé #}
+                    <button class="btn btn-light mt-4 w-100" type="submit">Éditer ce résumé de séance</button>
                     {{ form_end(form) }}
-                    {# Annuler la création, qui redirige vers l'interface des résumés de séances' #}
-                    <a class="btn btn-secondary mt-4 w-100 d-block fw-bold" href="{{ path('service_interface') }}">Annuler</a>
+                    {# Annuler l'édition, qui redirige vers la view du résumé correspondant #}
+                    <a class="btn btn-secondary mt-4 w-100 d-block fw-bold" href="{{ path('resume_view', {'slug': slug}) }}">Annuler</a>
+
                 </div>
             </div>
         </div>
     </div>
 
 {% endblock %}
+
+
+

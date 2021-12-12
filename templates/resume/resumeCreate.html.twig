@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faire un résumé d'une séance{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+            {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+            <div class="row p-4 bg-light side-menu">
+                <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+                <ul>
+                    {# Liens du side menu (Voir les résumés de séances & Créer un article #}
+                    <li><a href="{{ path('article_list') }}">Accéder aux articles</a></li>
+                    <li><a href="{{ path('resume_interface') }}">Accéder à mes résumés de séances</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 form-container">
+
+                <div class="col-lg-8 col-md-12 col-10 form-box text-center">
+
+
+                    {# Titre de la page de création #}
+                    <div class="heading mb-5">
+                        <h1 class="fs-1 text-light">Faire un résumé d'une séance</h1>
+                    </div>
+
+                    {# Formulaire de création, inclus des labels pour le nom, la description et les précisions pour claire #}
+                    {{ form_start(form) }}
+                        {{ form_row(form.name, {
+                            label: 'Titre du résumé de séance :',
+                            label_attr: {
+                                class: 'text-light display-6 fw-bold',
+                            }
+                        }) }}
+                        {{ form_row(form.description, {
+                            label: 'Description du résumé de séance :',
+                            label_attr: {
+                                class: 'text-light display-6 fw-bold',
+                            }
+                        }) }}
+                        {{ form_row(form.sector, {
+                            label: 'Precision pour Claire Saurel ( optionnel ) :',
+                            label_attr: {
+                                class: 'text-light display-6 fw-bold',
+                            }
+                        }) }}
+                    {# Bouton pour valider la création dde résumé de séance #}
+                    <button class="btn btn-light mt-4 w-100" type="submit">Créer le résumé de séance</button>
+                    {{ form_end(form) }}
+                    {# Annuler la création, qui redirige vers l'interface des résumés de séances' #}
+                    <a class="btn btn-secondary mt-4 w-100 d-block fw-bold" href="{{ path('resume_interface') }}">Annuler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -7,27 +7,27 @@
     <div class="container-fluid">
         <div class="row mt-5">
             {# Titre de l'interface #}
-            <h1 class="text-center fs-custom-1">Interface article</h1>
+            <h1 class="text-center fs-custom-1">Interface Personnelle</h1>
         </div>
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
-        <div class="row p-4 side-menu">
+        <div class="row p-4 bg-light side-menu">
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
             <ul>
                 {# Liens du side menu (Voir les résumés de séances & Créer un article #}
-                <li><a href="{{ path('service_list') }}">Voir les résumés de séances</a></li>
-                <li><a href="{{ path('project_create') }}">Écrire un nouvel article</a></li>
+                <li><a href="{{ path('article_list') }}">Accéder aux articles</a></li>
+                <li><a href="{{ path('resume_create') }}">Écrire un résumé de séance</a></li>
             </ul>
         </div>
 
         {# Table des projets appartenants au client connecté #}
         <div class="row mb-5">
-            <h2 class="text-center">Liste de vos articles</h2>
+            <h2 class="text-center">Liste de vos résumés de séances</h2>
         </div>
 
         <div class="row my-5">
             {# Si il existe des projets chez le client, les afficher #}
-            {% if projects %}
+            {% if articles %}
                 <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                     <table class="table">
                         <thead>
@@ -41,13 +41,13 @@
                         </thead>
                         <tbody>
                         {# Affiche les informations des projets individuellement #}
-                        {% for project in projects %}
+                        {% for article in articles %}
                             <tr>
-                                <td>{{ project.name|excerpt(5) }}</td>
-                                <td>{{ project.description|excerpt(10) }}</td>
-                                <td>{{ project.sector }}</td>
-                                <td>{{ project.createdAt|date('d/m/Y à H\\hi') }}</td>
-                                <td><a href="{{ path('project_view', {'slug': project.slug}) }}"><i class="far fa-eye"></i></a></td>
+                                <td>{{ article.name|excerpt(5) }}</td>
+                                <td>{{ article.description|excerpt(10) }}</td>
+                                <td>{{ article.sector }}</td>
+                                <td>{{ article.createdAt|date('d/m/Y à H\\hi') }}</td>
+                                <td><a href="{{ path('article_view', {'slug': article.slug}) }}"><i class="far fa-eye"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -55,7 +55,7 @@
                 </div>
             {# Sinon, afficher un message pour indiquer que le client ne possède aucun article #}
             {% else %}
-                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun article écrit pour le moment</p>
+                <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun résumé de séance pour le moment</p>
             {% endif %}
         </div>
     </div>

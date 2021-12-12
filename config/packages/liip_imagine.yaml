@@ -8,13 +8,13 @@ liip_imagine:
     filter_sets:
 
         # Le nom des filtres est libre, l'on peut mettre ce que l'on veut.
-        service_picture:
+        resume_picture:
             quality: 75         # Qualité de l'image en sortie (75% = bon compromis entre le poids final de l'image et sa qualité)
             filters:
                 scale:          # Agrandit ou réduit l'image jusqu'à ce qu'un des côtés de l'image atteigne sa valeur (conserve le ratio, sans déformation d'image)
                     dim: [ 250, 250 ]
 
-        project_picture:
+        article_picture:
             quality: 75         
             filters:
                 scale: 

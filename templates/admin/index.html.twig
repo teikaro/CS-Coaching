@@ -5,14 +5,29 @@
 
 {# Corps du document #}
 {% block body %}
+
+    {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
+    <div class="row p-4 bg-light side-menu">
+        <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
+
+        <ul>
+            <li><a href="{{ path('article_list') }}">Accéder à tous les articles</a></li>
+            <li><a href="{{ path('article_create') }}">Écrire un nouvel article</a></li>
+            <li><a href="{{ path('resume_list') }}">Voir les résumés de séances</a></li>
+
+        </ul>
+
+    </div>
+
 <section class="liste container-fluid col-lg-8 align-self-center">
+
     <div class="row my-5">
+
         {# Titre principal de la page #}
         <h1 class="text-center fs-custom-1">Liste des {{ titre }}</h1>
     </div>
 
     {# Table des profils #}
-    {# TODO : STAGE mettre en place une pagination #}
     <div class="container">
         <div class="table-responsive-lg">
               <table class="table">
@@ -21,13 +36,12 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
-                <th>Roles</th>
+
                 <th>Numéro de portable</th>
                 <th>Code postal</th>
                 <th>Ville</th>
                 <th>Adresse</th>
                 <th>Créé le</th>
-                <th>Modifié le</th>
             </tr>
             </thead>
             <tbody>
@@ -38,13 +52,11 @@
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.roles|json_encode }}</td>
                         <td>{{ user.phone }}</td>
                         <td>{{ user.zipCode }}</td>
                         <td>{{ user.city }}</td>
                         <td>{{ user.address }}</td>
                         <td>{{ user.registeredAt|date('d-m-Y H:i') }}</td>
-                        <td>{{ user.updatedAt ? user.updatedAt|date('d-m-Y H:i') : '' }}</td>
                         <td><a class="btn btn-outline-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">Modifier</a></td>
                         <td>
                             <form method="post" action="{{ path('admin_user_delete', {'id': user.id} ) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce profil ?');">

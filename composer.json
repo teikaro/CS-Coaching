@@ -48,7 +48,8 @@
         "symfony/web-link": "5.3.*",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+      "ext-curl": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
@@ -56,7 +57,7 @@
         "symfony/browser-kit": "5.3.*",
         "symfony/css-selector": "5.3.*",
         "symfony/debug-bundle": "5.3.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.36",
         "symfony/phpunit-bridge": "5.3.*",
         "symfony/stopwatch": "5.3.*",
         "symfony/web-profiler-bundle": "5.3.*"

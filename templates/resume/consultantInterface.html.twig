@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Interface consultant{% endblock %}
+{% block title %}Interface des résumés de séance{% endblock %}
 
 {% block body %}
 
@@ -11,23 +11,23 @@
         </div>
 
         {# Side-menu permettant d'afficher des liens collés à l'écran, quel que soit la position de l'utilisateur sur la page #}
-        <div class="row p-4 side-menu">
+        <div class="row p-4 bg-light side-menu">
             <p class="fs-4 text-center fw-bold text-decoration-underline">Menu</p>
             <ul>
-                {# Liens du side menu (Voir catalogue & Proposer/Créer un service #}
-                <li><a href="{{ path('project_list') }}">Voir les articles</a></li>
-                <li><a href="{{ path('service_create') }}">Écrire un résumé de séance</a></li>
+                {# Liens du side menu (Voir catalogue & Proposer/Créer un resume #}
+                <li><a href="{{ path('article_list') }}">Voir les articles</a></li>
+                <li><a href="{{ path('resume_create') }}">Écrire un résumé de séance</a></li>
             </ul>
         </div>
 
-        {# Table des services appartenants au consultant connecté #}
+        {# Table des resumés appartenants au client connecté #}
         <div class="row mb-5">
             <h2 class="text-center">Liste de vos résumés de séances</h2>
         </div>
 
         <div class="row my-5">
-            {# Si il existe des services chez le consultant, les afficher #}
-            {% if services %}
+            {# Si il existe des resumés chez le client, les afficher #}
+            {% if resumes %}
                 <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                     <table class="table">
                         <thead>
@@ -40,20 +40,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {# Affiche les informations des services individuellement #}
-                        {% for service in services %}
+                        {# Affiche les informations des resumés individuellement #}
+                        {% for resume in resumes %}
                             <tr>
-                                <td>{{ service.name|excerpt(5) }}</td>
-                                <td>{{ service.description|excerpt(10) }}</td>
-                                <td>{{ service.sector }}</td>
-                                <td>{{ service.createdAt|date('d/m/Y à H\\hi') }}</td>
-                                <td><a href="{{ path('service_view', {'slug': service.slug}) }}"><i class="far fa-eye"></i></a></td>
+                                <td>{{ resume.name|excerpt(5) }}</td>
+                                <td>{{ resume.description|excerpt(10) }}</td>
+                                <td>{{ resume.sector }}</td>
+                                <td>{{ resume.createdAt|date('d/m/Y à H\\hi') }}</td>
+                                <td><a href="{{ path('resume_view', {'slug': resume.slug}) }}"><i class="far fa-eye"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
-            {# Sinon, affiche un message pour indiquer que le consultant ne possède aucun services #}
+            {# Sinon, affiche un message pour indiquer que le consultant ne possède aucun resumes #}
             {% else %}
                 <p class="fs-1 text-center text-danger custom-margin-2">Vous n'avez aucun résumé de séance</p>
             {% endif %}

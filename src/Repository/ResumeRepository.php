@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Service;
+use App\Entity\Resume;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Service|null find($id, $lockMode = null, $lockVersion = null)
- * @method Service|null findOneBy(array $criteria, array $orderBy = null)
- * @method Service[]    findAll()
- * @method Service[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Resume|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Resume|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Resume[]    findAll()
+ * @method Resume[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ServiceRepository extends ServiceEntityRepository
+class ResumeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Service::class);
+        parent::__construct($registry, Resume::class);
     }
 
     // /**
-    //  * @return Service[] Returns an array of Service objects
+    //  * @return Resume[] Returns an array of Resume objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ServiceRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Service
+    public function findOneBySomeField($value): ?Resume
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

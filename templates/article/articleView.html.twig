@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {# titre du document #}
-{% block title %} {{ project.name }} {% endblock %}
+{% block title %} {{ article.name }} {% endblock %}
 
 {# Corps du document #}
 {% block body %}
@@ -10,16 +10,16 @@
 
         <div class="row my-5">
             {# Titre principal de la page #}
-            <h1 class="col-12 text-center">{{ project.name }}</h1>
+            <h1 class="col-12 text-center">{{ article.name }}</h1>
         </div>
 
         <div class="row">
             <p class="text-center col-12 my-5">
                 {# Si l'utilisateur est un client, affiche un lien vers son interface. Sinon, vers liste de projets #}
                 {% if app.user == app.user %}
-                    <a class="text-decoration-none fs-5" href="{{ path('project_interface') }}">Retour à l'interface</a>
+                    <a class="text-decoration-none fs-5" href="{{ path('article_interface') }}">Retour à l'interface</a>
                 {% else %}
-                    <a class="text-decoration-none fs-5" href="{{ path('project_list') }}">Retour au catalogue des articles</a>
+                    <a class="text-decoration-none fs-5" href="{{ path('article_list') }}">Retour au catalogue des articles</a>
                 {% endif %}
             </p>
         </div>
@@ -35,7 +35,7 @@
                         {# Description du projet #}
                         <div class="mb-2 fs-5">
                             {# Rendu description du projet filtré #}
-                            {{ project.description|purify }}
+                            {{ article.description|purify }}
                         </div>
                     </div>
 
@@ -43,13 +43,13 @@
                         {# Affichage du nom et prénom du créateur du projet #}
                         <p class="text-start ps-5 mt-2 mb-4 fs-5 col-6">
                             {# Affiche nom et prénom de l'utilisateur #}
-                            <span class="fw-bold">{{ project.user.firstName }} {{ project.user.lastName }}</span>
+                            <span class="fw-bold">{{ article.user.firstName }} {{ article.user.lastName }}</span>
                         </p>
 
                         {# Affichage de la date de création du projet #}
                         <p class="text-end pe-5 mt-2 mb-4 fs-5 col-6">
                             {# Date de création #}
-                            Ajouté le <span class="fw-bold">{{ project.createdAt|date('d/m/Y à H\\hi') }}</span>
+                            Ajouté le <span class="fw-bold">{{ article.createdAt|date('d/m/Y à H\\hi') }}</span>
                         </p>
                     </div>
                 </div>
@@ -57,16 +57,16 @@
         </div>
 
         {# Si l'utilisateur est un client, lui seul peut modifier ou supprimer ses services  #}
-        {% if project.user == app.user %}
+        {% if article.user == app.user %}
             <div class="row my-5">
                 <div class="col-6 mx-auto d-flex justify-content-center">
                     {# Bouton de modification du projet #}
-                    <a href="{{ path('project_edit', {'slug': project.slug}) }}" class="btn btn-warning me-3 d-inline-block" style="width: 150px">
+                    <a href="{{ path('article_edit', {'slug': article.slug}) }}" class="btn btn-warning me-3 d-inline-block" style="width: 150px">
                         <i class="fas fa-edit me-1"></i> Modifier
                     </a>
 
                     {# bouton de suppression du projet #}
-                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('project_delete', {'id': project.id, csrf_token: csrf_token('project_delete_' ~ project.id ) }) }}">
+                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')" class="btn btn-danger ms-3 d-inline-block" style="width: 150px" href="{{ path('article_delete', {'id': article.id, csrf_token: csrf_token('article_delete_' ~ article.id ) }) }}">
                         <i class="fas fa-trash-alt me-1"></i> Supprimer
                     </a>
                 </div>
